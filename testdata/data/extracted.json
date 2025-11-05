@@ -1,0 +1,120 @@
+{
+  "kafka_key": "junk",
+  "timestamp": "2021-02-14T12:12:21.426232Z",
+  "author": {
+    "name": "MimeDecoder",
+    "version": "2021.02.14",
+    "category": "plugin"
+  },
+  "model": "binary",
+  "action": "extracted",
+  "model_version": 3,
+  "source": {
+    "name": "testing",
+    "timestamp": "2021-02-06T16:43:23Z",
+    "path": [
+      {
+        "sha256": "b9debe8afbdc6d0f552ca4d41fc8a5760778f2724d1560f6b4b0fc28bd837a82-1612629803",
+        "timestamp": "2021-02-07T21:38:56+11:00",
+        "author": {
+          "name": "vtfileloader",
+          "version": "1.1",
+          "category": "loader"
+        },
+        "entity_type": "filescan",
+        "event": "file_scanned",
+        "filename": "foobar.mht",
+        "size": 343964,
+        "file_format_legacy": "Email"
+      },
+      {
+        "sha256": "b9debe8afbdc6d0f552ca4d41fc8a5760778f2724d1560f6b4b0fc28bd837a82",
+        "timestamp": "2021-02-07T21:40:31.872294+11:00",
+        "author": {
+          "name": "vtselect",
+          "version": "1.1",
+          "category": "plugin"
+        },
+        "action": "requested",
+        "size": 343964,
+        "file_format_legacy": "Email"
+      },
+      {
+        "sha256": "b9debe8afbdc6d0f552ca4d41fc8a5760778f2724d1560f6b4b0fc28bd837a82",
+        "timestamp": "2021-02-07T21:40:33.075142+11:00",
+        "author": {
+          "name": "vtdownload",
+          "version": "1.1",
+          "category": "plugin"
+        },
+        "action": "downloaded",
+        "size": 343964,
+        "file_format_legacy": "Email"
+      },
+      {
+        "sha256": "ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69",
+        "timestamp": "2021-02-14T12:12:21.426232Z",
+        "author": {
+          "name": "MimeDecoder",
+          "version": "2021.02.14",
+          "category": "plugin"
+        },
+        "action": "extracted",
+        "relationship": { "action": "extracted", "encoding": "base64" },
+        "file_format_legacy": "GIF",
+        "size": 35054,
+        "filename": "ukr_kh1.gif"
+      }
+    ],
+    "references": {
+      "interface": "web",
+      "submitter_city": "kharkiv",
+      "submitter_country": "UA",
+      "submitter_id": "0a9e3094",
+      "submitter_region": "63"
+    }
+  },
+  "entity": {
+    "file_format_legacy": "GIF",
+    "datastreams": [
+      {
+        "file_type": "GIF",
+        "mime_magic": "GIF image data, version 89a, 80 x 35",
+        "md5": "9e4638d508c003f83f44f5d07748f33a",
+        "size": 35054,
+        "sha256": "ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69",
+        "label": "content",
+        "sha512": "0e61e710aa6737129b6b42b4e5e18c0c66f2febe4277c9e1f85faaed155de966fd7cdbcc8a7b5dff7936acfbeeec9073e594137dcb3f1c30544148e753ef0314",
+        "mime_type": "image/gif",
+        "sha1": "05ea1ec1fd241a09713d43cd70e51f934de94b34",
+        "identify_version": 1
+      }
+    ],
+    "md5": "9e4638d508c003f83f44f5d07748f33a",
+    "size": 35054,
+    "features": [
+      { "type": "filepath", "name": "filename", "value": "ukr_kh1.gif" },
+      { "type": "string", "name": "mime_content_encoding", "value": "base64" },
+      {
+        "type": "uri",
+        "name": "mime_content_location",
+        "value": "http://hatanm.org.ua/images/banners/ukr_kh1.gif"
+      },
+      {
+        "type": "string",
+        "name": "mime_content_type",
+        "value": "application/octet-stream"
+      },
+      { "type": "string", "name": "mimetype", "value": "image/gif" },
+      {
+        "type": "string",
+        "name": "magic",
+        "value": "GIF image data, version 89a, 80 x 35"
+      },
+      { "type": "string", "name": "fileformat", "value": "GIF" }
+    ],
+    "sha256": "ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69",
+    "sha512": "0e61e710aa6737129b6b42b4e5e18c0c66f2febe4277c9e1f85faaed155de966fd7cdbcc8a7b5dff7936acfbeeec9073e594137dcb3f1c30544148e753ef0314",
+    "sha1": "05ea1ec1fd241a09713d43cd70e51f934de94b34"
+  }
+}

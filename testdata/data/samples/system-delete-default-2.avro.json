@@ -1,0 +1,42 @@
+[
+    {
+        "model_version": 5,
+        "kafka_key": "5261f7ed68f5c93b80769c35e690b4ee",
+        "timestamp": "2025-08-13T23:34:24.880128Z",
+        "author": {
+            "name": "azul_writer",
+            "category": "user"
+        },
+        "entity": {
+            "reason": "deleted via metastore api",
+            "submission": {
+                "track_source_references": "testing.cea0db49111cc1888bcca56b303e38ae",
+                "timestamp": "2025-08-13T23:34:00Z"
+            },
+            "author": {},
+            "link": {},
+            "ids": {}
+        },
+        "action": "submission"
+    },
+    {
+        "model_version": 5,
+        "kafka_key": "260485ec8b073977d63de201419239c9",
+        "timestamp": "2025-08-13T18:13:40.005548Z",
+        "author": {
+            "name": "azul_writer",
+            "category": "user"
+        },
+        "entity": {
+            "reason": "deleted via metastore api",
+            "submission": {
+                "track_source_references": "testing.cea0db49111cc1888bcca56b303e38ae",
+                "timestamp": "2025-08-13T18:13:00Z"
+            },
+            "author": {},
+            "link": {},
+            "ids": {}
+        },
+        "action": "submission"
+    }
+]
