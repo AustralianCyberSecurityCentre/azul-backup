@@ -7,6 +7,7 @@ ARG BASE_TAG=1.25-trixie
 FROM $REGISTRY/$BASE_IMAGE:$BASE_TAG AS builder
 ENV DEBIAN_FRONTEND=noninteractive
 ENV GOOS=linux GOARCH=amd64 CGO_ENABLED=0 GO111MODULE=on GOPATH=/src/tmp/go
+ENV GOPRIVATE=github.com/AustralianCyberSecurityCentre/*
 ARG XDG_CONFIG_HOME
 
 RUN apt-get update && \
