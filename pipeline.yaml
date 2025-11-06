@@ -8,11 +8,6 @@ pool:
 
 resources:
   repositories:
-    - repository: azul-backup
-      type: git
-      ref: refs/heads/main
-      name: azul-backup
-      trigger: none
     - repository: PipelineTemplates
       type: git
       name: CyberLab-Services/pipeline-templates
