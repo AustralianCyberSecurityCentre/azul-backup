@@ -1,14 +1,11 @@
 package restore
 
 import (
-	"fmt"
-	"log"
-	"os"
 	"slices"
-	"text/tabwriter"
 	"time"
 
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
 )
 
 type RestoreStats struct {
@@ -40,14 +37,14 @@ func PrintRestoreState(startTime time.Time, stats map[string]*RestoreStats) {
 	slices.Sort(keys)
 	var totalEvents, totalStreams int
 	runtime := time.Since(startTime).Seconds()
-	w := tabwriter.NewWriter(os.Stdout, 1, 1, 2, ' ', tabwriter.AlignRight)
-	log.Printf("Restore stats:")
-	fmt.Fprintf(w, "source\tevents-ok\tevents-fail\tevent-types-complete\tstreams-ok\tstreams-fail\tstreams-complete\t\n")
+
+	bedSet.Logger.Info().Msg("Restore stats:\nsource\tevents-ok\tevents-fail\tevent-types-complete\tstreams-ok\tstreams-fail\tstreams-complete\t\n")
+
 	for _, source := range keys {
 		stat := stats[source]
 		totalEvents += stat.EventsOk
 		totalStreams += stat.StreamsOk
-		fmt.Fprintf(w, "%s\t %d\t %d\t %d\t %d\t %d\t %t\t\n",
+		bedSet.Logger.Info().Msgf("%s\t %d\t %d\t %d\t %d\t %d\t %t\t\n",
 			source, stat.EventsOk, stat.EventsFail, stat.EventTypesComplete, stat.StreamsOk, stat.StreamsFail, stat.StreamsComplete)
 
 		// Set prometheus stat for the printed data.
@@ -65,6 +62,5 @@ func PrintRestoreState(startTime time.Time, stats map[string]*RestoreStats) {
 		}
 
 	}
-	w.Flush()
-	fmt.Printf("Processed %d events (%.2f/s) and %d streams (%.2f/s)\n", totalEvents, float64(totalEvents)/runtime, totalStreams, float64(totalStreams)/runtime)
+	bedSet.Logger.Info().Msgf("Processed %d events (%.2f/s) and %d streams (%.2f/s)\n", totalEvents, float64(totalEvents)/runtime, totalStreams, float64(totalStreams)/runtime)
 }

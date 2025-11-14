@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"os"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
@@ -11,6 +10,7 @@ import (
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/models"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/msginflight"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
 )
 
 const directoryPerms = 0755
@@ -87,23 +87,23 @@ func main() {
 	for source, actionsOrModels := range mapthings {
 		for _, modelOrAction := range actionsOrModels {
 			model, action := bkupcom.GetModelAndAction(source, modelOrAction)
-			log.Printf("start retrieve of events for %s-%s", source, modelOrAction)
+			bedSet.Logger.Info().Msgf("start retrieve of events for %s-%s", source, modelOrAction)
 			success := 0
 			for success < 1 {
 				events, info, err := getEvents(source, model, action, dp)
 				if err != nil {
-					log.Printf("failed to fetch events from dp, %v", err)
+					bedSet.Logger.Error().Err(err).Msgf("failed to fetch events from dp, %v", err)
 					continue
 				}
 				if info.Ready {
 					success += 1
 				} else {
-					log.Printf("topics not ready yet %s %s", source, modelOrAction)
+					bedSet.Logger.Info().Msgf("topics not ready yet %s %s", source, modelOrAction)
 					continue
 				}
 				bulk, err := msginflight.MsgInFlightsToAvroBulk(events, model)
 				if err != nil {
-					log.Printf("failed to bulk encode, %v", err)
+					bedSet.Logger.Warn().Err(err).Msg("failed to bulk encode")
 					continue
 				}
 
@@ -112,24 +112,24 @@ func main() {
 				// Convert all the event to Json and write them to a neighboring file for transparency.
 				rawMsgsInFlight, err := json.Marshal(events)
 				if err != nil {
-					log.Printf("failed to convert to JSON!, %v", err)
+					bedSet.Logger.Error().Err(err).Msg("failed to convert to JSON!")
 					continue
 				}
 				err = os.WriteFile(filename+".json", rawMsgsInFlight, filePerms)
 				if err != nil {
-					log.Printf("failed to write events to json file, %v", err)
+					bedSet.Logger.Error().Err(err).Msg("failed to write events to json file")
 					continue
 				}
 
 				// store bulk events to disk as Avro
 				err = os.WriteFile(filename, bulk, filePerms)
 				if err != nil {
-					log.Printf("failed to fetch write file, %v", err)
+					bedSet.Logger.Error().Err(err).Msg("failed to fetch write file")
 					continue
 				}
-				log.Printf("wrote %s", filename)
+				bedSet.Logger.Info().Msgf("wrote %s", filename)
 			}
 		}
 	}
-	log.Printf("finished")
+	bedSet.Logger.Info().Msg("finished")
 }

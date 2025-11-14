@@ -51,20 +51,23 @@ type RecoverySettings struct {
 
 	// Enable automatic deletion of data that is older than what the source would keep.
 	EnableAutomaticAgeOff bool `koanf:"enable_automatic_ageoff"`
+	// If automatic ageoff is disabled, should the old rules be cleaned up?
+	EnableCleanupAutoAgeOff bool `koanf:"enable_automatic_ageoff_cleanup"`
 }
 
 var Settings *RecoverySettings
 
 var defaults RecoverySettings = RecoverySettings{
-	BucketNamePrefix:      "azul-backup-",
-	BackupID:              "1",
-	StreamChannelSize:     500,
-	StreamRoutineCount:    20,
-	LocalData:             LocalDataSettings{RootDir: "/tmp/azul_recovery"},
-	RestoreType:           "all",
-	DeploymentKey:         "recovery",
-	EventBatchSize:        1000,
-	EnableAutomaticAgeOff: false,
+	BucketNamePrefix:        "azul-backup-",
+	BackupID:                "1",
+	StreamChannelSize:       500,
+	StreamRoutineCount:      20,
+	LocalData:               LocalDataSettings{RootDir: "/tmp/azul_recovery"},
+	RestoreType:             "all",
+	DeploymentKey:           "recovery",
+	EventBatchSize:          1000,
+	EnableAutomaticAgeOff:   false,
+	EnableCleanupAutoAgeOff: false,
 }
 
 func parseSettings() *RecoverySettings {

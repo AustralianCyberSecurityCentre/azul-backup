@@ -4,20 +4,19 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
-	"github.com/AustralianCyberSecurityCentre/azul-backup.git/store"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/store"
 )
 
 type BackupStreams struct {
 	dp         bedclient.ClientInterface
-	obj        store.StoreS3Interface
+	obj        store.FileStorage
 	objChannel *chan bkupcom.StreamBackupRequest
 }
 
-func NewBackupStreams(dpclient bedclient.ClientInterface, objStore store.StoreS3Interface, objChannel *chan bkupcom.StreamBackupRequest) *BackupStreams {
+func NewBackupStreams(dpclient bedclient.ClientInterface, objStore store.FileStorage, objChannel *chan bkupcom.StreamBackupRequest) *BackupStreams {
 	return &BackupStreams{dp: dpclient, obj: objStore, objChannel: objChannel}
 }
 
@@ -34,16 +33,9 @@ func (bks *BackupStreams) BackupStream(obr *bkupcom.StreamBackupRequest) (bool, 
 	}
 	// compress resource
 	compressor := bkupcom.NewGzipCompressReader(raw)
-
-	// move to remote s3 storage
-	compressed, err := io.ReadAll(compressor)
-	if err != nil {
-		log.Printf("WARNING - compression failed with error %s", err)
-		return false, err
-	}
-
+	copressorReadCloser := io.NopCloser(compressor)
 	// add to remove s3 storage
-	err = bks.obj.Put(key, compressed)
+	err = bks.obj.Put(obr.Source, obr.Label.Str(), obr.Sha256, copressorReadCloser, -1)
 	if err != nil {
 		return false, err
 	}

@@ -17,10 +17,10 @@ import (
 
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/backup"
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
-	"github.com/AustralianCyberSecurityCentre/azul-backup.git/store"
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/testdata"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/client"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/msginflight"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/store"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"

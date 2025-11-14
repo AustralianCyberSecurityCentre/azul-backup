@@ -1,22 +1,23 @@
 package restore
 
 import (
+	"context"
+	"errors"
 	"fmt"
-	"log"
 	"sort"
 	"strings"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
-	"github.com/AustralianCyberSecurityCentre/azul-backup.git/store"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/client"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/models"
-	"github.com/minio/minio-go/v7"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/store"
 )
 
 type RestoreEvents struct {
 	dp             bedclient.ClientInterface
-	Ev             store.StoreS3Interface
+	Ev             store.FileStorage
 	source         string
 	model          events.Model
 	action         events.BinaryAction
@@ -27,7 +28,7 @@ type RestoreEvents struct {
 
 func NewRestoreEvents(
 	dpclient bedclient.ClientInterface,
-	ev store.StoreS3Interface,
+	ev store.FileStorage,
 	fileCache *bkupcom.LocalData,
 	maxRetries int,
 	source string,
@@ -60,13 +61,26 @@ func extractNamePrefixKey(objKey string) (string, error) {
 	return "", fmt.Errorf("failed to parse key %s due to unexpected format should be <source>/<model>/<action>/<dateNano>-<count>", objKey)
 }
 
+// Used because the format of a event object is 4 parts not 3 like most others.
+func convertEventPathToSourceLabelIdFromKey(objKey string) (string, string, string, error) {
+	keyParts := strings.Split(objKey, "/")
+	if len(keyParts) == 4 {
+		modelSlashAction := fmt.Sprintf("%s/%s", keyParts[1], keyParts[2])
+		return keyParts[0], modelSlashAction, keyParts[3], nil
+	}
+	return "", "", "", fmt.Errorf("failed to parse key %s due to unexpected format should be <source>/<model>/<action>/<dateNano>-<count>", objKey)
+}
+
 func (re *RestoreEvents) CountObjectsPerPrefix() map[string]int {
 	prefix := fmt.Sprintf("%s/%s/", re.source, re.modelAndAction)
 	counts := map[string]int{}
-	for obj := range re.Ev.List(minio.ListObjectsOptions{Prefix: prefix}) {
+	ctx, cancelFunc := context.WithCancel(context.Background())
+	defer func() { cancelFunc() }()
+
+	for obj := range re.Ev.List(ctx, prefix, "") {
 		dayPrefix, err := extractNamePrefixKey(obj.Key)
 		if err != nil {
-			log.Printf("WARNING - Ignoring file with key %s when counting number of events per day. %v", obj.Key, err)
+			bedSet.Logger.Warn().Err(err).Msgf("Ignoring file with key %s when counting number of events per day.", obj.Key)
 		}
 		counts[dayPrefix] += 1
 	}
@@ -92,19 +106,22 @@ func (re *RestoreEvents) GetSortedBucketPrefixesOldestToNewest() []string {
 }
 
 /*Restore a bundle of events from the backup storage to dispatcher.*/
-func (re *RestoreEvents) RestoreEvent(objInfo minio.ObjectInfo) (*models.ResponsePostEvent, error) {
+func (re *RestoreEvents) RestoreEvent(objInfo store.FileStorageObjectListInfo) (*models.ResponsePostEvent, error) {
 	var err error
-	compressedData, err := re.Ev.Fetch(objInfo.Key)
+	var notFoundError *store.NotFoundError
+	restoreSource, restoreLabel, restoreId, err := convertEventPathToSourceLabelIdFromKey(objInfo.Key)
+	if err != nil {
+		return nil, fmt.Errorf("s3 fetch parsing key: %w", err)
+	}
+	compressedData, err := re.Ev.Fetch(restoreSource, restoreLabel, restoreId)
+	if errors.As(err, &notFoundError) {
+		bedSet.Logger.Warn().Msgf("events to restore were not found in key: %s", objInfo.Key)
+	}
 	if err != nil {
 		return nil, fmt.Errorf("s3 fetch: %w", err)
 	}
-	if compressedData == nil {
-		// not found, skip
-		log.Printf("WARNING - events to restore were not found in key: %s", objInfo.Key)
-		return nil, nil
-	}
 
-	bulk, err := bkupcom.NewGzipDecompressBytes(compressedData)
+	bulk, err := bkupcom.NewGzipDecompressReader(compressedData.DataReader)
 	if err != nil {
 		// blob was corrupted
 		return nil, fmt.Errorf("bad gzip: %w", err)
@@ -120,7 +137,7 @@ func (re *RestoreEvents) RestoreEvent(objInfo minio.ObjectInfo) (*models.Respons
 
 	err = re.fileCache.LastEventKeyRestoredSave(re.source, re.model.Str(), re.action.Str(), objInfo.Key)
 	if err != nil {
-		log.Printf("WARNING - couldn't save the last event Key %s to filecache with error %v.", objInfo.Key, err)
+		bedSet.Logger.Warn().Err(err).Msgf("couldn't save the last event Key %s to filecache.", objInfo.Key)
 		err = fmt.Errorf("save last event: %w", err)
 	}
 	return resp, err

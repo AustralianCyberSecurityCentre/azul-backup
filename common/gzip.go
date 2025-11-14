@@ -29,6 +29,10 @@ func NewGzipCompressReader(source io.Reader) io.Reader {
 
 func NewGzipDecompressBytes(source []byte) ([]byte, error) {
 	reader := bytes.NewReader([]byte(source))
+	return NewGzipDecompressReader(reader)
+}
+
+func NewGzipDecompressReader(reader io.Reader) ([]byte, error) {
 	zipRead, err := gzip.NewReader(reader)
 	if err != nil {
 		return nil, err

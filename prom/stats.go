@@ -34,4 +34,9 @@ var (
 		Name: "recovery_completed_event_types_for_source",
 		Help: "Number of event types completed for a given source, used to determine when all event types are done.",
 	}, []string{"source"})
+	StreamsOperationDuration = promauto.NewHistogramVec(prometheus.HistogramOpts{
+		Name:    "recovery_streams_op_duration",
+		Help:    "Duration of a Streams Operation, not including request time",
+		Buckets: []float64{.005, .01, .025, .050, .1, .25, .5, 1, 2.5, 5, 10, 30, 60},
+	}, []string{"method", "result"})
 )

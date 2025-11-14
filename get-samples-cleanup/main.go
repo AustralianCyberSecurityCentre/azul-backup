@@ -5,13 +5,13 @@ package main
 
 import (
 	"encoding/json"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/msginflight"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
 )
 
 const filePerms = 0766
@@ -20,23 +20,23 @@ const filePerms = 0766
 func AvroToJson(modelType events.Model, filepath string) {
 	raw, err := os.ReadFile(filepath)
 	if err != nil {
-		log.Printf("Failed to load the json file %s", filepath)
+		bedSet.Logger.Error().Err(err).Msgf("Failed to load the json file %s", filepath)
 		return
 	}
 	currentMsgs, err := msginflight.AvroBulkToMsgInFlights(raw, modelType)
 	if err != nil {
-		log.Printf("Failed to load avro file %s with error %v", filepath, err)
+		bedSet.Logger.Error().Err(err).Msgf("Failed to load avro file %s", filepath)
 		return
 	}
 	rawJson, err := json.Marshal(currentMsgs)
 	if err != nil {
-		log.Printf("Failed to convert messages to Json %s with error %v", filepath, err)
+		bedSet.Logger.Error().Err(err).Msgf("Failed to convert messages to Json %s", filepath)
 		return
 	}
 	filepath = filepath + ".json"
 	err = os.WriteFile(filepath, rawJson, filePerms)
 	if err != nil {
-		log.Printf("Failed to write json to file %s with error %v", filepath, err)
+		bedSet.Logger.Error().Err(err).Msgf("Failed to write json to file %s", filepath)
 		return
 	}
 }
@@ -46,33 +46,33 @@ func JsonToAvro(modelType events.Model, filepath string) {
 
 	raw, err := os.ReadFile(filepath)
 	if err != nil {
-		log.Printf("Failed to load the json file %s", filepath)
+		bedSet.Logger.Error().Err(err).Msgf("Failed to load the json file %s", filepath)
 		return
 	}
 	rawEvents := []json.RawMessage{}
 	err = json.Unmarshal(raw, &rawEvents)
 	if err != nil {
-		log.Printf("Failed to marshal json %v for file file %s", err, filepath)
+		bedSet.Logger.Error().Err(err).Msgf("Failed to marshal json for file file %s", filepath)
 	}
 
 	events := []*msginflight.MsgInFlight{}
 	for _, curRawEvent := range rawEvents {
 		newEvent, err := msginflight.NewMsgInFlightFromJson(curRawEvent, modelType)
 		if err != nil {
-			log.Printf("Failed to marshal event %v for file file %s", err, filepath)
+			bedSet.Logger.Error().Err(err).Msgf("Failed to marshal event for file file %s", filepath)
 		}
 		events = append(events, newEvent)
 	}
 
 	bulkRawAvro, err := msginflight.MsgInFlightsToAvroBulk(events, modelType)
 	if err != nil {
-		log.Printf("Failed to convert messages to Avro for file %s with error %v", filepath, err)
+		bedSet.Logger.Error().Err(err).Msgf("Failed to convert messages to Avro for file %s", filepath)
 		return
 	}
 	filepath = strings.ReplaceAll(filepath, ".json", "")
 	err = os.WriteFile(filepath, bulkRawAvro, filePerms)
 	if err != nil {
-		log.Printf("Failed to write Avro to file %s with error %v", filepath, err)
+		bedSet.Logger.Error().Err(err).Msgf("Failed to write Avro to file %s", filepath)
 		return
 	}
 }

@@ -11,6 +11,7 @@ import (
 	"sync"
 
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
 )
 
 // 7=rwx, 6=rw, 5=rx, 4=r
@@ -141,7 +142,7 @@ func (fc *LocalData) BackupStreamLoad() ([]StreamBackupRequest, error) {
 		sls := strings.Split(streamData, "/")
 		// This would only happen if the format was manually changed and that shouldn't happen.
 		if len(sls) != 4 {
-			log.Printf("ERROR - could not load the stream %s, it's format was invalid ignoring stream for restore.", streamData)
+			bedSet.Logger.Error().Msgf("could not load the stream %s, it's format was invalid ignoring stream for restore.", streamData)
 			continue
 		}
 		loadedRequest := NewObjectBackupRequest(sls[0], sls[1], events.DatastreamLabel(sls[2]), sls[3])
@@ -238,7 +239,7 @@ func (fc *LocalData) deleteFile(path string) {
 	if _, err := os.Stat(path); err == nil {
 		err := os.Remove(path)
 		if err != nil {
-			log.Printf("WARNING - could not delete file with path %s even though it exists %v", path, err)
+			bedSet.Logger.Warn().Err(err).Msgf("could not delete file with path %s even though it exists.", path)
 		}
 	}
 	// File doesn't exist so do nothing.
