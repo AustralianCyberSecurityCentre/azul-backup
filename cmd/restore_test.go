@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"bytes"
+	"context"
 	"errors"
 	"io"
-	"log"
 	"testing"
 
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
@@ -13,22 +13,19 @@ import (
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
 	restore "github.com/AustralianCyberSecurityCentre/azul-backup.git/restore"
-	"github.com/AustralianCyberSecurityCentre/azul-backup.git/store"
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/testdata"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/client"
-	"github.com/minio/minio-go/v7"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/store"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 )
 
 // rawToGzip turns raw bytes into gzipped data
-func rawToGzip(t *testing.T, raw []byte) []byte {
+func rawToGzip(t *testing.T, raw []byte) io.ReadCloser {
 	r := bytes.NewReader(raw)
 	compressor := bkupcom.NewGzipCompressReader(r)
-	compressed, err := io.ReadAll(compressor)
-	require.Nil(t, err)
-	return compressed
+	return io.NopCloser(compressor)
 }
 
 type RestoreTestSuite struct {
@@ -79,14 +76,14 @@ func (s *RestoreTestSuite) SetupTest() {
 func (s *RestoreTestSuite) TestEventsStoreFetchError() {
 	r := s.Require()
 
-	mockStore := store.NewMockStoreS3Interface(s.T())
-	mockStore.EXPECT().List(mock.Anything).RunAndReturn(func(loo minio.ListObjectsOptions) <-chan minio.ObjectInfo {
-		ch := make(chan minio.ObjectInfo, 10)
-		ch <- minio.ObjectInfo{Key: "testing/binary/sourced/2000-01-01T00:00:00Z-1"}
+	mockStore := store.NewMockFileStorage(s.T())
+	mockStore.EXPECT().List(mock.Anything, mock.Anything, mock.Anything).RunAndReturn(func(ctx context.Context, prefix, after string) <-chan store.FileStorageObjectListInfo {
+		ch := make(chan store.FileStorageObjectListInfo, 10)
+		ch <- store.FileStorageObjectListInfo{Key: "testing/binary/sourced/2000-01-01T00:00:00Z-1", Source: "binary", Label: "sourced", Id: "2000-01-01T00:00:00Z-1"}
 		close(ch)
 		return ch
 	})
-	mockStore.EXPECT().Fetch(mock.Anything).Return(nil, errors.New("test forced a store failure"))
+	mockStore.EXPECT().Fetch(mock.Anything, mock.Anything, mock.Anything).Return(store.NewDataSlice(), errors.New("test forced a store failure"))
 
 	// FUTURE as it never made it to dispatcher, is not recorded as an actual failure
 	res := s.rt.DoRestore(s.streamStore, mockStore, s.dpStreamsClient, s.dpEventsClients)
@@ -98,13 +95,12 @@ func (s *RestoreTestSuite) TestEventsStoreFetchError() {
 
 func (s *RestoreTestSuite) TestEventsDPError() {
 	var err error
-	var compressed []byte
 	r := s.Require()
 
 	// add events to event store
 	td1 := testdata.GetDataBytes("data/samples/testing-binary-sourced-100.avro")
-	compressed = rawToGzip(s.T(), td1)
-	err = s.eventStore.Put("testing/binary/sourced/2000-01-01T00:00:00Z-1", compressed)
+	compressed := rawToGzip(s.T(), td1)
+	err = s.eventStore.Put("testing", "binary/sourced", "2000-01-01T00:00:00Z-1", compressed, -1)
 	r.Nil(err)
 
 	s.dpEvTestingClient.EXPECT().PostEventsBytes(mock.Anything, mock.Anything).Return(
@@ -121,18 +117,17 @@ func (s *RestoreTestSuite) TestEventsDPError() {
 
 func (s *RestoreTestSuite) TestEventsInvalid() {
 	var err error
-	var compressed []byte
 	r := s.Require()
 
 	// add bad events to event store
 	td2 := []byte("{}")
-	compressed = rawToGzip(s.T(), td2)
-	err = s.eventStore.Put("testing/binary/sourced/2000-01-01T01:00:00Z-1", compressed)
+	compressed := rawToGzip(s.T(), td2)
+	err = s.eventStore.Put("testing", "binary/sourced", "2000-01-01T01:00:00Z-1", compressed, int64(len(td2)))
 	r.Nil(err)
 
 	td3 := []byte("{}df")
 	compressed = rawToGzip(s.T(), td3)
-	err = s.eventStore.Put("testing/binary/sourced/2000-01-01T02:00:00Z-1", compressed)
+	err = s.eventStore.Put("testing", "binary/sourced", "2000-01-01T02:00:00Z-1", compressed, int64(len(td3)))
 	r.Nil(err)
 
 	// check events to dispatcher
@@ -171,13 +166,12 @@ func (s *RestoreTestSuite) TestEventsInvalid() {
 
 func (s *RestoreTestSuite) TestEvents() {
 	var err error
-	var compressed []byte
 	r := s.Require()
 
 	// add events to event store
 	td1 := testdata.GetDataBytes("data/samples/testing-binary-sourced-100.avro")
-	compressed = rawToGzip(s.T(), td1)
-	err = s.eventStore.Put("testing/binary/sourced/2000-01-01T00:00:00Z-1", compressed)
+	compressed := rawToGzip(s.T(), td1)
+	err = s.eventStore.Put("testing", "binary/sourced", "2000-01-01T00:00:00Z-1", compressed, int64(len(td1)))
 	r.Nil(err)
 
 	// check events to dispatcher
@@ -203,7 +197,10 @@ func (s *RestoreTestSuite) TestStreamsInvalid() {
 
 	// add binary to s3 - not gzipped so will fail when restoring
 	// This is implicitly tested by not adding any EXPECT() handlers
-	err := s.streamStore.Put("testing/content/ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69", []byte("hello"))
+	rawData := []byte("hello")
+	reader := bytes.NewReader(rawData)
+	readCloser := io.NopCloser(reader)
+	err := s.streamStore.Put("testing", "content", "ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69", readCloser, int64(len(rawData)))
 	r.Nil(err)
 
 	// run the restore
@@ -217,17 +214,17 @@ func (s *RestoreTestSuite) TestStreamsInvalid() {
 func (s *RestoreTestSuite) TestStreamsStoreError() {
 	r := s.Require()
 
-	mockStore := store.NewMockStoreS3Interface(s.T())
-	mockStore.EXPECT().List(mock.Anything).RunAndReturn(func(loo minio.ListObjectsOptions) <-chan minio.ObjectInfo {
-		log.Printf("%v", loo)
-		ch := make(chan minio.ObjectInfo, 10)
-		if loo.Prefix == "testing/" {
-			ch <- minio.ObjectInfo{Key: "testing/content/ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69"}
+	mockStore := store.NewMockFileStorage(s.T())
+	mockStore.EXPECT().List(mock.Anything, mock.Anything, mock.Anything).RunAndReturn(func(ctx context.Context, prefix, after string) <-chan store.FileStorageObjectListInfo {
+		s.T().Logf("%v", prefix)
+		ch := make(chan store.FileStorageObjectListInfo, 10)
+		if prefix == "testing/" {
+			ch <- store.FileStorageObjectListInfo{Key: "testing/content/ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69", Source: "testing", Label: "content", Id: "ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69"}
 		}
 		close(ch)
 		return ch
 	})
-	mockStore.EXPECT().Fetch(mock.Anything).Return(nil, errors.New("test forced a store failure"))
+	mockStore.EXPECT().Fetch(mock.Anything, mock.Anything, mock.Anything).Return(store.NewDataSlice(), errors.New("test forced a store failure"))
 
 	res := s.rt.DoRestore(mockStore, s.eventStore, s.dpStreamsClient, s.dpEventsClients)
 	r.Equal(res, map[string]*restore.RestoreStats{
@@ -242,7 +239,7 @@ func (s *RestoreTestSuite) TestStreamsDPError() {
 
 	// add events to event store
 	compressed := rawToGzip(s.T(), []byte("hello"))
-	err = s.streamStore.Put("testing/content/ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69", compressed)
+	err = s.streamStore.Put("testing", "content", "ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69", compressed, -1)
 	r.Nil(err)
 
 	s.dpStreamsClient.EXPECT().PostStream(mock.Anything, mock.Anything, mock.Anything, mock.Anything).Return(nil, errors.New("test forced a dp failure"))
@@ -260,7 +257,7 @@ func (s *RestoreTestSuite) TestStreams() {
 
 	// add binary to s3 with gzip compression
 	compressed := rawToGzip(s.T(), []byte("hello"))
-	err = s.streamStore.Put("testing/content/ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69", compressed)
+	err = s.streamStore.Put("testing", "content", "ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69", compressed, -1)
 	r.Nil(err)
 
 	// check we got correct streams to dispatcher

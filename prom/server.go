@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
@@ -23,7 +24,7 @@ func (h HandlerWrapper) ServeHTTP(rw http.ResponseWriter, rr *http.Request) {
 func StartStandalonePromServer() {
 	handler := promhttp.Handler()
 	http.Handle("/metrics", HandlerWrapper{handler: handler})
-	log.Printf("launching metrics server")
+	bedSet.Logger.Info().Msg("launching metrics server")
 	err := http.ListenAndServe(":8900", nil)
 	if err != nil {
 		log.Fatalf("failed to listen for prometheus metrics")

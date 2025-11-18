@@ -1,11 +1,11 @@
 package cmd
 
 import (
-	"log"
 	"strings"
 	"testing"
 
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/client"
@@ -45,7 +45,8 @@ func prepareSources(operation string, forTest *testing.T) map[string]map[string]
 				dpEventClients[source][action.Str()] = bedclient.NewMockClientInterface(forTest)
 			}
 		}
-		log.Printf("'%s' source will process events: %v", source, events.ActionsBinary)
+
+		bedSet.Logger.Info().Msgf("'%s' source will process events: %v", source, events.ActionsBinary)
 	}
 
 	// clients for system models (for system, we use model name instead of action)

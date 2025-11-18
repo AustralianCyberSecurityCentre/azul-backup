@@ -1,12 +1,10 @@
 package backup
 
 import (
-	"fmt"
-	"log"
-	"os"
 	"slices"
-	"text/tabwriter"
 	"time"
+
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
 
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
 )
@@ -40,14 +38,12 @@ func PrintBackupState(startTime time.Time, stats map[string]*BackupStats) {
 	slices.Sort(keys)
 	var totalEvents, totalStreams int
 	runtime := time.Since(startTime).Seconds()
-	w := tabwriter.NewWriter(os.Stdout, 1, 1, 2, ' ', tabwriter.AlignRight)
-	log.Printf("Backup stats:")
-	fmt.Fprintf(w, "source\tevents-ok\tevents-fail\tstreams-ok\tstreams-missing\tstreams-fail\t\n")
+	bedSet.Logger.Info().Msg("Backup stats:\nsource\tevents-ok\tevents-fail\tstreams-ok\tstreams-missing\tstreams-fail\t\n")
 	for _, source := range keys {
 		stat := stats[source]
 		totalEvents += stat.EventsOk
 		totalStreams += stat.StreamsOk
-		fmt.Fprintf(w, "%s\t %d\t %d\t %d\t %d\t %d\t\n",
+		bedSet.Logger.Info().Msgf("%s\t %d\t %d\t %d\t %d\t %d\t\n",
 			source, stat.EventsOk, stat.EventsFail, stat.StreamsOk, stat.StreamsMissing, stat.StreamsFail)
 
 		// Set prometheus stat for the printed data.
@@ -57,6 +53,5 @@ func PrintBackupState(startTime time.Time, stats map[string]*BackupStats) {
 		prom.BackupEventStatus.WithLabelValues(source, "streams-missing").Set(float64(stat.StreamsMissing))
 		prom.BackupEventStatus.WithLabelValues(source, "streams-fail").Set(float64(stat.StreamsFail))
 	}
-	w.Flush()
-	fmt.Printf("Processed %d events (%.2f/s) and %d streams (%.2f/s)\n", totalEvents, float64(totalEvents)/runtime, totalStreams, float64(totalStreams)/runtime)
+	bedSet.Logger.Info().Msgf("Processed %d events (%.2f/s) and %d streams (%.2f/s)\n", totalEvents, float64(totalEvents)/runtime, totalStreams, float64(totalStreams)/runtime)
 }

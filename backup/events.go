@@ -4,14 +4,14 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"log"
 	"time"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
-	"github.com/AustralianCyberSecurityCentre/azul-backup.git/store"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/events"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/models"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/msginflight"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/store"
 
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/client"
@@ -31,14 +31,14 @@ type BackupEvents struct {
 	timeSinceLastUpdate time.Time
 
 	dp         bedclient.ClientInterface
-	ev         store.StoreS3Interface
+	ev         store.FileStorage
 	objChannel chan bkupcom.StreamBackupRequest
 	fileCache  *bkupcom.LocalData
 }
 
 func NewBackupEvents(
 	dpclient bedclient.ClientInterface,
-	evStore store.StoreS3Interface,
+	evStore store.FileStorage,
 	objChannel chan bkupcom.StreamBackupRequest,
 	fileCache *bkupcom.LocalData,
 	source string,
@@ -141,9 +141,7 @@ func (bke *BackupEvents) innerBackupEvents(evs []*msginflight.MsgInFlight) (*Bac
 	for _, tmp := range evs {
 		err = tmp.Event.CheckValid()
 		if err != nil {
-			log.Printf("ERROR - CheckValid failed to process an event in the backup %s with the error %v:\n%v",
-				bke.GetAuthorInfo(), err, tmp.Event,
-			)
+			bedSet.Logger.Error().Err(err).Msgf("CheckValid failed to process an event in the backup %s with event \n%v", bke.GetAuthorInfo(), tmp.Event)
 			prom.BackupEventsError.WithLabelValues(bke.source, bke.model.Str(), "CheckValid").Inc()
 			numInvalid += 1
 			continue
@@ -169,10 +167,6 @@ func (bke *BackupEvents) innerBackupEvents(evs []*msginflight.MsgInFlight) (*Bac
 	// Timestamp used is last document timestamp in the bundle, Id is used for uniqueness of the bundle name.
 	// As we read from oldest to newest, this can be used to work out age off.
 	// FUTURE implement a maintenance goroutine that deletes old events from s3
-	key := fmt.Sprintf(
-		`%s/%s/%s-%d-%s`,
-		bke.source, bke.modelAndAction, lastTimestamp.Format(time.RFC3339Nano), len(evs), lastId,
-	)
 	bulk, err := msginflight.MsgInFlightsToAvroBulk(evs, bke.model)
 	if err != nil {
 		return nil, err
@@ -181,13 +175,11 @@ func (bke *BackupEvents) innerBackupEvents(evs []*msginflight.MsgInFlight) (*Bac
 
 	// compress resource
 	compressor := bkupcom.NewGzipCompressReader(r)
-	compressed, err := io.ReadAll(compressor)
-	if err != nil {
-		return nil, err
-	}
+	compressorReadCloser := io.NopCloser(compressor)
 
 	// move to remote s3 storage
-	err = bke.ev.Put(key, compressed)
+	customId := fmt.Sprintf("%s-%d-%s", lastTimestamp.Format(time.RFC3339Nano), len(evs), lastId)
+	err = bke.ev.Put(bke.source, bke.modelAndAction, customId, compressorReadCloser, -1)
 	if err != nil {
 		return nil, err
 	}
@@ -213,7 +205,7 @@ func (bke *BackupEvents) PerformBackup(finalise bool) (*BackupStats, error) {
 		events, _, err = bke.FetchEvents()
 		if err != nil {
 			// continue processing rather than aborting whole backup
-			log.Printf("WARN events - author %s failed get events from dispatcher: '%v'", bke.GetAuthorInfo(), err)
+			bedSet.Logger.Warn().Err(err).Msgf("events - author %s failed get events from dispatcher", bke.GetAuthorInfo())
 			prom.BackupEventsError.WithLabelValues(bke.source, bke.modelAndAction, "FetchEvents").Inc()
 			return &BackupStats{}, nil
 		}
@@ -241,7 +233,7 @@ func (bke *BackupEvents) PerformBackup(finalise bool) (*BackupStats, error) {
 		bulk, err := msginflight.MsgInFlightsToAvroBulk(events, bke.model)
 		err2 := bke.eventsToDisk(bulk)
 		if err2 != nil {
-			log.Printf("ERROR - Data lost, could not backup events to filecache with error %v.", err2)
+			bedSet.Logger.Error().Err(err2).Msg("Data lost, could not backup events to filecache.")
 		}
 		return &BackupStats{EventsFail: len(events)}, err
 	}

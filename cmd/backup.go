@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 	"os/signal"
@@ -13,8 +12,9 @@ import (
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/backup"
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
-	"github.com/AustralianCyberSecurityCentre/azul-backup.git/store"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/client"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/store"
 	lru "github.com/hashicorp/golang-lru/v2"
 	"github.com/spf13/cobra"
 )
@@ -103,7 +103,6 @@ func (bk *Backup) createDedupeRoutines(
 				key := streamFile.GetDestS3Path()
 				_, ok := hitCache.Get(key)
 				if ok {
-					// log.Printf("Dropping duplicate S3 file %v", key)
 					continue
 				}
 				hitCache.Add(key, 0)
@@ -157,7 +156,7 @@ func (bk *Backup) createStreamRoutines(
 					if retries > 5 {
 						err := bk.LocalData.BackupStreamStashAppend(streamFile)
 						if err != nil {
-							log.Printf("streams - failed to backup stream %s with error %v", streamFile.GetDestS3Path(), err)
+							bedSet.Logger.Warn().Err(err).Msgf("streams - failed to backup stream %s", streamFile.GetDestS3Path())
 							prom.BackupObjectError.WithLabelValues(BACKUP_STREAM_STASH_LABEL_VALUE).Inc()
 						}
 						// Kill events, once they have stopped streams can stop.
@@ -174,11 +173,11 @@ func (bk *Backup) createStreamRoutines(
 						}
 					} else {
 						stats[streamFile.Source].StreamsFail += 1
-						log.Printf("streams - backup streams failed with the error %v", err)
+						bedSet.Logger.Error().Err(err).Msg("streams - backup streams failed.")
 						retries += 1
 						innerserr := bk.LocalData.BackupStreamStashAppend(streamFile)
 						if innerserr != nil {
-							log.Printf("ERROR - data lost failed to backup a stream with dest path %s and error %v", streamFile.GetDestS3Path(), innerserr)
+							bedSet.Logger.Error().Err(innerserr).Msgf("data lost failed to backup a stream with dest path %s", streamFile.GetDestS3Path())
 							prom.BackupObjectError.WithLabelValues("BackupStreamStashAppend2").Inc()
 						}
 						// sleep in the hope that the issue will be resolved soon
@@ -195,7 +194,7 @@ func (bk *Backup) createStreamRoutines(
 						case streamFile := <-chBackupStreams:
 							err := bk.LocalData.BackupStreamStashAppend(streamFile)
 							if err != nil {
-								log.Printf("streams - failed to cache stream during shutdown %s with error %v", streamFile.GetDestS3Path(), err)
+								bedSet.Logger.Warn().Err(err).Msgf("streams - failed to cache stream during shutdown %s", streamFile.GetDestS3Path())
 								prom.BackupObjectError.WithLabelValues(BACKUP_STREAM_STASH_LABEL_VALUE).Inc()
 							}
 						default:
@@ -217,7 +216,7 @@ func (bk *Backup) createStreamRoutines(
 }
 
 func (bk *Backup) createEventRoutines(
-	eventStore store.StoreS3Interface,
+	eventStore store.FileStorage,
 	dpEventClients map[string]map[string]bedclient.ClientInterface,
 	chBackupStreams chan bkupcom.StreamBackupRequest,
 	chStats chan map[string]*backup.BackupStats,
@@ -236,7 +235,7 @@ func (bk *Backup) createEventRoutines(
 				bkevents := backup.NewBackupEvents(dpclient, eventStore, chBackupStreams, bk.LocalData, source, model, action)
 				tmpStats, err := bkevents.RecoverLostBackupFromDisk()
 				if err != nil {
-					log.Printf("ERROR events - Failed to recover backup events from cache for source/event %s", bkevents.GetAuthorInfo())
+					bedSet.Logger.Error().Err(err).Msgf("Failed to recover backup events from cache for source/event %s", bkevents.GetAuthorInfo())
 					bk.CtxEventsCancel()
 					return
 				}
@@ -247,14 +246,14 @@ func (bk *Backup) createEventRoutines(
 						// Perform a backup on all events currently stored.
 						tmpStats, eerr := bkevents.PerformBackup(true)
 						if eerr != nil {
-							log.Printf("ERROR events - failed to perform forceful backup '%v'", eerr)
+							bedSet.Logger.Error().Err(eerr).Msg("events - failed to perform forceful backup")
 						}
 						chStats <- map[string]*backup.BackupStats{source: tmpStats}
 						return
 					default:
 						tmpStats, eerr := bkevents.PerformBackup(false)
 						if eerr != nil {
-							log.Printf("ERROR events - author %s failed with the error '%v', killing the plugin", bkevents.GetAuthorInfo(), eerr)
+							bedSet.Logger.Error().Err(eerr).Msgf("events - author %s failed, killing the plugin", bkevents.GetAuthorInfo())
 							// Cancel all event collectors.
 							bk.CtxEventsCancel()
 						}
@@ -269,8 +268,8 @@ func (bk *Backup) createEventRoutines(
 
 // do_backup will perform a backup with the provided dispatcher clients.
 func (bk *Backup) DoBackup(
-	streamStore store.StoreS3Interface,
-	eventStore store.StoreS3Interface,
+	streamStore store.FileStorage,
+	eventStore store.FileStorage,
 	dpStreamsClient bedclient.ClientInterface,
 	dpEventClients map[string]map[string]bedclient.ClientInterface,
 ) map[string]*backup.BackupStats {
@@ -317,7 +316,7 @@ func (bk *Backup) DoBackup(
 				backup.PrintBackupState(startTime, stats)
 				tickerFastMax -= 1
 				if tickerFastMax <= 0 {
-					log.Printf("reducing stat printing frequency to every hour")
+					bedSet.Logger.Info().Msg("reducing stat printing frequency to every hour")
 					tickerFast.Stop()
 				}
 			}
@@ -338,7 +337,7 @@ func (bk *Backup) DoBackup(
 				bk.RapidShutdown = true
 				// First Sigterm with grace period of 30seconds from kubernetes sent.
 				if !sigExitHappened {
-					log.Println("Cancel or kill called, ensuring all workers terminate without data loss")
+					bedSet.Logger.Info().Msg("Cancel or kill called, ensuring all workers terminate without data loss")
 					// do last actions and wait for all write operations to end
 					bk.CtxEventsCancel()
 					sigExitHappened = true
@@ -351,7 +350,7 @@ func (bk *Backup) DoBackup(
 						// Yay gracefully exited in time!
 						return
 					case <-maxWaitAfterSigkill.C:
-						log.Println("Cancel or kill called again, terminating immediately (data loss)")
+						bedSet.Logger.Warn().Msg("Cancel or kill called again, terminating immediately (data loss)")
 						os.Exit(99)
 					}
 				}
@@ -374,20 +373,20 @@ func (bk *Backup) DoBackup(
 	// Wait until all previously failed streams are processed before allowing events to start up.
 	wgReattempt.Wait()
 	wgEventBackup := bk.createEventRoutines(eventStore, dpEventClients, chBackupStreams, chStats)
-	log.Printf("all backup routines started")
+	bedSet.Logger.Info().Msg("all backup routines started")
 
 	// Wait for all event backup routines to exit
 	// Under normal operation, backup is continuous so these routines will rarely end
 	wgEventBackup.Wait()
 	bk.CtxEventsCancel()
-	log.Printf("all event routines stopped, waiting for stream routines")
+	bedSet.Logger.Info().Msg("all event routines stopped, waiting for stream routines")
 	// Trigger stream dedupe cache to close and then wait for it, it will only close once the queue empties.
 	cacheObjBkupCtxCancel()
 	wgDedupe.Wait()
 	// Trigger streams to close and then wait for it to finish, it will only close once the queue empties.
 	bk.CtxStreamsCancel()
 	wgStreamBackup.Wait()
-	log.Printf("all stream routines stopped")
+	bedSet.Logger.Info().Msg("all stream routines stopped")
 
 	// ensure that all results are processed
 	close(chStats)
@@ -414,12 +413,15 @@ var backupCmd = &cobra.Command{
 		dpEventClients := prepareSources("backup", nil)
 
 		startTime := time.Now()
-		streamStore := store.NewObjectS3Store(st)
-		eventStore := store.NewEventS3Store(st)
+		// streams bucket creation
+		streamStore := bkupcom.NewObjectS3Store(st)
+		// events bucket creation
+		eventStore := bkupcom.NewEventS3Store(st)
+		// Startup.
 		bk.DoBackup(streamStore, eventStore, dpStreamsClient, dpEventClients)
 
 		runtime := time.Since(startTime).Seconds()
-		fmt.Printf("Backup terminated after %.2fs\n", runtime)
+		bedSet.Logger.Info().Msgf("Backup terminated after %.2fs\n", runtime)
 	},
 }
 

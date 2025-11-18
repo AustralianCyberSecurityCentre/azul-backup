@@ -3,7 +3,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"log"
 	"slices"
 	"sync"
 	"time"
@@ -11,9 +10,9 @@ import (
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
 	restore "github.com/AustralianCyberSecurityCentre/azul-backup.git/restore"
-	"github.com/AustralianCyberSecurityCentre/azul-backup.git/store"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/client"
-	"github.com/minio/minio-go/v7"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/store"
 	"github.com/spf13/cobra"
 )
 
@@ -38,10 +37,10 @@ func NewRestore() *Restore {
 // restartStreamRoutines recreates routines, channels and waitgroups for restoring streams
 func (rt *Restore) restartStreamRoutines(
 	restoreStream *restore.RestoreStreams, chStats chan map[string]*restore.RestoreStats,
-) (*sync.WaitGroup, chan minio.ObjectInfo) {
+) (*sync.WaitGroup, chan store.FileStorageObjectListInfo) {
 	st := bkupcom.Settings
 	streamsWg := sync.WaitGroup{}
-	chToRestore := make(chan minio.ObjectInfo, st.StreamChannelSize)
+	chToRestore := make(chan store.FileStorageObjectListInfo, st.StreamChannelSize)
 	// start workers
 	for i := 0; i < st.StreamRoutineCount; i++ {
 		streamsWg.Add(1)
@@ -64,7 +63,7 @@ func (rt *Restore) restartStreamRoutines(
 				select {
 				case <-rt.ctx.Done():
 					// Application has been cancelled.
-					log.Printf("Stopped stream restore for source %s after restoring %d events", restoreStream.Source, ok)
+					bedSet.Logger.Info().Msgf("Stopped stream restore for source %s after restoring %d events", restoreStream.Source, ok)
 					return
 				default:
 					wasUploaded, err := restoreStream.RestoreStreams(objInfo)
@@ -75,7 +74,7 @@ func (rt *Restore) restartStreamRoutines(
 					}
 					if err != nil {
 						// Can't carry on because of a transient failure (service unavailable) so kill the application.
-						log.Printf("Fatal error - %s", err)
+						bedSet.Logger.Error().Err(err).Msgf("Fatal error during Streams restore")
 						rt.CtxCancel()
 						return
 					}
@@ -87,14 +86,14 @@ func (rt *Restore) restartStreamRoutines(
 }
 
 func (rt *Restore) restoreStreams(
-	streamStore store.StoreS3Interface,
+	streamStore store.FileStorage,
 	dpStreamsClient bedclient.ClientInterface,
 	backup_sources []string,
 	chStats chan map[string]*restore.RestoreStats,
 ) error {
 	// restore streams from each sources sequentially
 	for _, source := range backup_sources {
-		log.Printf("streams - restoring for source %s", source)
+		bedSet.Logger.Info().Msgf("streams - restoring for source %s", source)
 
 		restoreStream := restore.NewRestoreStreams(dpStreamsClient, streamStore, source, MAX_RETRIES)
 		startFromObjectWithKey, err := rt.LocalData.LastStreamKeyRestoredLoad(source)
@@ -109,8 +108,8 @@ func (rt *Restore) restoreStreams(
 		maxRestorePerCycle := 1000
 		restoreCount := 0
 		cycleCount := 0
-		var objInfo minio.ObjectInfo
-		for objInfo = range restoreStream.GetBucketIterator(startFromObjectWithKey) {
+		var objInfo store.FileStorageObjectListInfo
+		for objInfo = range restoreStream.GetBucketIterator(rt.ctx, startFromObjectWithKey) {
 			cycleCount += 1
 			chToRestore <- objInfo
 			if cycleCount >= maxRestorePerCycle {
@@ -122,13 +121,13 @@ func (rt *Restore) restoreStreams(
 				select {
 				case <-rt.ctx.Done():
 					// Application has been cancelled.
-					log.Printf("Stopping after restoring %d streams to source %s", restoreCount, source)
+					bedSet.Logger.Info().Msgf("Stopping after restoring %d streams to source %s", restoreCount, source)
 					break
 				default:
 					// must checkpoint the last binary saved
 					err = rt.LocalData.LastStreamKeyRestoredStash(source, objInfo.Key)
 					if err != nil {
-						log.Printf("WARN - couldn't save the last backed up stream Key %s to filecache with error %v.", objInfo.Key, err)
+						bedSet.Logger.Warn().Err(err).Msgf("couldn't save the last backed up stream Key %s to filecache.", objInfo.Key)
 					}
 					restoreCount += cycleCount
 					// restart workers until next checkpoint reached
@@ -144,15 +143,15 @@ func (rt *Restore) restoreStreams(
 		select {
 		case <-rt.ctx.Done():
 			// Application has been cancelled.
-			log.Printf("Failure - Stopping after restoring %d streams to source %s", restoreCount, source)
+			bedSet.Logger.Info().Msgf("Restore cancelled, stopping after restoring %d streams to source %s", restoreCount, source)
 		default:
 			// must checkpoint the last binary saved
 			err = rt.LocalData.LastStreamKeyRestoredStash(source, objInfo.Key)
 			if err != nil {
-				log.Printf("WARNING - couldn't save the last backed up stream Key %s to filecache with error %v.", objInfo.Key, err)
+				bedSet.Logger.Warn().Err(err).Msgf("couldn't save the last backed up stream Key %s to filecache.", objInfo.Key)
 			}
 			restoreCount += cycleCount
-			log.Printf("streams - restored all streams to source %s", source)
+			bedSet.Logger.Info().Msgf("streams - restored all streams to source %s", source)
 			chStats <- map[string]*restore.RestoreStats{restoreStream.Source: {StreamsComplete: true}}
 		}
 	}
@@ -162,7 +161,7 @@ func (rt *Restore) restoreStreams(
 func (rt *Restore) createEventRoutine(
 	source string,
 	modelOrAction string,
-	eventStore store.StoreS3Interface,
+	eventStore store.FileStorage,
 	dpclient bedclient.ClientInterface,
 	chStats chan map[string]*restore.RestoreStats,
 	wgEventsRestore *sync.WaitGroup,
@@ -179,16 +178,16 @@ func (rt *Restore) createEventRoutine(
 
 	lastSuccesfulEvent, err := restoreEvents.LoadLastEventSavedKey()
 	if err != nil {
-		log.Printf("Failed to load event state for restore event %s due to error '%v'. Stopping now.", sourceEvent, err)
+		bedSet.Logger.Error().Err(err).Msgf("Failed to load event state for restore event %s. Stopping now.", sourceEvent)
 		rt.CtxCancel()
 		return
 	}
 
 	for _, prefix := range restoreEvents.GetSortedBucketPrefixesOldestToNewest() {
-		for objInfo := range restoreEvents.Ev.List(minio.ListObjectsOptions{Prefix: prefix, Recursive: false}) {
+		for objInfo := range restoreEvents.Ev.List(rt.ctx, prefix, "") {
 			select {
 			case <-rt.ctx.Done():
-				log.Printf("Stopped event restore for source %s", sourceEvent)
+				bedSet.Logger.Info().Msgf("stopped event restore for source %s", sourceEvent)
 				return
 			default:
 				// Skip all keys until we get up to the one we successfully backed up last.
@@ -201,29 +200,29 @@ func (rt *Restore) createEventRoutine(
 				}
 				resp, err := restoreEvents.RestoreEvent(objInfo)
 				if err != nil {
-					log.Printf("Cancelling restore for source %s due to error '%v'", sourceEvent, err)
+					bedSet.Logger.Error().Err(err).Msgf("Cancelling restore for source %s", sourceEvent)
 					rt.CtxCancel()
 					return
 				}
 				if resp.TotalFailures > 0 {
 					// print the bad messages to stdout
 					// FUTURE should be put in LocalData storage for manual inspection
-					log.Printf("Events were rejected by dispatcher (%d ok, %d bad) from %s", resp.TotalOk, resp.TotalFailures, objInfo.Key)
+					bedSet.Logger.Warn().Msgf("Events were rejected by dispatcher (%d ok, %d bad) from %s", resp.TotalOk, resp.TotalFailures, objInfo.Key)
 					for _, failure := range resp.Failures {
-						log.Printf("%s\n%s", failure.Event, failure.Error)
+						bedSet.Logger.Warn().Msgf("%s\n%s", failure.Event, failure.Error)
 					}
 				}
 				chStats <- map[string]*restore.RestoreStats{source: {EventsOk: resp.TotalOk, EventsFail: resp.TotalFailures}}
 			}
 		}
 	}
-	log.Printf("events - restored all %s/%s events", source, modelOrAction)
+	bedSet.Logger.Info().Msgf("events - restored all %s/%s events", source, modelOrAction)
 	chStats <- map[string]*restore.RestoreStats{source: {EventTypesComplete: 1}}
 }
 
 // createEventRoutines restores events to dispatcher, prioritising system events
 func (rt *Restore) createEventRoutines(
-	eventStore store.StoreS3Interface,
+	eventStore store.FileStorage,
 	dpEventClients map[string]map[string]bedclient.ClientInterface,
 	chStats chan map[string]*restore.RestoreStats,
 ) *sync.WaitGroup {
@@ -231,7 +230,7 @@ func (rt *Restore) createEventRoutines(
 	// restore system events - these have side-effects that delete or modify other events
 	systemSource := "system"
 	for event, dpclient := range dpEventClients[systemSource] {
-		log.Printf("events - restoring events for %s/%s", systemSource, event)
+		bedSet.Logger.Info().Msgf("events - restoring events for %s/%s", systemSource, event)
 		wgEventsRestore.Add(1)
 		go func() {
 			rt.createEventRoutine(systemSource, event, eventStore, dpclient, chStats, &wgEventsRestore)
@@ -250,7 +249,7 @@ func (rt *Restore) createEventRoutines(
 			continue
 		}
 		for event, dpclient := range eventClients {
-			log.Printf("events - restoring events for %s/%s", source, event)
+			bedSet.Logger.Info().Msgf("events - restoring events for %s/%s", source, event)
 			wgEventsRestore.Add(1)
 			go func() {
 				rt.createEventRoutine(source, event, eventStore, dpclient, chStats, &wgEventsRestore)
@@ -265,8 +264,8 @@ func (rt *Restore) createEventRoutines(
 
 // DoRestore restores all streams and then all events to dispatcher.
 func (rt *Restore) DoRestore(
-	streamStore store.StoreS3Interface,
-	eventStore store.StoreS3Interface,
+	streamStore store.FileStorage,
+	eventStore store.FileStorage,
 	dpStreamsClient bedclient.ClientInterface,
 	dpEventClients map[string]map[string]bedclient.ClientInterface,
 ) map[string]*restore.RestoreStats {
@@ -316,7 +315,7 @@ func (rt *Restore) DoRestore(
 		// note that this blocks until all streams are restored
 		err := rt.restoreStreams(streamStore, dpStreamsClient, backup_sources, chStats)
 		if err != nil {
-			log.Printf("Failed to load stream state due to error '%v'. Stopping now.", err)
+			bedSet.Logger.Error().Err(err).Msg("Failed to load stream state due to error. Stopping now.")
 			rt.CtxCancel()
 			return stats
 		}
@@ -327,7 +326,7 @@ func (rt *Restore) DoRestore(
 		wgEventsRestore := rt.createEventRoutines(eventStore, dpEventClients, chStats)
 		wgEventsRestore.Wait()
 	}
-	log.Printf("waiting for workers to finish")
+	bedSet.Logger.Info().Msg("waiting for workers to finish")
 	rt.CtxCancel()
 
 	// ensure that all results are processed
@@ -349,8 +348,11 @@ var restoreCmd = &cobra.Command{
 		dpStreamsClient := bedclient.NewClient(st.DispatcherEvents, st.DispatcherEvents, *author, st.DeploymentKey)
 
 		dpEventClients := prepareSources("restore", nil)
-		streamStore := store.NewObjectS3Store(st)
-		eventStore := store.NewEventS3Store(st)
+
+		// streams bucket creation
+		streamStore := bkupcom.NewObjectS3Store(st)
+		// events bucket creation
+		eventStore := bkupcom.NewEventS3Store(st)
 		rt := NewRestore()
 		rt.DoRestore(streamStore, eventStore, dpStreamsClient, dpEventClients)
 
@@ -358,19 +360,19 @@ var restoreCmd = &cobra.Command{
 		if prom.PrometheusScrapeCount > 0 {
 			startTime := time.Now()
 			startingPromCount := prom.PrometheusScrapeCount
-			log.Print("Giving prometheus a chance to scrape before shutting down.")
+			bedSet.Logger.Info().Msg("Giving prometheus a chance to scrape before shutting down.")
 			for {
 				time.Sleep(time.Duration(10) * time.Second)
 				// Wait for at least one more prometheus scrape.
 				if prom.PrometheusScrapeCount > startingPromCount {
-					log.Print("Prometheus successfully scraped metrics prior to shutdown.")
+					bedSet.Logger.Info().Msg("Prometheus successfully scraped metrics prior to shutdown.")
 					// Give a small amount of time for scrape to occur.
 					time.Sleep(time.Duration(1) * time.Second)
 					break
 				}
 				// Give up if scrape took too long.
 				if time.Since(startTime) > time.Duration(MAX_MIN_WAIT_FOR_PROM)*time.Minute {
-					log.Print("Prometheus took too long to scrape metrics.")
+					bedSet.Logger.Info().Msg("Prometheus took too long to scrape metrics.")
 					break
 				}
 			}
