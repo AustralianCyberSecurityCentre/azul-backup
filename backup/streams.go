@@ -6,8 +6,8 @@ import (
 	"io"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/client"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/store"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/store"
 )
 
 type BackupStreams struct {

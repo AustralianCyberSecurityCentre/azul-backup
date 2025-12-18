@@ -4,7 +4,7 @@ import (
 	"slices"
 	"time"
 
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/settings"
 
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
 )

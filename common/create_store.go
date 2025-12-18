@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/store"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/store"
 )
 
 func NewObjectS3Store(settings *RecoverySettings) store.FileStorage {
