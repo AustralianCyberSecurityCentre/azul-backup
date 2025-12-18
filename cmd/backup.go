@@ -12,9 +12,9 @@ import (
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/backup"
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/client"
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/store"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/client"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/store"
 	lru "github.com/hashicorp/golang-lru/v2"
 	"github.com/spf13/cobra"
 )

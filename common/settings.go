@@ -3,8 +3,8 @@ package common
 import (
 	"log"
 
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/models"
-	bedsettings "github.com/AustralianCyberSecurityCentre/azul-bedrock/v9/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/models"
+	bedsettings "github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/settings"
 	"github.com/go-viper/mapstructure/v2"
 )
 
