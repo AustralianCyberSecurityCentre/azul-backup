@@ -1,6 +1,6 @@
 [
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "5261f7ed68f5c93b80769c35e690b4ee",
         "timestamp": "2025-08-13T23:34:24.880128Z",
         "author": {
@@ -20,7 +20,7 @@
         "action": "submission"
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "260485ec8b073977d63de201419239c9",
         "timestamp": "2025-08-13T18:13:40.005548Z",
         "author": {

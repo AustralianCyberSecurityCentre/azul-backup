@@ -280,11 +280,11 @@ func (s *BackupTestSuite) TestCombined() {
 	binary, _ := bulk[0].GetBinary()
 	enc, err := binary.ToAvro()
 	r.Nil(err)
-	r.Equal(1519, len(enc), "!!! Schema length has changed, if the schema has been recently updated change the expected value for this assertion.\n")
+	r.Equal(1497, len(enc), "!!! Schema length has changed, if the schema has been recently updated change the expected value for this assertion.\n")
 	binary, _ = bulk[1].GetBinary()
 	enc, err = binary.ToAvro()
 	r.Nil(err)
-	r.Equal(1582, len(enc), "!!! Schema length has changed, if the schema has been recently updated change the expected value for this assertion.\n")
+	r.Equal(1560, len(enc), "!!! Schema length has changed, if the schema has been recently updated change the expected value for this assertion.\n")
 }
 
 func TestBackup(t *testing.T) {

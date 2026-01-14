@@ -1,6 +1,6 @@
 [
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "7c62025e94940684d57ea931da5d73f6",
         "timestamp": "2025-04-04T18:07:21.558321Z",
         "author": {
@@ -20,7 +20,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -30,7 +30,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -67,7 +67,7 @@
                         "tlsh": "T13ae061c44798fee3fc4e89457f88b25103ee6017440b43e42ae4506744c552bef69d51",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -85,7 +85,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-04T18:07:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "1d1d7db0-fa4a-4ef0-90d5-e2aa4a207fa3.json"
@@ -95,7 +95,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "78d84cd1d65842716f199a434874932c",
         "timestamp": "2025-04-08T18:06:40.594953Z",
         "author": {
@@ -115,7 +115,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -125,7 +125,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -162,7 +162,7 @@
                         "tlsh": "T174e0f1066bc41c38873d510537041cfc0c83251098be34c94c83d1c394242367ecc993",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -180,7 +180,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-08T18:06:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "358839d3-f6e6-445d-a261-4f924f2ca7d0.json"
@@ -190,7 +190,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "c96e8e3632a767cb1bc94dd150f626e3",
         "timestamp": "2025-04-10T18:54:53.801113Z",
         "author": {
@@ -210,7 +210,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -220,7 +220,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -257,7 +257,7 @@
                         "tlsh": "T117e0f1c003fe7524ab40a9d027182d3e16ef09c21941fa9048740205c7a482e1ac81f1",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -275,7 +275,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-10T18:54:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "9a157803-aa00-46a5-8c01-e4f7d33f318e.json"
@@ -285,7 +285,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "862cf8418fb8d1737a87d429f63338d7",
         "timestamp": "2025-04-11T18:28:42.737413Z",
         "author": {
@@ -305,7 +305,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -315,7 +315,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -352,7 +352,7 @@
                         "tlsh": "T1d7e060f7bbf22f3acb8883003c73caf7398e7025685f9008681f8c03192a9294200873",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -370,7 +370,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-11T18:28:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "83c68610-846c-40c5-9f6d-f1f25f1d7500.json"
@@ -380,7 +380,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "909e9a71b1710a95610c6f204fe01a0e",
         "timestamp": "2025-04-18T18:47:36.308991Z",
         "author": {
@@ -400,7 +400,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -410,7 +410,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -447,7 +447,7 @@
                         "tlsh": "T141e0f125a2ce155d9b381342ca0a9c0025ee76e4462317a02246c7ee41c803d8ddcdc4",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -465,7 +465,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-18T18:47:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "9bb15cee-1a05-47b5-bbcb-6063b7a167dd.json"
@@ -475,7 +475,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "dd797165e9f656b7b50f9550eb6bb40e",
         "timestamp": "2025-04-19T18:13:48.636459Z",
         "author": {
@@ -495,7 +495,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -505,7 +505,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -542,7 +542,7 @@
                         "tlsh": "T131e06a33704db86fdc8493c8cf847df02ecf414911ac75007d1f6d2191805644f04171",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -560,7 +560,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-19T18:13:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "04006d37-4594-4e06-b047-7645fcaf7716.json"
@@ -570,7 +570,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "33bc2b3d84de656cf1b931b11d64fb3e",
         "timestamp": "2025-04-20T18:22:37.887788Z",
         "author": {
@@ -590,7 +590,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -600,7 +600,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -637,7 +637,7 @@
                         "tlsh": "T176e0f1507220c040a38c6ac2a964bb1490778245c1cc7648d4ebdb0fc247a0ac0c4663",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -655,7 +655,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-20T18:22:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "4947110e-22f7-43b1-994f-f3b58012e90f.json"
@@ -665,7 +665,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "4b69a02c61623210e7d8c70361e25a64",
         "timestamp": "2025-04-21T18:28:51.171527Z",
         "author": {
@@ -685,7 +685,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -695,7 +695,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -732,7 +732,7 @@
                         "tlsh": "T199e0f12221707d6d6f40d5059000affac72fd21644c764d6248d93066363906cffa04d",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -750,7 +750,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-21T18:28:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "bb51d2ec-7cd8-48a4-ac69-e84016bf1b83.json"
@@ -760,7 +760,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "5a9972455f337568495af881b133babd",
         "timestamp": "2025-04-23T18:47:49.227599Z",
         "author": {
@@ -780,7 +780,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -790,7 +790,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -827,7 +827,7 @@
                         "tlsh": "T139e0f183b10706916ed6834a1c445c8c4e9bcd24e886fc4d0837c774c0e589ec0883f0",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -845,7 +845,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-23T18:47:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "a53fffee-4bb2-4956-9123-c369f1aef1e7.json"
@@ -855,7 +855,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "b98125c9be827c2a23a6cc55dbeebcfa",
         "timestamp": "2025-04-24T18:33:48.743739Z",
         "author": {
@@ -875,7 +875,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -885,7 +885,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -922,7 +922,7 @@
                         "tlsh": "T1bfe0f1160b69441c8e9807fb01c41ae80c77a3360105408023dd1a5320413292fc8ce9",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -940,7 +940,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-24T18:33:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "9183bb55-01e3-411a-8ca5-5a16baced22c.json"
@@ -950,7 +950,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "99fd6dc1fcf0e361da2690ef98be13d6",
         "timestamp": "2025-04-25T18:55:24.29818Z",
         "author": {
@@ -970,7 +970,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -980,7 +980,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -1017,7 +1017,7 @@
                         "tlsh": "T1f7e06188f54adbb41ddf06dd8bc424a424d5117fc45e91581473b206918a1169d45126",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -1035,7 +1035,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-25T18:55:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "d1ff2baf-6199-4681-8b38-fc036c8e2fc3.json"
@@ -1045,7 +1045,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "718a53e114b1a8142712d63f3af3f6f6",
         "timestamp": "2025-04-27T18:54:44.094775Z",
         "author": {
@@ -1065,7 +1065,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -1075,7 +1075,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -1112,7 +1112,7 @@
                         "tlsh": "T1efe0f1fca77e39146e5804adfc05102e1d02d103f64ec02d1163e380590b2400535085",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -1130,7 +1130,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-27T18:54:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "d3015662-266f-40ff-9977-72be916832a6.json"
@@ -1140,7 +1140,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "0b0f31e5c7b2784228258880440f28b7",
         "timestamp": "2025-04-28T18:28:32.097816Z",
         "author": {
@@ -1160,7 +1160,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -1170,7 +1170,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -1207,7 +1207,7 @@
                         "tlsh": "T171e0f149012a68006e4a064091409b5608ae424de843a720d27513c28543f300faff00",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -1225,7 +1225,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-04-28T18:28:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "a894761b-0ee3-4730-9d24-489063ff621e.json"
@@ -1235,7 +1235,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "620e9212f7e423357beeebb7802eba79",
         "timestamp": "2025-05-02T18:15:12.779027Z",
         "author": {
@@ -1255,7 +1255,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -1265,7 +1265,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -1302,7 +1302,7 @@
                         "tlsh": "T16fe060ef3bd7b24883f44a21dcf482b00d3b1a13cc6d0ac20895e7678b2000c0849a1b",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -1320,7 +1320,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-02T18:15:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "0f9a4d19-1982-455f-b9ac-48411f455f18.json"
@@ -1330,7 +1330,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "9131ad304f188ce85a2640dc83dfc7f6",
         "timestamp": "2025-05-03T18:33:06.297476Z",
         "author": {
@@ -1350,7 +1350,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -1360,7 +1360,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -1397,7 +1397,7 @@
                         "tlsh": "T13be06a980bf84c7973e716535d4c1163cb25340f50013374741b7153fdd572b3599921",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -1415,7 +1415,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-03T18:33:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "a95b9b40-83b8-4b8c-836c-bccc9269c501.json"
@@ -1425,7 +1425,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "a5a506eb55a2f7e420de732ae3bf6823",
         "timestamp": "2025-05-05T18:15:34.56892Z",
         "author": {
@@ -1445,7 +1445,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -1455,7 +1455,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -1492,7 +1492,7 @@
                         "tlsh": "T142e02ba52f1d74c288a98ab26b3429bca4e7a632f449524058355a32c0d191c92f4ec1",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -1510,7 +1510,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-05T18:15:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "2c6802e1-cf1e-40af-a0a8-683ba67a5d72.json"
@@ -1520,7 +1520,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "104a1ed32ded40c9e6c81b21ecd59801",
         "timestamp": "2025-05-06T18:29:20.247036Z",
         "author": {
@@ -1540,7 +1540,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -1550,7 +1550,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -1587,7 +1587,7 @@
                         "tlsh": "T1c1e0f880d3685e99b3e1268b04c3f20465a1320aa287904aa1eb2f06a204b1f89288d8",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -1605,7 +1605,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-06T18:29:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "8ea98ffe-e0ed-4a5a-9722-ed3451294e3f.json"
@@ -1615,7 +1615,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "41dc69cddbd38c2876cd7db35b98781e",
         "timestamp": "2025-05-07T04:23:20.185911Z",
         "author": {
@@ -1635,7 +1635,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -1645,7 +1645,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -1682,7 +1682,7 @@
                         "tlsh": "T151e0fa5ad1378006898cc91d1d553ff75da991130d465fd51d94d727f10647d7334114",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -1700,7 +1700,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-07T04:23:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "60c0d166-c026-46b0-8480-9c1b745c4d48.json"
@@ -1710,7 +1710,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "6698325a1fb1f7c7c1aa08204452196a",
         "timestamp": "2025-05-08T18:27:50.132564Z",
         "author": {
@@ -1730,7 +1730,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -1740,7 +1740,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -1777,7 +1777,7 @@
                         "tlsh": "T1cae061e39de22b0553ed43ecdc8975601fef4436257135d8d95bead541816348ed84c4",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -1795,7 +1795,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-08T18:27:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "7a83f029-d49b-435d-bd12-570f61e6f433.json"
@@ -1805,7 +1805,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "ef0d098b235319a1c8245a5cc49e1fa0",
         "timestamp": "2025-05-09T18:12:58.794902Z",
         "author": {
@@ -1825,7 +1825,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -1835,7 +1835,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -1872,7 +1872,7 @@
                         "tlsh": "T1f0e0f1b713af1d2a7ac019adaa20b4a7184975202a8362dd885c11318c3402e1de4030",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -1890,7 +1890,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-09T18:12:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "475e1270-58be-4d1f-8971-53efeacd3080.json"
@@ -1900,7 +1900,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "872845edc393d893f5376e337cdeb10f",
         "timestamp": "2025-05-10T18:28:42.449314Z",
         "author": {
@@ -1920,7 +1920,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -1930,7 +1930,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -1967,7 +1967,7 @@
                         "tlsh": "T162e061b8abcca5516e8043d97d05559c4e6149010319c02d50ae106a97ed707c369f65",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -1985,7 +1985,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-10T18:28:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "26f986db-4e45-4fbd-acfa-ad8f1c570980.json"
@@ -1995,7 +1995,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "57505db21d3ae03d7fe8a3181d2cfff5",
         "timestamp": "2025-05-16T01:21:23.628433Z",
         "author": {
@@ -2014,7 +2014,7 @@
                 "size": 13,
                 "mime": "text/plain",
                 "magic": "ASCII text, with no line terminators",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/plain",
                 "file_extension": "txt",
                 "features": [
@@ -2024,7 +2024,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -2060,7 +2060,7 @@
                         "md5": "c03e055ba51c7fa5d242c91f70dcb2ee",
                         "mime": "text/plain",
                         "magic": "ASCII text, with no line terminators",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/plain",
                         "file_extension": "txt"
                     }
@@ -2078,7 +2078,7 @@
                     "test-parent": "parent-in-test"
                 },
                 "timestamp": "2025-05-16T01:21:23.591433Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/plain",
                 "size": 13,
                 "filename": "child-file.txt"
@@ -2088,7 +2088,7 @@
         "track_author": "user.bob"
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "a428647daffc9620699dfb38f2dbc12c",
         "timestamp": "2025-05-16T18:03:51.542532Z",
         "author": {
@@ -2108,7 +2108,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -2118,7 +2118,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -2155,7 +2155,7 @@
                         "tlsh": "T190e0f80a9f323f6f498fc74208608f8942158205c48ca8e9a8018b1a08b880c8d1bacb",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -2173,7 +2173,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-16T18:03:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "5c3ba5ef-e725-409b-a895-b418201a0af1.json"
@@ -2183,7 +2183,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "a7be8c600cd23013144a283662774659",
         "timestamp": "2025-05-16T18:13:15.287622Z",
         "author": {
@@ -2203,7 +2203,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -2213,7 +2213,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -2250,7 +2250,7 @@
                         "tlsh": "T106e0f1c302a512cbda9838a3146d591104b9b1f2d0a81695f91731d1194591cb4ec202",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -2268,7 +2268,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-16T18:13:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "49705b36-71cb-41c3-8646-c070eaead993.json"
@@ -2278,7 +2278,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "50309b06e559284b76f58979f0ba0833",
         "timestamp": "2025-05-20T06:39:25.324332Z",
         "author": {
@@ -2298,7 +2298,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -2308,7 +2308,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -2345,7 +2345,7 @@
                         "tlsh": "T14fe0f105ea50b7c295ecc29dea4056df6fb20015c10a8e4012702905063382978e4082",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -2363,7 +2363,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-20T06:39:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "6ef3bb5d-f90f-4ed4-b3a1-f088ab3e144b.json"
@@ -2373,7 +2373,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "5792ca1ac383567685c03c051f87acd6",
         "timestamp": "2025-05-20T06:48:27.398406Z",
         "author": {
@@ -2393,7 +2393,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -2403,7 +2403,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -2440,7 +2440,7 @@
                         "tlsh": "T117e02b51b97f56f87ad0baea6c0d70b9085e6316c891959ca835578594015078441719",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -2458,7 +2458,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-20T06:48:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "284b1101-3b1e-45ac-95f8-f63acc2da644.json"
@@ -2468,7 +2468,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "67568fafd686caafdc6cb712ee941d2c",
         "timestamp": "2025-05-20T07:19:57.249001Z",
         "author": {
@@ -2488,7 +2488,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -2498,7 +2498,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -2535,7 +2535,7 @@
                         "tlsh": "T1d3e0ab09b13abca6aaa9158a0c28b8d118c7b62848469118580fa382802bb0a5870cc4",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -2553,7 +2553,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-20T07:19:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "4652f308-6c9a-4b66-90a5-d8da67443b21.json"
@@ -2563,7 +2563,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "2879d79936edd415d5e474443c99a2ec",
         "timestamp": "2025-05-20T07:29:46.921099Z",
         "author": {
@@ -2583,7 +2583,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -2593,7 +2593,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -2630,7 +2630,7 @@
                         "tlsh": "T14fe0f1c61ae27c7203ed42a6a420bc08c81371184440b7ef302109c44a85c360b7b8c1",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -2648,7 +2648,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-20T07:29:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "a699395f-051e-43bf-ba5c-47d89f66464d.json"
@@ -2658,7 +2658,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "c3609de9e93b03dcde5fa5c271403865",
         "timestamp": "2025-05-21T00:20:31.966827Z",
         "author": {
@@ -2678,7 +2678,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -2688,7 +2688,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -2725,7 +2725,7 @@
                         "tlsh": "T19ae0ab131baf21f9948603019764fdc0390ef14aef08a28c51bd038558186a50388e16",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -2743,7 +2743,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-21T00:20:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "249755a0-e99d-4ae0-bd44-d580322e8a91.json"
@@ -2753,7 +2753,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "5b8d59e173662b913fad66b49a5146a5",
         "timestamp": "2025-05-21T01:01:04.378592Z",
         "author": {
@@ -2773,7 +2773,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -2783,7 +2783,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -2820,7 +2820,7 @@
                         "tlsh": "T112e0f1430b5b29cb250c0d4b8e8253cb301e435bcd3ef0c554b64b80e90541e64e4ec8",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -2838,7 +2838,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-21T01:01:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "3a0d7f3a-62bc-46ac-a1ba-40dcebbde752.json"
@@ -2848,7 +2848,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "980155a53f2298be22c6ea3997760f5e",
         "timestamp": "2025-05-21T01:11:17.372856Z",
         "author": {
@@ -2868,7 +2868,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -2878,7 +2878,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -2915,7 +2915,7 @@
                         "tlsh": "T1aee0f1893014fcaa00b8da29868de81e3130f9534507f244a6c6de17c142018bcc1651",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -2933,7 +2933,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-21T01:11:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "cffcf438-2c79-40b2-ad6b-0413b02ba1a9.json"
@@ -2943,7 +2943,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "fbff9337c7585df297344bd2c97437c0",
         "timestamp": "2025-05-21T04:48:26.813547Z",
         "author": {
@@ -2963,7 +2963,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -2973,7 +2973,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -3010,7 +3010,7 @@
                         "tlsh": "T1a1e0f1ba20bcd0c6409518004b747d4dd3d4644917488a4c3218aa500d14e518be8c20",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -3028,7 +3028,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-21T04:48:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "00a5c8cc-abc2-4e52-82cb-216c07fca15d.json"
@@ -3038,7 +3038,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "13f1c8fa33357f2f671f3e895787b1d2",
         "timestamp": "2025-05-21T04:48:46.000215Z",
         "author": {
@@ -3058,7 +3058,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -3068,7 +3068,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -3105,7 +3105,7 @@
                         "tlsh": "T18ce0f1c55f771550d308cbc0890cb0888e4f91529403f1e011340b24c0c96052c49d72",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -3123,7 +3123,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-21T04:48:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "35c6b7bc-82da-4a29-8770-43c514e7f477.json"
@@ -3133,7 +3133,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "f63ed3202ea1d8eace2275bfef6cec81",
         "timestamp": "2025-05-21T18:14:35.19606Z",
         "author": {
@@ -3153,7 +3153,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -3163,7 +3163,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -3200,7 +3200,7 @@
                         "tlsh": "T188e0f18b1730ca64d7f00009ff0150740442801524bde0bd909326d1d8955350b65d9c",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -3218,7 +3218,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-21T18:14:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "34bd603b-9f0d-4851-8a1e-157e5132bab6.json"
@@ -3228,7 +3228,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "59ae1ba293641c3f4d8ec95634efb116",
         "timestamp": "2025-05-22T00:26:53.610244Z",
         "author": {
@@ -3248,7 +3248,7 @@
                 "size": 860,
                 "mime": "text/plain",
                 "magic": "ASCII text, with CRLF line terminators",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/plain",
                 "file_extension": "txt",
                 "features": [
@@ -3258,7 +3258,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -3295,7 +3295,7 @@
                         "tlsh": "T19d112b2c648e42e88e00986c95b2e288aa46933e0102003ff0c893b9071062fbd71a27",
                         "mime": "text/plain",
                         "magic": "ASCII text, with CRLF line terminators",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/plain",
                         "file_extension": "txt"
                     }
@@ -3313,7 +3313,7 @@
                     "action": "extracted"
                 },
                 "timestamp": "2025-05-22T00:26:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/plain",
                 "size": 860,
                 "filename": "random-file2.txt"
@@ -3323,7 +3323,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "f05d8e150cb47fc2975b8ca37b9edff7",
         "timestamp": "2025-05-22T07:34:37.006073Z",
         "author": {
@@ -3343,7 +3343,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -3353,7 +3353,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -3390,7 +3390,7 @@
                         "tlsh": "T130e0f11041cd331377241587a6c8443bc8d75baf4800d0e9c17930e02820c6712f8250",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -3408,7 +3408,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-22T07:34:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "fa8b6054-0818-4edd-849a-8c6209611538.json"
@@ -3418,7 +3418,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "ae46629a0b19c6c3a1f01fcf5dace491",
         "timestamp": "2025-05-22T18:12:09.697194Z",
         "author": {
@@ -3438,7 +3438,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -3448,7 +3448,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -3485,7 +3485,7 @@
                         "tlsh": "T198e0ab80530938996fd1a8253944702e088b20a124d8339d783fad37867c7361ac0ea4",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -3503,7 +3503,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-22T18:12:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "46dd162e-4b48-4432-9ab8-1e9e5ea04ec4.json"
@@ -3513,7 +3513,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "1a41e6ec0ce1cc299ccf0618abaf9bc7",
         "timestamp": "2025-05-24T18:04:13.476691Z",
         "author": {
@@ -3533,7 +3533,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -3543,7 +3543,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -3580,7 +3580,7 @@
                         "tlsh": "T11de0f8a213b0687c922e82ac0b080daa0bca39a0fcd6a61c187c4360c408f41dc280b1",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -3598,7 +3598,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-24T18:04:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "b7b3da10-e05c-4775-95c5-c08b8503a273.json"
@@ -3608,7 +3608,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "740d1b4517e3a94b9b959281a475cfd1",
         "timestamp": "2025-05-24T18:04:57.41774Z",
         "author": {
@@ -3628,7 +3628,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -3638,7 +3638,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -3675,7 +3675,7 @@
                         "tlsh": "T122e0f1dd73d532817278079a25708b610adc0c5d4044a755b1703ff1008075f79cc1c4",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -3693,7 +3693,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-24T18:04:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "a89554f1-e501-46b7-a67d-248eee97a261.json"
@@ -3703,7 +3703,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "45826ea5ccdd515bf8de1efae0115c61",
         "timestamp": "2025-05-25T18:06:13.621205Z",
         "author": {
@@ -3723,7 +3723,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -3733,7 +3733,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -3770,7 +3770,7 @@
                         "tlsh": "T179e0f1d60f58f62528a000538f45f07cb2ab3623065973027166b9aa4a2003a4520c60",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -3788,7 +3788,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-25T18:06:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "aebd3146-7465-41df-b295-bea44182ddce.json"
@@ -3798,7 +3798,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "94de4b486034804788089f5f65e6c3be",
         "timestamp": "2025-05-26T03:40:37.936007Z",
         "author": {
@@ -3818,7 +3818,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -3828,7 +3828,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -3865,7 +3865,7 @@
                         "tlsh": "T1dee0f140a9ec79a0afb259b04ad86575556e03002d547582a4725f21f5c12408c94022",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -3883,7 +3883,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-26T03:40:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "91f4344e-cf35-45cf-bcd4-36e0a638a97d.json"
@@ -3893,7 +3893,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "b5034a0d1d9dc6ee1e1b9991d73f8048",
         "timestamp": "2025-05-26T18:05:32.466749Z",
         "author": {
@@ -3913,7 +3913,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -3923,7 +3923,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -3960,7 +3960,7 @@
                         "tlsh": "T1c7e0f1b5e32086c10344642a6a6c18d2c314d87e80827e8a2c774205e7f6c090de8143",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -3978,7 +3978,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-26T18:05:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "99469ee2-275e-4c86-897c-d5e42d1122c5.json"
@@ -3988,7 +3988,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "56f1f6583e76fcaa32751adbffe7e78e",
         "timestamp": "2025-05-26T18:14:31.994219Z",
         "author": {
@@ -4008,7 +4008,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -4018,7 +4018,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -4055,7 +4055,7 @@
                         "tlsh": "T1a9e0f15319e80403434c01471d4015b80c23160aaaca336c2593cf286184533eafd341",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -4073,7 +4073,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-26T18:14:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "5f20a8e4-ce68-4617-a86d-0a2a049dd940.json"
@@ -4083,7 +4083,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "c184d4091d9b6d6461df9d864dc427a7",
         "timestamp": "2025-05-27T06:43:43.995673Z",
         "author": {
@@ -4103,7 +4103,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -4113,7 +4113,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -4150,7 +4150,7 @@
                         "tlsh": "T167e0f13243966cf647cdc68cc848007e0ce72382a9cc39e4056c9364c41110f4f65896",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -4168,7 +4168,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-27T06:43:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "79fe2d78-a3bf-4cb2-9529-20dd8ff7d3fa.json"
@@ -4178,7 +4178,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "caf1ec510dfc6e1979caf7d774dd6f67",
         "timestamp": "2025-05-28T00:15:06.106666Z",
         "author": {
@@ -4198,7 +4198,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -4208,7 +4208,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -4245,7 +4245,7 @@
                         "tlsh": "T169e0abc342e4aef2db8f512214489218045260eeb0837e5a3c05806b2a13c51e7e58cb",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -4263,7 +4263,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-28T00:15:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "578402c7-d036-4318-b2ee-711a00410cba.json"
@@ -4273,7 +4273,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "958d62c645084c377236426bdc7ea7fa",
         "timestamp": "2025-05-28T00:37:40.920445Z",
         "author": {
@@ -4293,7 +4293,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -4303,7 +4303,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -4340,7 +4340,7 @@
                         "tlsh": "T17fe0f8a2feb2303982c0020b0b4eaca049878112c127720969ee2fc2bb5000891e83b2",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -4358,7 +4358,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-28T00:37:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "4408756b-73cf-4a61-81a7-d7767ef99d0f.json"
@@ -4368,7 +4368,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "86e5468274d749b3c954af16fa4a8cdc",
         "timestamp": "2025-05-28T02:35:29.661352Z",
         "author": {
@@ -4388,7 +4388,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -4398,7 +4398,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -4435,7 +4435,7 @@
                         "tlsh": "T183e0f180fb34244005f2061b56ccd80d2889e138ee40f00e348e4f51f5872274da4e01",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -4453,7 +4453,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-28T02:35:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "de22e0b5-ee78-48fd-9cf2-1d933adce8bf.json"
@@ -4463,7 +4463,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "082ae164d80b7edb12df447d8b99d4e1",
         "timestamp": "2025-05-29T18:06:18.813259Z",
         "author": {
@@ -4483,7 +4483,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -4493,7 +4493,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -4530,7 +4530,7 @@
                         "tlsh": "T19ce0f8338dad3ba8cb8ac5372018409098f0cb0aac04dfd804ec5f6016a682b03cc43b",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -4548,7 +4548,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-29T18:06:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "06f1a48d-a9ec-435f-b0d9-16baa66a3c41.json"
@@ -4558,7 +4558,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "382620c115f72bc688bb72597722a224",
         "timestamp": "2025-05-30T03:02:58.039034Z",
         "author": {
@@ -4578,7 +4578,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -4588,7 +4588,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -4625,7 +4625,7 @@
                         "tlsh": "T144e0f105b1b88174119197cc5c57ed8d8e0f2c216c2bf892e81b5393add2a0508c29a3",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -4643,7 +4643,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-30T03:02:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "1bc0f86f-ece9-4b05-ac37-7dff96b0fcec.json"
@@ -4653,7 +4653,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "06845b2e473832e5cbd0b93ac3de9f11",
         "timestamp": "2025-05-30T03:07:26.318307Z",
         "author": {
@@ -4673,7 +4673,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -4683,7 +4683,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -4720,7 +4720,7 @@
                         "tlsh": "T163e0f1d0330165a1f8b05e92b944588614e2e034d53a164c1c0257d3c1c761d22d41d8",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -4738,7 +4738,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-05-30T03:07:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "450705b2-c343-4e57-9893-d285418e568b.json"
@@ -4748,7 +4748,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "686c8031e773e92eebc023af0a4c3b82",
         "timestamp": "2025-06-03T01:17:24.433209Z",
         "author": {
@@ -4768,7 +4768,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -4778,7 +4778,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -4815,7 +4815,7 @@
                         "tlsh": "T186e0f18604e12c9b5f5040446dd0f867cca135396aaf024978d247e6e061a0927cd274",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -4833,7 +4833,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-03T01:17:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "c1b758e4-e25a-4796-90f0-d30f8090d2ac.json"
@@ -4843,7 +4843,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "327630392187edf73e1937b0f7ce8d3b",
         "timestamp": "2025-06-03T05:26:26.80211Z",
         "author": {
@@ -4863,7 +4863,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -4873,7 +4873,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -4910,7 +4910,7 @@
                         "tlsh": "T1d7e0f141dbfd3c3eead59bc50708a7cc2227d00f08f3a59044af6704d190062410117a",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -4928,7 +4928,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-03T05:26:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "45778b9b-fb58-4af9-90ed-fc18363f3aa7.json"
@@ -4938,7 +4938,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "2772aa000ca6a020fe4a98454bba4f32",
         "timestamp": "2025-06-03T23:08:34.153571Z",
         "author": {
@@ -4958,7 +4958,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -4968,7 +4968,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -5005,7 +5005,7 @@
                         "tlsh": "T10ee0f18a877810ce31c8efe61124f44d2914b54a00deb443ad738f33a447b1747c4540",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -5023,7 +5023,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-03T23:08:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "3a7fbd90-5d65-4e2f-b636-14df9d20f85a.json"
@@ -5033,7 +5033,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "c2fafc5583e00254180c9ffb6fdc80d7",
         "timestamp": "2025-06-03T23:11:36.347906Z",
         "author": {
@@ -5053,7 +5053,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -5063,7 +5063,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -5100,7 +5100,7 @@
                         "tlsh": "T1d5e061c797553fe5854dc24169d8080e5d9ab34564557390718cc677d875c0b47b1910",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -5118,7 +5118,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-03T23:11:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "44dbc66e-4f55-4ceb-b305-54048d467791.json"
@@ -5128,7 +5128,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "054deab79b3e1924517244fd12e7ff6d",
         "timestamp": "2025-06-06T05:23:32.872747Z",
         "author": {
@@ -5148,7 +5148,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -5158,7 +5158,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -5195,7 +5195,7 @@
                         "tlsh": "T121e0f1f4a738fb7027a0c14e88140b14343f804f4d121294f992b28155c637e0b98da1",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -5213,7 +5213,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-06T05:23:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "9e765a3c-54e3-4109-ad4b-d7c46ce2461c.json"
@@ -5223,7 +5223,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "c248c1649baaf0d789358aac2f4e2fd1",
         "timestamp": "2025-06-06T05:26:36.111716Z",
         "author": {
@@ -5243,7 +5243,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -5253,7 +5253,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -5290,7 +5290,7 @@
                         "tlsh": "T1e0e0f1aa37011871b71463bc0018e5d18cbfcc324d65426e76f9db1f8a75c0653b0051",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -5308,7 +5308,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-06T05:26:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "2de7e203-aa69-455c-9973-634cdb423f70.json"
@@ -5318,7 +5318,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "79445bb18431d497976eeb91e00325ae",
         "timestamp": "2025-06-07T18:06:00.38566Z",
         "author": {
@@ -5338,7 +5338,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -5348,7 +5348,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -5385,7 +5385,7 @@
                         "tlsh": "T121e0f1ec0f3024885ddd63c4e28d3c3ec8dfa703b8e014f100656154891845e065ce76",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -5403,7 +5403,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-07T18:05:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "029c034c-240e-467b-ba9c-76a3c5e31be9.json"
@@ -5413,7 +5413,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "e02d1231250f85f55c61769904bcb6e4",
         "timestamp": "2025-06-07T18:16:52.873567Z",
         "author": {
@@ -5433,7 +5433,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -5443,7 +5443,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -5480,7 +5480,7 @@
                         "tlsh": "T13de0687cdac4f823a37d88d7059872ae2ed7a5252c06324296fd5b94c4821298194b8a",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -5498,7 +5498,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-07T18:16:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "3c05aab7-3db2-4c66-8625-1c19f17adec8.json"
@@ -5508,7 +5508,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "5c5d63b8ac64feb02da9764e28435b33",
         "timestamp": "2025-06-09T18:05:41.564381Z",
         "author": {
@@ -5528,7 +5528,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -5538,7 +5538,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -5575,7 +5575,7 @@
                         "tlsh": "T1a2e0f1d857505d94cec780ef74c06de11d2f1622361b60c049b3cdecb2e898e5fd6900",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -5593,7 +5593,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-09T18:05:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "c81c0c58-ee41-49f2-89ce-0bbe1825b5a3.json"
@@ -5603,7 +5603,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "0e030b0188d476ac0fe02964f0f870bb",
         "timestamp": "2025-06-09T18:09:13.465197Z",
         "author": {
@@ -5623,7 +5623,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -5633,7 +5633,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -5670,7 +5670,7 @@
                         "tlsh": "T16de0f17bcf808c3a5a4c10564f1e39bc0860f201d1650705905052add1e6c5c9e99471",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -5688,7 +5688,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-09T18:09:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "977be1a1-39cc-4073-a0cd-c4d0570d9e56.json"
@@ -5698,7 +5698,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "204941d11f1f19312fdb5ce265c033af",
         "timestamp": "2025-06-10T05:51:48.236821Z",
         "author": {
@@ -5718,7 +5718,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -5728,7 +5728,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -5765,7 +5765,7 @@
                         "tlsh": "T122e0f10372749e1426f303533c47cd97048be111852b658d30d52bae9279d3c7342034",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -5783,7 +5783,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-10T05:51:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "af03557b-9b58-4594-9685-f90bec52e173.json"
@@ -5793,7 +5793,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "e316d23709230434896db0d970a13be0",
         "timestamp": "2025-06-11T06:06:35.218761Z",
         "author": {
@@ -5813,7 +5813,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -5823,7 +5823,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -5860,7 +5860,7 @@
                         "tlsh": "T1fde0f13343052973731c03009fd2d66d48dd4819c16f90899eff836d2b17d6c006c1b4",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -5878,7 +5878,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-11T06:06:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "9ea3a757-6be8-4574-baf4-260f358ae41c.json"
@@ -5888,7 +5888,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "d5fdb30da3b03178d73c1dd49cab1028",
         "timestamp": "2025-06-11T22:49:51.095479Z",
         "author": {
@@ -5908,7 +5908,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -5918,7 +5918,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -5955,7 +5955,7 @@
                         "tlsh": "T1b4e0ab616b3a62a23294535c2e507430057b88ade579390abaa943f8e6d410100a2c9c",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -5973,7 +5973,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-11T22:49:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "1f17084f-7f15-4f4c-ab8e-d281811a09e6.json"
@@ -5983,7 +5983,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "30d37531fddd267deb7589c67f0ddcfc",
         "timestamp": "2025-06-12T18:11:42.039744Z",
         "author": {
@@ -6003,7 +6003,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -6013,7 +6013,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -6050,7 +6050,7 @@
                         "tlsh": "T177e0f17bf8b2b010bf885180dc0890cb84654c09241eb503852343c219dfd1da6e8ef0",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -6068,7 +6068,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-12T18:11:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "5c4ac103-4b31-4cbe-ad4d-3a3a1f60e856.json"
@@ -6078,7 +6078,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "d778d9da557e11655f5107685a71baaf",
         "timestamp": "2025-06-14T18:11:18.222831Z",
         "author": {
@@ -6098,7 +6098,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -6108,7 +6108,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -6145,7 +6145,7 @@
                         "tlsh": "T123e0f15853d4196c4bd89cab160cecd55c0f9767cc82982830ff7b293998083051eac1",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -6163,7 +6163,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-14T18:11:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "c18da78e-dfea-4ef1-8958-ad2b3a5643d1.json"
@@ -6173,7 +6173,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "da08e3255c25496f13a5090f32e65b09",
         "timestamp": "2025-06-15T18:07:18.705262Z",
         "author": {
@@ -6193,7 +6193,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -6203,7 +6203,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -6240,7 +6240,7 @@
                         "tlsh": "T189e0f153d3b4736187886f4f0c864b5914cb1551458c3215903deb03c2ed1438fd8a10",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -6258,7 +6258,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-15T18:07:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "f3e35ee7-09ea-4d5d-aca6-2aedc9197c29.json"
@@ -6268,7 +6268,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "e64e1fc8e5af4f55acb3bd36ee776e65",
         "timestamp": "2025-06-16T18:05:58.719324Z",
         "author": {
@@ -6288,7 +6288,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -6298,7 +6298,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -6335,7 +6335,7 @@
                         "tlsh": "T1b4e0f1e5ea5c754683fa0e0b00e5916d2d6d7716220ba01c9d704b320ba6f5b25c6a90",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -6353,7 +6353,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-16T18:05:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "e6031d54-ce54-4a5a-8600-c1067d6450c7.json"
@@ -6363,7 +6363,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "92535c00abb1c78722b2ea333ecbfbdb",
         "timestamp": "2025-06-17T18:09:45.292428Z",
         "author": {
@@ -6383,7 +6383,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -6393,7 +6393,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -6430,7 +6430,7 @@
                         "tlsh": "T1c7e06140e615f81861d8577dbec46335490f243bc50cb5d894f3c5039e622e25bb4414",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -6448,7 +6448,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-17T18:09:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "342cce71-b415-4bd5-a1d9-9f4a6e4a6196.json"
@@ -6458,7 +6458,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "456825835b5bbef909bb52b0348f95b9",
         "timestamp": "2025-06-30T18:06:29.026483Z",
         "author": {
@@ -6478,7 +6478,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -6488,7 +6488,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -6525,7 +6525,7 @@
                         "tlsh": "T1e2e0f8d239a36fa21888c3e1aa0040b7bcd978a3156b40cacc0a9b1813a9cce20cc009",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -6543,7 +6543,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-06-30T18:06:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "9895c9e9-cd45-450c-920b-a89d3d1e94ad.json"
@@ -6553,7 +6553,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "8a397f58d6f766c0b24f696bd5d6319e",
         "timestamp": "2025-07-04T05:08:19.759794Z",
         "author": {
@@ -6573,7 +6573,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -6583,7 +6583,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -6620,7 +6620,7 @@
                         "tlsh": "T1d5e0618176774b00dfd47e467e48687d6a5b4077501f588461bffb042250f168a44c11",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -6638,7 +6638,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-04T05:08:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "61feeae0-e366-4676-ba47-cfc65da87362.json"
@@ -6648,7 +6648,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "12e70fb72d3b56c51ae106a7285b9560",
         "timestamp": "2025-07-04T05:09:17.751412Z",
         "author": {
@@ -6668,7 +6668,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -6678,7 +6678,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -6715,7 +6715,7 @@
                         "tlsh": "T193e0612ff7540bd78a306bc01780d5fc06ddb185991f54946412624ad303c90dfc124f",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -6733,7 +6733,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-04T05:09:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "1744ae63-9243-4a65-9d33-c20960086a54.json"
@@ -6743,7 +6743,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "df5d48a8bdf6f7513eb6d78dfdbb53c8",
         "timestamp": "2025-07-04T18:06:31.546556Z",
         "author": {
@@ -6763,7 +6763,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -6773,7 +6773,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -6810,7 +6810,7 @@
                         "tlsh": "T1c1e0f1c4067668fd47ed71f90a406da55215f423404260c05322a3c1236bb3aff05c05",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -6828,7 +6828,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-04T18:06:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "adafec47-c276-4668-b89b-0e8c6150834b.json"
@@ -6838,7 +6838,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "10b43d9265399d21de1cd4ad9a72b185",
         "timestamp": "2025-07-04T18:07:23.134828Z",
         "author": {
@@ -6858,7 +6858,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -6868,7 +6868,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -6905,7 +6905,7 @@
                         "tlsh": "T11ce0f1d275137cb41cc482222c64bbf20db5f0334e041045dc560a86217682ab7ece9d",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -6923,7 +6923,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-04T18:07:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "c12ec128-1dde-4d82-be8e-a0cdbc565fb1.json"
@@ -6933,7 +6933,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "c2558b45ac874607c946aac51ce13b82",
         "timestamp": "2025-07-05T18:06:47.551164Z",
         "author": {
@@ -6953,7 +6953,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -6963,7 +6963,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -7000,7 +7000,7 @@
                         "tlsh": "T1c9e061c5e20a6e9705d6856a7d18e1508c57e219f7a6d018e6a78d7a243f139a361840",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -7018,7 +7018,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-05T18:06:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "61a21c17-b090-4446-99db-f174cf6a149b.json"
@@ -7028,7 +7028,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "133a7e101071840c8c092b30428edef7",
         "timestamp": "2025-07-06T18:08:12.481952Z",
         "author": {
@@ -7048,7 +7048,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -7058,7 +7058,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -7095,7 +7095,7 @@
                         "tlsh": "T120e0f1aacfa46cc7ae1d850c63a49c4c88078601495a2c269ae407edc933c0d05d2882",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -7113,7 +7113,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-06T18:08:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "82dba636-6fa4-4986-9402-0802035a2e11.json"
@@ -7123,7 +7123,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "d783c5695dc20fd7d244f22975dc2795",
         "timestamp": "2025-07-07T02:12:51.825074Z",
         "author": {
@@ -7143,7 +7143,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -7153,7 +7153,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -7190,7 +7190,7 @@
                         "tlsh": "T19de0619bc7258494516513c3054154ae8c86a649055b74403ef99b558e21137328adbc",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -7208,7 +7208,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-07T02:12:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "3f0b7b8e-cf51-446f-aa1c-3cda14e2ee3e.json"
@@ -7218,7 +7218,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "5f8a21ac8e2e6c9b296c745b40e29d0b",
         "timestamp": "2025-07-07T02:24:35.534808Z",
         "author": {
@@ -7238,7 +7238,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -7248,7 +7248,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -7285,7 +7285,7 @@
                         "tlsh": "T168e0f1c25f0c5e64264f465ca9c09ea40da2cf0308a7472f1c878651b660b850a2614c",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -7303,7 +7303,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-07T02:24:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "f22f60e0-1c9e-4d7d-bfdf-6ee06015db03.json"
@@ -7313,7 +7313,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "90164ee1de0a7c6724277ab6a0d30859",
         "timestamp": "2025-07-07T04:57:10.01597Z",
         "author": {
@@ -7333,7 +7333,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -7343,7 +7343,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -7380,7 +7380,7 @@
                         "tlsh": "T1a0e0f19c2751f2503fbd851614a03d7d8b072823888a915c045c1209645260317d6ef0",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -7398,7 +7398,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-07T04:57:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "e5e8fcf9-fed6-4154-9691-5e794fc4fe19.json"
@@ -7408,7 +7408,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "44eb7f4097237849a13aa6a1d74fa65f",
         "timestamp": "2025-07-07T05:06:29.602331Z",
         "author": {
@@ -7428,7 +7428,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -7438,7 +7438,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -7475,7 +7475,7 @@
                         "tlsh": "T1ffe0f1d0f73db9f9778443530e50dd356d234567082921b63a303348c222751d248042",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -7493,7 +7493,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-07T05:06:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "b73e1cf3-7044-4501-8cf8-ca2e69e3f8b5.json"
@@ -7503,7 +7503,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "d85c25868c500516b0cbcd00ef623f48",
         "timestamp": "2025-07-07T05:13:35.1932Z",
         "author": {
@@ -7523,7 +7523,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -7533,7 +7533,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -7570,7 +7570,7 @@
                         "tlsh": "T174e0615c4752a572d9751da5a545f8d1f45242538d4233fc2827f77bd6514428ec0531",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -7588,7 +7588,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-07T05:13:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "ea290c76-f88c-4748-8800-549df291bb98.json"
@@ -7598,7 +7598,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "703a42d2c9b2ac07573346ef8f7af7a0",
         "timestamp": "2025-07-08T18:17:15.542541Z",
         "author": {
@@ -7618,7 +7618,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -7628,7 +7628,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -7665,7 +7665,7 @@
                         "tlsh": "T1fee0f161f7f73545efd02e843dd0111d765efa166d0e262802b0b113eac0e7b4441ca0",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -7683,7 +7683,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-08T18:17:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "52ad37a2-7a35-45d8-ae42-ab865173c173.json"
@@ -7693,7 +7693,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "a2cf7729aada929f9bd0476c5df9224d",
         "timestamp": "2025-07-09T23:19:25.331786Z",
         "author": {
@@ -7713,7 +7713,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -7723,7 +7723,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -7760,7 +7760,7 @@
                         "tlsh": "T10ae0f104ab7e8e1c2300b79d1c9245c79c36f7364055a3c430cac340dc0449fc954d12",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -7778,7 +7778,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-09T23:19:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "5da87e89-4140-4cbf-84f2-f1a198d5c3c4.json"
@@ -7788,7 +7788,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "9f20812f455bc6df7e412abc36a4eeeb",
         "timestamp": "2025-07-12T18:08:12.933184Z",
         "author": {
@@ -7808,7 +7808,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -7818,7 +7818,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -7855,7 +7855,7 @@
                         "tlsh": "T184e0f1793f5535f0764e02171d80e9612973009310df8388902b9b1c8c51baf9290255",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -7873,7 +7873,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-12T18:08:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "15070099-d099-49df-afb4-b665accef06d.json"
@@ -7883,7 +7883,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "2aa78c671a0b91fccfcd4f155713532a",
         "timestamp": "2025-07-12T18:19:15.799915Z",
         "author": {
@@ -7903,7 +7903,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -7913,7 +7913,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -7950,7 +7950,7 @@
                         "tlsh": "T12ae0f19dab5029aca5a589158e5cac6028000e126703ef051a0721d467e842d00e2dfc",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -7968,7 +7968,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-12T18:19:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "206d9417-96f9-457d-b84e-9b79f044602a.json"
@@ -7978,7 +7978,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "45ea55e06733fcf4b6d5df22b88ef674",
         "timestamp": "2025-07-14T18:09:31.654768Z",
         "author": {
@@ -7998,7 +7998,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -8008,7 +8008,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -8045,7 +8045,7 @@
                         "tlsh": "T199e0f1f6753d5ee08b2f8a0e451501de8c46f7004619664874b7a6168d37b99919c8a4",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -8063,7 +8063,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-14T18:09:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "4b33bbda-7a4a-4203-9e43-6f881e72898d.json"
@@ -8073,7 +8073,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "f9ffa465d2b4cfb438e1b63c83a0fe6e",
         "timestamp": "2025-07-22T18:17:08.083997Z",
         "author": {
@@ -8093,7 +8093,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -8103,7 +8103,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -8140,7 +8140,7 @@
                         "tlsh": "T117e06a3077ad5cc4cf5c5bc008f031e3ba43a9075056f03ef3abc1107195419055c675",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -8158,7 +8158,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-22T18:17:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "68e865b4-819d-49c0-bfd7-cdae7d97de3f.json"
@@ -8168,7 +8168,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "f1e918555bb60dbeee2e613c33810ddf",
         "timestamp": "2025-07-25T18:06:14.154964Z",
         "author": {
@@ -8188,7 +8188,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -8198,7 +8198,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -8235,7 +8235,7 @@
                         "tlsh": "T1d7e0ab30bab0b865658c4842b9e0e9a65841c4ad8002b6010833abeb42168a22eba7d2",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -8253,7 +8253,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-25T18:06:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "ca563cc2-3285-4b03-9997-52cf5f08518b.json"
@@ -8263,7 +8263,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "a61af3593f163cd832d915e46febc83a",
         "timestamp": "2025-07-25T18:17:40.283422Z",
         "author": {
@@ -8283,7 +8283,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -8293,7 +8293,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -8330,7 +8330,7 @@
                         "tlsh": "T176e0f1d412a61de4030e39013f04f8892deb96344044b51031544d55059df0bc634de1",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -8348,7 +8348,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-25T18:17:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "49daf9c1-3b72-4174-b5b9-9eb2f439e10f.json"
@@ -8358,7 +8358,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "dd076de7ec54a2ee493699defa08f341",
         "timestamp": "2025-07-27T18:09:22.361726Z",
         "author": {
@@ -8378,7 +8378,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -8388,7 +8388,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -8425,7 +8425,7 @@
                         "tlsh": "T111e0f15e132b70edb3c5ad675604bb99381f1a0000ee50f55b71c7234a308014199b24",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -8443,7 +8443,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-27T18:09:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "57bf4112-2de7-46b4-a4bf-ae7f18c5952f.json"
@@ -8453,7 +8453,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "3a11e02d119bfcde237ff9c9b6180799",
         "timestamp": "2025-07-27T18:13:07.485215Z",
         "author": {
@@ -8473,7 +8473,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -8483,7 +8483,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -8520,7 +8520,7 @@
                         "tlsh": "T121e0f1c322791379d2b1031d8ec0c78d9aede051fcb5b58c6956a2edc6494404fc4705",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -8538,7 +8538,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-27T18:13:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "38162bda-9957-4e11-a172-b50e95c7aa7d.json"
@@ -8548,7 +8548,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "46b5acb3a4705995ca48df2dbe5592fc",
         "timestamp": "2025-07-28T05:52:00Z",
         "author": {
@@ -8569,7 +8569,7 @@
                 "size": 97892,
                 "mime": "image/png",
                 "magic": "PNG image data, 1275 x 952, 8-bit/color RGBA, non-interlaced",
-                "file_format_legacy": "PNG",
+                "file_format": "PNG",
                 "file_format": "image/png",
                 "file_extension": "png",
                 "features": [
@@ -8579,7 +8579,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "PNG",
                         "type": "string"
                     },
@@ -8617,7 +8617,7 @@
                         "tlsh": "T104a3010a2b13ff78deef4c3d29b725aca0d866d43492983131f4166ddf8925c3662a71",
                         "mime": "image/png",
                         "magic": "PNG image data, 1275 x 952, 8-bit/color RGBA, non-interlaced",
-                        "file_format_legacy": "PNG",
+                        "file_format": "PNG",
                         "file_format": "image/png",
                         "file_extension": "png"
                     }
@@ -8635,7 +8635,7 @@
                     "action": "dsfd"
                 },
                 "timestamp": "2025-07-28T05:52:00Z",
-                "file_format_legacy": "PNG",
+                "file_format": "PNG",
                 "file_format": "image/png",
                 "size": 97892,
                 "filename": "Screenshot 2025-05-12 090438.png"
@@ -8645,7 +8645,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "bf70429730b84fb25d0a173b905805d9",
         "timestamp": "2025-07-29T18:13:00Z",
         "author": {
@@ -8665,7 +8665,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -8675,7 +8675,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -8712,7 +8712,7 @@
                         "tlsh": "T1c9e0f1144762aca0cd1c0f656be8158e17f1d10445349cf80128d341d6e2039c8b5241",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -8730,7 +8730,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-29T18:13:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "52648074-62bb-4a04-a722-fd53565b20c1.json"
@@ -8740,7 +8740,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "6ac4530fd1da8e470b8dbcd2cf207251",
         "timestamp": "2025-07-31T21:52:00Z",
         "author": {
@@ -8760,7 +8760,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -8770,7 +8770,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -8807,7 +8807,7 @@
                         "tlsh": "T1c7e0f19408e4a2ec907a076ea9f05ce0850e501f6a06d189c01ed150c20125d89920d2",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -8825,7 +8825,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-31T21:52:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "483a3bc0-36c5-45ea-a733-d03b953efc65.json"
@@ -8835,7 +8835,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "4497dd5b3c6c3ccbfbd26ca3684e7566",
         "timestamp": "2025-07-31T21:57:00Z",
         "author": {
@@ -8855,7 +8855,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -8865,7 +8865,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -8902,7 +8902,7 @@
                         "tlsh": "T108e0f19f032f9908418040c50bc260e806cb7c5728a7d2ec44f481a24ac430bf5947ea",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -8920,7 +8920,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-07-31T21:57:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "67657ead-a331-4471-8019-017e956897e6.json"
@@ -8930,7 +8930,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "49ec522bee67712d951a3dee2752f393",
         "timestamp": "2025-08-01T03:38:00Z",
         "author": {
@@ -8951,7 +8951,7 @@
                 "size": 28220,
                 "mime": "image/jpeg",
                 "magic": "JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, progressive, precision 8, 1200x630, components 3",
-                "file_format_legacy": "JPG",
+                "file_format": "JPG",
                 "file_format": "image/jpg",
                 "file_extension": "jpg",
                 "features": [
@@ -8961,7 +8961,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "JPG",
                         "type": "string"
                     },
@@ -8999,7 +8999,7 @@
                         "tlsh": "T1d9c2d02b83123637e675b676bb4906833b12d0c3f0c453c741874762694fea7dce154a",
                         "mime": "image/jpeg",
                         "magic": "JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, progressive, precision 8, 1200x630, components 3",
-                        "file_format_legacy": "JPG",
+                        "file_format": "JPG",
                         "file_format": "image/jpg",
                         "file_extension": "jpg"
                     }
@@ -9017,7 +9017,7 @@
                     "action": "TEST"
                 },
                 "timestamp": "2025-08-01T03:38:00Z",
-                "file_format_legacy": "JPG",
+                "file_format": "JPG",
                 "file_format": "image/jpg",
                 "size": 28220,
                 "filename": "understand-the-memes.jpeg"
@@ -9027,7 +9027,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "e874893da95dcad19f6c7e061488fb3e",
         "timestamp": "2025-08-01T18:07:00Z",
         "author": {
@@ -9047,7 +9047,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -9057,7 +9057,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -9094,7 +9094,7 @@
                         "tlsh": "T1e8e0f1c43370f4c837ac0e112d4011cd0f2f40054dc651c8a627b34cdf23e100db4090",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -9112,7 +9112,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-08-01T18:07:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "5c3f99c0-145e-487d-931b-ff0cdd686732.json"
@@ -9122,7 +9122,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "53e8f6d07da68824546c7f4582843009",
         "timestamp": "2025-08-01T18:19:00Z",
         "author": {
@@ -9142,7 +9142,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -9152,7 +9152,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -9189,7 +9189,7 @@
                         "tlsh": "T122e068db9a24ed80c3d29b6a0116ad5b3fe6fa39644e3489941d7a374d118222829e80",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -9207,7 +9207,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-08-01T18:19:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "2a0df006-bd25-4873-8395-f191a64d87dc.json"
@@ -9217,7 +9217,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "c2eea49c40223faeba937283a90332ab",
         "timestamp": "2025-08-04T02:59:00Z",
         "author": {
@@ -9237,7 +9237,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -9247,7 +9247,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -9284,7 +9284,7 @@
                         "tlsh": "T18be0615c360cfbd09a9f04f152c1b8554cea3690513234b87a74b558d4df435c54bbc5",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -9302,7 +9302,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-08-04T02:59:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "fb9afa14-cdad-4580-af79-77f890710c71.json"
@@ -9312,7 +9312,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "373f3cc2cef4749b15d991a7ce44ef30",
         "timestamp": "2025-08-05T18:08:00Z",
         "author": {
@@ -9332,7 +9332,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -9342,7 +9342,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -9379,7 +9379,7 @@
                         "tlsh": "T1efe0f1897b31f9951bcc2c43fb71d8535843170009573cacf83f82100444854485a92b",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -9397,7 +9397,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-08-05T18:08:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "365bdb85-ed7b-4924-a624-3c96311f33d1.json"
@@ -9407,7 +9407,7 @@
         "track_author": "user.bob."
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "5f20c337c6a4a48ac03b74b8959553fa",
         "timestamp": "2025-08-06T02:07:00Z",
         "author": {
@@ -9427,7 +9427,7 @@
                 "size": 391,
                 "mime": "application/json",
                 "magic": "JSON text data",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "file_extension": "json",
                 "features": [
@@ -9437,7 +9437,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "file_format_legacy",
+                        "name": "file_format",
                         "value": "Text",
                         "type": "string"
                     },
@@ -9474,7 +9474,7 @@
                         "tlsh": "T1ede0f10b9b50503f265dc44b6e3114f8246c739702fe22cc0839c744a220c070007fd4",
                         "mime": "application/json",
                         "magic": "JSON text data",
-                        "file_format_legacy": "Text",
+                        "file_format": "Text",
                         "file_format": "text/json",
                         "file_extension": "json"
                     }
@@ -9492,7 +9492,7 @@
                     "action": "test action"
                 },
                 "timestamp": "2025-08-06T02:07:00Z",
-                "file_format_legacy": "Text",
+                "file_format": "Text",
                 "file_format": "text/json",
                 "size": 391,
                 "filename": "377a2b56-2765-47d4-bb2d-3acf27db36d1.json"
