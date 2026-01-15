@@ -25,7 +25,7 @@
         "event": "file_scanned",
         "filename": "foobar.mht",
         "size": 343964,
-        "file_format_legacy": "Email"
+        "file_format": "Email"
       },
       {
         "sha256": "b9debe8afbdc6d0f552ca4d41fc8a5760778f2724d1560f6b4b0fc28bd837a82",
@@ -37,7 +37,7 @@
         },
         "action": "requested",
         "size": 343964,
-        "file_format_legacy": "Email"
+        "file_format": "Email"
       },
       {
         "sha256": "b9debe8afbdc6d0f552ca4d41fc8a5760778f2724d1560f6b4b0fc28bd837a82",
@@ -49,7 +49,7 @@
         },
         "action": "downloaded",
         "size": 343964,
-        "file_format_legacy": "Email"
+        "file_format": "Email"
       },
       {
         "sha256": "ee303d3c6d7cfa24d42e6348bdd1103a26de77a887e9dbee3dd1fe6304414f69",
@@ -61,7 +61,7 @@
         },
         "action": "extracted",
         "relationship": { "action": "extracted", "encoding": "base64" },
-        "file_format_legacy": "GIF",
+        "file_format": "GIF",
         "size": 35054,
         "filename": "ukr_kh1.gif"
       }
@@ -75,7 +75,7 @@
     }
   },
   "entity": {
-    "file_format_legacy": "GIF",
+    "file_format": "GIF",
     "datastreams": [
       {
         "file_type": "GIF",

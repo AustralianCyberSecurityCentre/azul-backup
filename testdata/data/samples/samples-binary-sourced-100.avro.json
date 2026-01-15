@@ -1,6 +1,6 @@
 [
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "f09d54b4565a37a40a62adf18213eced",
         "timestamp": "2025-07-30T10:10:11Z",
         "author": {
@@ -25,7 +25,7 @@
                     "action": "sourced",
                     "sha256": "4000baf7aa355e02b5c955f0b6de4ec06fed77fc393f594ff7adcc5ff4919451",
                     "timestamp": "2025-07-30T10:10:11Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 23,
                     "filename": "4000baf7aa355e02b5c955f0b6de4ec06fed77fc393f594ff7adcc5ff4919451.txt"
@@ -41,7 +41,7 @@
             "size": 23,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -51,7 +51,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -87,7 +87,7 @@
                     "md5": "18e65d146d46ae9f81da15636c8f0d41",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -101,7 +101,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "467d988ed53e44d6a7ab5262608ba9ac",
         "timestamp": "2025-07-30T10:10:19Z",
         "author": {
@@ -126,7 +126,7 @@
                     "action": "sourced",
                     "sha256": "c3e09418110497ea2f4b4e405d300d6eddf6bdd1c441a45c3a84629c3061c119",
                     "timestamp": "2025-07-30T10:10:19Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 495616,
                     "filename": "c3e09418110497ea2f4b4e405d300d6eddf6bdd1c441a45c3a84629c3061c119.exe"
@@ -144,7 +144,7 @@
             "size": 495616,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 3 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -154,7 +154,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -192,7 +192,7 @@
                     "tlsh": "T1c9b4024ddc295ab0d035cb7115629b46721f6f4a7a02a66e2e8c32fc3d37943ab427c7",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 3 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -206,7 +206,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "9e70b839e6b38854e3409c38d6aef50d",
         "timestamp": "2025-07-30T10:10:44Z",
         "author": {
@@ -231,7 +231,7 @@
                     "action": "sourced",
                     "sha256": "31f6e60b44d39b06a51b17c12c0c3b1c7b6c3f28c83e9973ded9fd9425322ec0",
                     "timestamp": "2025-07-30T10:10:44Z",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown",
                     "size": 1540504,
                     "filename": "31f6e60b44d39b06a51b17c12c0c3b1c7b6c3f28c83e9973ded9fd9425322ec0.unknown"
@@ -249,7 +249,7 @@
             "size": 1540504,
             "mime": "application/octet-stream",
             "magic": "data",
-            "file_format_legacy": "Data",
+            "file_format": "Data",
             "file_format": "unknown",
             "features": [
                 {
@@ -258,7 +258,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Data",
                     "type": "string"
                 },
@@ -291,7 +291,7 @@
                     "tlsh": "T1296533bd2f8ff94ad9200c3228d88b016773fd34a32396de8d51a9325d666d0ecb155e",
                     "mime": "application/octet-stream",
                     "magic": "data",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown"
                 }
             ]
@@ -304,7 +304,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "f0744a82488a61dbec2f590c95a85c1c",
         "timestamp": "2025-07-30T10:10:47Z",
         "author": {
@@ -329,7 +329,7 @@
                     "action": "sourced",
                     "sha256": "bd7006cc21c3b98c8fcc5d5b58ad4cad6e20e2074e385598dd67da2660c5a262",
                     "timestamp": "2025-07-30T10:10:47Z",
-                    "file_format_legacy": "Win32 DLL",
+                    "file_format": "Win32 DLL",
                     "file_format": "executable/windows/dll32",
                     "size": 15360,
                     "filename": "bd7006cc21c3b98c8fcc5d5b58ad4cad6e20e2074e385598dd67da2660c5a262.dll"
@@ -347,7 +347,7 @@
             "size": 15360,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (DLL) (console) Intel 80386 Mono/.Net assembly, for MS Windows, 3 sections",
-            "file_format_legacy": "Win32 DLL",
+            "file_format": "Win32 DLL",
             "file_format": "executable/windows/dll32",
             "file_extension": "dll",
             "features": [
@@ -357,7 +357,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 DLL",
                     "type": "string"
                 },
@@ -395,7 +395,7 @@
                     "tlsh": "T158624b12a7ed6128f5f34bbebd77608988bffc695d11c06e60b1210e4872f45d9a0736",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (DLL) (console) Intel 80386 Mono/.Net assembly, for MS Windows, 3 sections",
-                    "file_format_legacy": "Win32 DLL",
+                    "file_format": "Win32 DLL",
                     "file_format": "executable/windows/dll32",
                     "file_extension": "dll"
                 }
@@ -409,7 +409,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "565968f304b992581af69b7d3900b73a",
         "timestamp": "2025-07-30T10:10:50Z",
         "author": {
@@ -434,7 +434,7 @@
                     "action": "sourced",
                     "sha256": "66a7a677f0d68dfea16b5a69a8b22c3a20c223d35df63fee92c64a27f92b0608",
                     "timestamp": "2025-07-30T10:10:50Z",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown",
                     "size": 2097152,
                     "filename": "66a7a677f0d68dfea16b5a69a8b22c3a20c223d35df63fee92c64a27f92b0608.unknown"
@@ -452,7 +452,7 @@
             "size": 2097152,
             "mime": "application/octet-stream",
             "magic": "data",
-            "file_format_legacy": "Data",
+            "file_format": "Data",
             "file_format": "unknown",
             "features": [
                 {
@@ -461,7 +461,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Data",
                     "type": "string"
                 },
@@ -494,7 +494,7 @@
                     "tlsh": "T1e3a512b67a5bc8e3e2752ef25594bd7ad8bc461c1c328a01b714360a05b78487b4efc7",
                     "mime": "application/octet-stream",
                     "magic": "data",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown"
                 }
             ]
@@ -507,7 +507,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "9d800792469a3aa95521954967127682",
         "timestamp": "2025-07-30T10:11:06Z",
         "author": {
@@ -532,7 +532,7 @@
                     "action": "sourced",
                     "sha256": "add40a47b83e26a8c461c9b60ec80d58cae10c092606bc13081048e177ddfefa",
                     "timestamp": "2025-07-30T10:11:06Z",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown",
                     "size": 8192,
                     "filename": "add40a47b83e26a8c461c9b60ec80d58cae10c092606bc13081048e177ddfefa.unknown"
@@ -550,7 +550,7 @@
             "size": 8192,
             "mime": "application/octet-stream",
             "magic": "data",
-            "file_format_legacy": "Data",
+            "file_format": "Data",
             "file_format": "unknown",
             "features": [
                 {
@@ -559,7 +559,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Data",
                     "type": "string"
                 },
@@ -592,7 +592,7 @@
                     "tlsh": "T19af19d16934ca7202d655bae1cd887d67d0275e3032f9c587dbbfdfde991c803181a4a",
                     "mime": "application/octet-stream",
                     "magic": "data",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown"
                 }
             ]
@@ -605,7 +605,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "438e738294e73b5c19aa7f280e4181f0",
         "timestamp": "2025-07-30T10:11:16Z",
         "author": {
@@ -630,7 +630,7 @@
                     "action": "sourced",
                     "sha256": "c14ac168a9c47927c89f5ce43a45a009feef63a272c6dc4bf3cb6776edf8ccc7",
                     "timestamp": "2025-07-30T10:11:16Z",
-                    "file_format_legacy": "Win32 DLL",
+                    "file_format": "Win32 DLL",
                     "file_format": "executable/windows/dll64",
                     "size": 31251,
                     "filename": "c14ac168a9c47927c89f5ce43a45a009feef63a272c6dc4bf3cb6776edf8ccc7.dll"
@@ -648,7 +648,7 @@
             "size": 31251,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32+ executable (DLL) (console) x86-64, for MS Windows, 13 sections",
-            "file_format_legacy": "Win32 DLL",
+            "file_format": "Win32 DLL",
             "file_format": "executable/windows/dll64",
             "file_extension": "dll",
             "features": [
@@ -658,7 +658,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 DLL",
                     "type": "string"
                 },
@@ -696,7 +696,7 @@
                     "tlsh": "T1bee2fb2a77719cedc097807414d786b2de35fc271166671e0a50cd3a1faabe07e79a0c",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32+ executable (DLL) (console) x86-64, for MS Windows, 13 sections",
-                    "file_format_legacy": "Win32 DLL",
+                    "file_format": "Win32 DLL",
                     "file_format": "executable/windows/dll64",
                     "file_extension": "dll"
                 }
@@ -710,7 +710,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "683e88975888eb0b5f9dd5119d769136",
         "timestamp": "2025-07-30T10:11:26Z",
         "author": {
@@ -735,7 +735,7 @@
                     "action": "sourced",
                     "sha256": "539b9f4054953aafa17bcab7de1fdadeabfb7a1193cc427a65f0434c341ba8cc",
                     "timestamp": "2025-07-30T10:11:26Z",
-                    "file_format_legacy": "Android",
+                    "file_format": "Android",
                     "file_format": "android/apk",
                     "size": 1888220,
                     "filename": "539b9f4054953aafa17bcab7de1fdadeabfb7a1193cc427a65f0434c341ba8cc.apk"
@@ -753,7 +753,7 @@
             "size": 1888220,
             "mime": "application/octet-stream",
             "magic": "Dalvik dex file version 037",
-            "file_format_legacy": "Android",
+            "file_format": "Android",
             "file_format": "android/apk",
             "file_extension": "apk",
             "features": [
@@ -763,7 +763,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Android",
                     "type": "string"
                 },
@@ -801,7 +801,7 @@
                     "tlsh": "T111955a56f2190d31d59f16ba8ce61798333263ebfec7d347a9889498bc863d1c24d26c",
                     "mime": "application/octet-stream",
                     "magic": "Dalvik dex file version 037",
-                    "file_format_legacy": "Android",
+                    "file_format": "Android",
                     "file_format": "android/apk",
                     "file_extension": "apk"
                 }
@@ -815,7 +815,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "987efd76004b08da9acf6efe9376209b",
         "timestamp": "2025-07-30T10:11:33Z",
         "author": {
@@ -840,7 +840,7 @@
                     "action": "sourced",
                     "sha256": "c9ced2e760ea97e69dfa24c9c752fb07037420ee7e58ce008e1c69895513f11f",
                     "timestamp": "2025-07-30T10:11:33Z",
-                    "file_format_legacy": "OLE",
+                    "file_format": "OLE",
                     "file_format": "document/office/ole",
                     "size": 24022,
                     "filename": "c9ced2e760ea97e69dfa24c9c752fb07037420ee7e58ce008e1c69895513f11f.ico"
@@ -858,7 +858,7 @@
             "size": 24022,
             "mime": "application/x-ole-storage",
             "magic": "Composite Document File V2 Document, Cannot read section info",
-            "file_format_legacy": "OLE",
+            "file_format": "OLE",
             "file_format": "document/office/ole",
             "features": [
                 {
@@ -867,7 +867,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "OLE",
                     "type": "string"
                 },
@@ -900,7 +900,7 @@
                     "tlsh": "T13ab28441bb53ca81f449a1799d8353ba6683ee71ae017a134565ff3b3bb30e05a81b31",
                     "mime": "application/x-ole-storage",
                     "magic": "Composite Document File V2 Document, Cannot read section info",
-                    "file_format_legacy": "OLE",
+                    "file_format": "OLE",
                     "file_format": "document/office/ole"
                 }
             ]
@@ -913,7 +913,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "1adef93a22a8dff8afcb7a72cec7607a",
         "timestamp": "2025-07-30T10:11:42Z",
         "author": {
@@ -938,7 +938,7 @@
                     "action": "sourced",
                     "sha256": "e8552e27a28d9caf1ac5abbfd88c02bb2579178114ba1674c01478c910692914",
                     "timestamp": "2025-07-30T10:11:42Z",
-                    "file_format_legacy": "ZIP",
+                    "file_format": "ZIP",
                     "file_format": "archive/zip",
                     "size": 301896,
                     "filename": "e8552e27a28d9caf1ac5abbfd88c02bb2579178114ba1674c01478c910692914.zip"
@@ -956,7 +956,7 @@
             "size": 301896,
             "mime": "application/zip",
             "magic": "Zip archive data, at least v2.0",
-            "file_format_legacy": "ZIP",
+            "file_format": "ZIP",
             "file_format": "archive/zip",
             "file_extension": "zip",
             "features": [
@@ -966,7 +966,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "ZIP",
                     "type": "string"
                 },
@@ -1004,7 +1004,7 @@
                     "tlsh": "T1f254230622f39ff4f3560e76fe5248c08a9de6a15c1b532f0d6605251bd8928d76cbb2",
                     "mime": "application/zip",
                     "magic": "Zip archive data, at least v2.0",
-                    "file_format_legacy": "ZIP",
+                    "file_format": "ZIP",
                     "file_format": "archive/zip",
                     "file_extension": "zip"
                 }
@@ -1018,7 +1018,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "c501d32b44f98a11be018d6b1283cda0",
         "timestamp": "2025-07-30T10:11:48Z",
         "author": {
@@ -1043,7 +1043,7 @@
                     "action": "sourced",
                     "sha256": "7e7c8bb41df07c11eb42e29483e26536b2066da827d8edb0cdb5f36b391d8e75",
                     "timestamp": "2025-07-30T10:11:48Z",
-                    "file_format_legacy": "Win32 DLL",
+                    "file_format": "Win32 DLL",
                     "file_format": "executable/windows/dll64",
                     "size": 889875,
                     "filename": "7e7c8bb41df07c11eb42e29483e26536b2066da827d8edb0cdb5f36b391d8e75.dll"
@@ -1061,7 +1061,7 @@
             "size": 889875,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32+ executable (DLL) (console) x86-64, for MS Windows, 13 sections",
-            "file_format_legacy": "Win32 DLL",
+            "file_format": "Win32 DLL",
             "file_format": "executable/windows/dll64",
             "file_extension": "dll",
             "features": [
@@ -1071,7 +1071,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 DLL",
                     "type": "string"
                 },
@@ -1109,7 +1109,7 @@
                     "tlsh": "T1ce15073adba284bdc1d7c2b0bb83a8a12875fd1d0174a06f019666617f1fd206fde6d4",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32+ executable (DLL) (console) x86-64, for MS Windows, 13 sections",
-                    "file_format_legacy": "Win32 DLL",
+                    "file_format": "Win32 DLL",
                     "file_format": "executable/windows/dll64",
                     "file_extension": "dll"
                 }
@@ -1123,7 +1123,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "14bad2ab6cfb5fa33aa5b51e0d1a3ee7",
         "timestamp": "2025-07-30T10:11:58Z",
         "author": {
@@ -1148,7 +1148,7 @@
                     "action": "sourced",
                     "sha256": "9455d5bf3ff13f259088f1209d5f56e6b635ee9e2a4bba4324348f2bf8187f6f",
                     "timestamp": "2025-07-30T10:11:58Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 8192,
                     "filename": "9455d5bf3ff13f259088f1209d5f56e6b635ee9e2a4bba4324348f2bf8187f6f.txt"
@@ -1166,7 +1166,7 @@
             "size": 8192,
             "mime": "text/plain",
             "magic": "Non-ISO extended-ASCII text, with very long lines (8192), with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -1176,7 +1176,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -1214,7 +1214,7 @@
                     "tlsh": "T16ff117ed5e53019deda0f8fee5a2c329815e70a0be23ad50d9c44b786e836d3134d92d",
                     "mime": "text/plain",
                     "magic": "Non-ISO extended-ASCII text, with very long lines (8192), with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -1228,7 +1228,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "d52dd851315c2bfab56a89e3650e6124",
         "timestamp": "2025-07-30T10:12:13Z",
         "author": {
@@ -1253,7 +1253,7 @@
                     "action": "sourced",
                     "sha256": "b7da89b09d5ca7912bddec6bae8383e70339d4a2ff45d96f7adc301d4ff6756d",
                     "timestamp": "2025-07-30T10:12:13Z",
-                    "file_format_legacy": "JAR",
+                    "file_format": "JAR",
                     "file_format": "java/jar",
                     "size": 37273,
                     "filename": "b7da89b09d5ca7912bddec6bae8383e70339d4a2ff45d96f7adc301d4ff6756d.apk"
@@ -1271,7 +1271,7 @@
             "size": 37273,
             "mime": "application/vnd.android.package-archive",
             "magic": "Android package (APK), with AndroidManifest.xml, with APK Signing Block",
-            "file_format_legacy": "JAR",
+            "file_format": "JAR",
             "file_format": "java/jar",
             "file_extension": "jar",
             "features": [
@@ -1281,7 +1281,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "JAR",
                     "type": "string"
                 },
@@ -1319,7 +1319,7 @@
                     "tlsh": "T17ff25b06aca6aa17cebf0535bd62d41609378f008d42d907ad90b91c16b7bd387db3ce",
                     "mime": "application/vnd.android.package-archive",
                     "magic": "Android package (APK), with AndroidManifest.xml, with APK Signing Block",
-                    "file_format_legacy": "JAR",
+                    "file_format": "JAR",
                     "file_format": "java/jar",
                     "file_extension": "jar"
                 }
@@ -1333,7 +1333,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "73ee1c67012345834c07bd4457ba3fe8",
         "timestamp": "2025-07-30T10:12:15Z",
         "author": {
@@ -1358,7 +1358,7 @@
                     "action": "sourced",
                     "sha256": "b67e56e91c03685c86a5408d2e570a4c2367bb674b8734903c628181e962bf6b",
                     "timestamp": "2025-07-30T10:12:15Z",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "size": 3375501,
                     "filename": "b67e56e91c03685c86a5408d2e570a4c2367bb674b8734903c628181e962bf6b.jpg"
@@ -1376,7 +1376,7 @@
             "size": 3375501,
             "mime": "image/jpeg",
             "magic": "JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 6000x4000, components 3",
-            "file_format_legacy": "JPG",
+            "file_format": "JPG",
             "file_format": "image/jpg",
             "file_extension": "jpg",
             "features": [
@@ -1386,7 +1386,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "JPG",
                     "type": "string"
                 },
@@ -1424,7 +1424,7 @@
                     "tlsh": "T1e7f533384b29caf1f7367f648c96b2e5a1a5702e294c3d8ccfac421778dc6a025b5d4d",
                     "mime": "image/jpeg",
                     "magic": "JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 6000x4000, components 3",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "file_extension": "jpg"
                 }
@@ -1438,7 +1438,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "3aa10acf907ee5472e161f78189c54d0",
         "timestamp": "2025-07-30T10:12:24Z",
         "author": {
@@ -1463,7 +1463,7 @@
                     "action": "sourced",
                     "sha256": "ffafc216c7f4aa0401da954c64bd6ca232e9e2015bd39d77ed864cf49f5548eb",
                     "timestamp": "2025-07-30T10:12:24Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/json",
                     "size": 7049,
                     "filename": "ffafc216c7f4aa0401da954c64bd6ca232e9e2015bd39d77ed864cf49f5548eb.json"
@@ -1481,7 +1481,7 @@
             "size": 7049,
             "mime": "application/json",
             "magic": "JSON text data",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/json",
             "file_extension": "json",
             "features": [
@@ -1491,7 +1491,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -1529,7 +1529,7 @@
                     "tlsh": "T15de1b8455f38697b8cc7e21dbb257e03e2f6507265981e48fbfc865c04aa5cd120791f",
                     "mime": "application/json",
                     "magic": "JSON text data",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/json",
                     "file_extension": "json"
                 }
@@ -1543,7 +1543,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "06bd88682ad1ef820a70108f5ebeb22a",
         "timestamp": "2025-07-30T10:12:25Z",
         "author": {
@@ -1568,7 +1568,7 @@
                     "action": "sourced",
                     "sha256": "646c8ccb7efbfa271ad1c80ed01012df2c90e4c523b90a9a76a1ab796919b657",
                     "timestamp": "2025-07-30T10:12:25Z",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown",
                     "size": 1024,
                     "filename": "646c8ccb7efbfa271ad1c80ed01012df2c90e4c523b90a9a76a1ab796919b657.unknown"
@@ -1585,7 +1585,7 @@
             "size": 1024,
             "mime": "application/octet-stream",
             "magic": "data",
-            "file_format_legacy": "Data",
+            "file_format": "Data",
             "file_format": "unknown",
             "features": [
                 {
@@ -1594,7 +1594,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Data",
                     "type": "string"
                 },
@@ -1626,7 +1626,7 @@
                     "tlsh": "T1bb1175787096f5cc9a8b262c4942137bba8106011dc1dad3d446a93b1f5760ab10508b",
                     "mime": "application/octet-stream",
                     "magic": "data",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown"
                 }
             ]
@@ -1639,7 +1639,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "818708cf589fd9d3afc99c0d410f2f5b",
         "timestamp": "2025-07-30T10:12:30Z",
         "author": {
@@ -1664,7 +1664,7 @@
                     "action": "sourced",
                     "sha256": "d603f149c4da901cfa56cc3ecd3b69ea87f3be15e7d589bfb985ffa8bf92c7af",
                     "timestamp": "2025-07-30T10:12:30Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 1379840,
                     "filename": "d603f149c4da901cfa56cc3ecd3b69ea87f3be15e7d589bfb985ffa8bf92c7af.exe"
@@ -1682,7 +1682,7 @@
             "size": 1379840,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 6 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -1692,7 +1692,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -1730,7 +1730,7 @@
                     "tlsh": "T17955f012b6f84279f0f39b30a875975199b9bd33ca258b7e16c006ac1e35881de21f77",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 6 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -1744,7 +1744,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "18d6f60a815c9ec63ec443472ba1839c",
         "timestamp": "2025-07-30T11:00:19Z",
         "author": {
@@ -1769,7 +1769,7 @@
                     "action": "sourced",
                     "sha256": "a4036ca82178d3a6197e88940ff97716b95660f53810888c1e28bf4427c9a192",
                     "timestamp": "2025-07-30T11:00:19Z",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "size": 334279,
                     "filename": "a4036ca82178d3a6197e88940ff97716b95660f53810888c1e28bf4427c9a192.jpg"
@@ -1787,7 +1787,7 @@
             "size": 334279,
             "mime": "image/jpeg",
             "magic": "JPEG image data, JFIF standard 1.01, resolution (DPI), density 300x300, segment length 16, Exif Standard: [TIFF image data, little-endian, direntries=17, height=3840, bps=218, compression=none, PhotometricInterpretation=RGB, description=Portrait of beautiful call center operator at work. Woman with headset talking to someone online, manufacturer=Canon, model=Canon EOS 5D Mark III, orientation=upper-left",
-            "file_format_legacy": "JPG",
+            "file_format": "JPG",
             "file_format": "image/jpg",
             "file_extension": "jpg",
             "features": [
@@ -1797,7 +1797,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "JPG",
                     "type": "string"
                 },
@@ -1835,7 +1835,7 @@
                     "tlsh": "T18b640122f3210982d089773690cb8317bb778ae5ca635247377ca9253f73b90bd97691",
                     "mime": "image/jpeg",
                     "magic": "JPEG image data, JFIF standard 1.01, resolution (DPI), density 300x300, segment length 16, Exif Standard: [TIFF image data, little-endian, direntries=17, height=3840, bps=218, compression=none, PhotometricInterpretation=RGB, description=Portrait of beautiful call center operator at work. Woman with headset talking to someone online, manufacturer=Canon, model=Canon EOS 5D Mark III, orientation=upper-left",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "file_extension": "jpg"
                 }
@@ -1849,7 +1849,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "376d873741158118be62fe020c5bf6a3",
         "timestamp": "2025-07-30T11:00:38Z",
         "author": {
@@ -1874,7 +1874,7 @@
                     "action": "sourced",
                     "sha256": "ad6fa1dd9cbaecfa86112a159e9e7b5da7ec6196cb8da3b451f53ae089f039ce",
                     "timestamp": "2025-07-30T11:00:38Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 69696,
                     "filename": "ad6fa1dd9cbaecfa86112a159e9e7b5da7ec6196cb8da3b451f53ae089f039ce.exe"
@@ -1892,7 +1892,7 @@
             "size": 69696,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 5 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -1902,7 +1902,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -1940,7 +1940,7 @@
                     "tlsh": "T1ab634bfc5b229969c18a33f5c887f448ad73ddd6bc58ced096063010a57a3d9ba1c92f",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 5 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -1954,7 +1954,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "852596e25bf83fe8717f789c401d8842",
         "timestamp": "2025-07-30T11:00:40Z",
         "author": {
@@ -1979,7 +1979,7 @@
                     "action": "sourced",
                     "sha256": "6f9c52ddbb3b7fa0e414489aeb02efa479930a8883c96230b72af1425be9e801",
                     "timestamp": "2025-07-30T11:00:40Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 138390,
                     "filename": "6f9c52ddbb3b7fa0e414489aeb02efa479930a8883c96230b72af1425be9e801.exe"
@@ -1997,7 +1997,7 @@
             "size": 138390,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 3 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -2007,7 +2007,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -2045,7 +2045,7 @@
                     "tlsh": "T153d31b13ae54102fd82588f12cbad6aeba255e311ba0ad0b3273bf013576247b5f531f",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 3 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -2059,7 +2059,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "1eb706065c9b294720d207a54f82461d",
         "timestamp": "2025-07-30T11:00:42Z",
         "author": {
@@ -2084,7 +2084,7 @@
                     "action": "sourced",
                     "sha256": "77d25a26fd71beb6239f6cb297166e327b3a54d8b9f61dce7cc7d58fdf7db3f1",
                     "timestamp": "2025-07-30T11:00:42Z",
-                    "file_format_legacy": "Win32 DLL",
+                    "file_format": "Win32 DLL",
                     "file_format": "executable/windows/dll64",
                     "size": 2303200,
                     "filename": "77d25a26fd71beb6239f6cb297166e327b3a54d8b9f61dce7cc7d58fdf7db3f1.dll"
@@ -2102,7 +2102,7 @@
             "size": 2303200,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32+ executable (DLL) (GUI) x86-64, for MS Windows, 12 sections",
-            "file_format_legacy": "Win32 DLL",
+            "file_format": "Win32 DLL",
             "file_format": "executable/windows/dll64",
             "file_extension": "dll",
             "features": [
@@ -2112,7 +2112,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 DLL",
                     "type": "string"
                 },
@@ -2150,7 +2150,7 @@
                     "tlsh": "T1f9b533792f033747dce6ddbb363575322309236c96a73aca9a8b6341979836e1dc80c5",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32+ executable (DLL) (GUI) x86-64, for MS Windows, 12 sections",
-                    "file_format_legacy": "Win32 DLL",
+                    "file_format": "Win32 DLL",
                     "file_format": "executable/windows/dll64",
                     "file_extension": "dll"
                 }
@@ -2164,7 +2164,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "283969659c5fe72b142275dd37cb87d0",
         "timestamp": "2025-07-30T11:00:47Z",
         "author": {
@@ -2189,7 +2189,7 @@
                     "action": "sourced",
                     "sha256": "079373ad0cbd253728c733e6df2e33dfdb8a632a85a3a5a8fce434c91b2c2b37",
                     "timestamp": "2025-07-30T11:00:47Z",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "size": 76245,
                     "filename": "079373ad0cbd253728c733e6df2e33dfdb8a632a85a3a5a8fce434c91b2c2b37.jpg"
@@ -2207,7 +2207,7 @@
             "size": 76245,
             "mime": "image/jpeg",
             "magic": "JPEG image data, Exif standard: [TIFF image data, little-endian, direntries=6, orientation=upper-left, xresolution=86, yresolution=94, resolutionunit=2",
-            "file_format_legacy": "JPG",
+            "file_format": "JPG",
             "file_format": "image/jpg",
             "file_extension": "jpg",
             "features": [
@@ -2217,7 +2217,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "JPG",
                     "type": "string"
                 },
@@ -2255,7 +2255,7 @@
                     "tlsh": "T19773022b51a30864fa4837772f63bf5278475c61e5a74e6368f0703af9a40154cb8ebc",
                     "mime": "image/jpeg",
                     "magic": "JPEG image data, Exif standard: [TIFF image data, little-endian, direntries=6, orientation=upper-left, xresolution=86, yresolution=94, resolutionunit=2",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "file_extension": "jpg"
                 }
@@ -2269,7 +2269,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "f05409e946dcaa34cc04a3ef9007cf11",
         "timestamp": "2025-07-30T11:00:50Z",
         "author": {
@@ -2294,7 +2294,7 @@
                     "action": "sourced",
                     "sha256": "07b0c279d2efc78f579c7c8fefe379966b994f8aea487ef335ba72038900dcd5",
                     "timestamp": "2025-07-30T11:00:50Z",
-                    "file_format_legacy": "Android",
+                    "file_format": "Android",
                     "file_format": "android/apk",
                     "size": 4819998,
                     "filename": "07b0c279d2efc78f579c7c8fefe379966b994f8aea487ef335ba72038900dcd5.apk"
@@ -2312,7 +2312,7 @@
             "size": 4819998,
             "mime": "application/vnd.android.package-archive",
             "magic": "Android package (APK), with AndroidManifest.xml, with APK Signing Block",
-            "file_format_legacy": "Android",
+            "file_format": "Android",
             "file_format": "android/apk",
             "file_extension": "apk",
             "features": [
@@ -2322,7 +2322,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Android",
                     "type": "string"
                 },
@@ -2360,7 +2360,7 @@
                     "tlsh": "T1d926236afeede29be903a432e1759842d80840595a08ff5b3fb5849c4bf6c844742fdd",
                     "mime": "application/vnd.android.package-archive",
                     "magic": "Android package (APK), with AndroidManifest.xml, with APK Signing Block",
-                    "file_format_legacy": "Android",
+                    "file_format": "Android",
                     "file_format": "android/apk",
                     "file_extension": "apk"
                 }
@@ -2374,7 +2374,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "8a4aca45779c373226bbb64dab811ff1",
         "timestamp": "2025-07-30T11:00:59Z",
         "author": {
@@ -2399,7 +2399,7 @@
                     "action": "sourced",
                     "sha256": "9ee9fab9719f16cdde1fb40cde7f2776b09623a3f38f65cbc9189ff49001c070",
                     "timestamp": "2025-07-30T11:00:59Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 294,
                     "filename": "9ee9fab9719f16cdde1fb40cde7f2776b09623a3f38f65cbc9189ff49001c070.txt"
@@ -2416,7 +2416,7 @@
             "size": 294,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -2426,7 +2426,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -2463,7 +2463,7 @@
                     "tlsh": "T155e0c233b30017c0424205a3d41f5393ee06e603738b89d894981224b288afb8afe77a",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -2477,7 +2477,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "27e0bd6c851ded76a7393dc2fe4b8415",
         "timestamp": "2025-07-30T11:01:04Z",
         "author": {
@@ -2502,7 +2502,7 @@
                     "action": "sourced",
                     "sha256": "db27c02d5cf64a66907a8f24232e1e84a5001bee77c1164e941196a965372dad",
                     "timestamp": "2025-07-30T11:01:04Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 44583,
                     "filename": "db27c02d5cf64a66907a8f24232e1e84a5001bee77c1164e941196a965372dad.exe"
@@ -2520,7 +2520,7 @@
             "size": 44583,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -2530,7 +2530,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -2568,7 +2568,7 @@
                     "tlsh": "T1fb135c1ffe09fda1f39ba0f8192b30f59c651c612e70bdfa8b250e1a0134f72a465a15",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -2582,7 +2582,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "4f255a753cc13ecdd42d07485f235d71",
         "timestamp": "2025-07-30T11:01:05Z",
         "author": {
@@ -2607,7 +2607,7 @@
                     "action": "sourced",
                     "sha256": "c85714174f73b4d8e60c6a624bf45676d93d469af9b91273cfc94e9ad65b750c",
                     "timestamp": "2025-07-30T11:01:05Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 54,
                     "filename": "c85714174f73b4d8e60c6a624bf45676d93d469af9b91273cfc94e9ad65b750c.txt"
@@ -2624,7 +2624,7 @@
             "size": 54,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -2634,7 +2634,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -2671,7 +2671,7 @@
                     "tlsh": "T1fc90021193ae1542502605868d1c6510487188935561771dac1114f868427f6524474c",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -2685,7 +2685,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "25b15906df36dd57bb1064436870c045",
         "timestamp": "2025-07-30T11:01:12Z",
         "author": {
@@ -2710,7 +2710,7 @@
                     "action": "sourced",
                     "sha256": "c450766393975ae8b4ab95e5ff6e92e72f8c83a0ed6251ec76dc25f274289b38",
                     "timestamp": "2025-07-30T11:01:12Z",
-                    "file_format_legacy": "Android",
+                    "file_format": "Android",
                     "file_format": "android/apk",
                     "size": 2069324,
                     "filename": "c450766393975ae8b4ab95e5ff6e92e72f8c83a0ed6251ec76dc25f274289b38.apk"
@@ -2728,7 +2728,7 @@
             "size": 2069324,
             "mime": "application/vnd.android.package-archive",
             "magic": "Android package (APK), with classes.dex",
-            "file_format_legacy": "Android",
+            "file_format": "Android",
             "file_format": "android/apk",
             "file_extension": "apk",
             "features": [
@@ -2738,7 +2738,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Android",
                     "type": "string"
                 },
@@ -2776,7 +2776,7 @@
                     "tlsh": "T11ca57c03ea460a77c5ef423aecb70b416b7214453f47bb66210d96b9ac726c4d9ca1cf",
                     "mime": "application/vnd.android.package-archive",
                     "magic": "Android package (APK), with classes.dex",
-                    "file_format_legacy": "Android",
+                    "file_format": "Android",
                     "file_format": "android/apk",
                     "file_extension": "apk"
                 }
@@ -2790,7 +2790,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "3f509c4087efb317f646af6b87ab522e",
         "timestamp": "2025-07-30T11:01:17Z",
         "author": {
@@ -2815,7 +2815,7 @@
                     "action": "sourced",
                     "sha256": "79df9e61c4ea87c7b4f26a078c1c75a962a04f8de00af40db1c75d1ff1b17830",
                     "timestamp": "2025-07-30T11:01:17Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 27,
                     "filename": "79df9e61c4ea87c7b4f26a078c1c75a962a04f8de00af40db1c75d1ff1b17830.txt"
@@ -2831,7 +2831,7 @@
             "size": 27,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -2841,7 +2841,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -2877,7 +2877,7 @@
                     "md5": "551f4036aaac36c93b63d6aaeb5723ed",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -2891,7 +2891,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "0588815e769ab907b605a9df0392951c",
         "timestamp": "2025-07-30T11:01:22Z",
         "author": {
@@ -2916,7 +2916,7 @@
                     "action": "sourced",
                     "sha256": "e29417c1b8d6b1264111f5e94e0d7bd2d646b439a0c538a226df24b6c6f62e65",
                     "timestamp": "2025-07-30T11:01:22Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 18,
                     "filename": "e29417c1b8d6b1264111f5e94e0d7bd2d646b439a0c538a226df24b6c6f62e65.txt"
@@ -2932,7 +2932,7 @@
             "size": 18,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -2942,7 +2942,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -2978,7 +2978,7 @@
                     "md5": "74246c8d0a4206da219c40521d28eb74",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -2992,7 +2992,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "3bea0ae5d1fa7d8bd443a3c1ae34c303",
         "timestamp": "2025-07-30T11:01:30Z",
         "author": {
@@ -3017,7 +3017,7 @@
                     "action": "sourced",
                     "sha256": "99faf8853846b0fb1fb0653cc2eec7486d5feb310ce398fde0ef16b9292c9dbf",
                     "timestamp": "2025-07-30T11:01:30Z",
-                    "file_format_legacy": "HTML",
+                    "file_format": "HTML",
                     "file_format": "code/html",
                     "size": 48622,
                     "filename": "99faf8853846b0fb1fb0653cc2eec7486d5feb310ce398fde0ef16b9292c9dbf.html"
@@ -3035,7 +3035,7 @@
             "size": 48622,
             "mime": "text/html",
             "magic": "HTML document text",
-            "file_format_legacy": "HTML",
+            "file_format": "HTML",
             "file_format": "code/html",
             "file_extension": "html",
             "features": [
@@ -3045,7 +3045,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "HTML",
                     "type": "string"
                 },
@@ -3083,7 +3083,7 @@
                     "tlsh": "T1f2237677ebc90927532704d6bd2abf2ea0e379c5ee062c2db26501e4d342fb39b15091",
                     "mime": "text/html",
                     "magic": "HTML document text",
-                    "file_format_legacy": "HTML",
+                    "file_format": "HTML",
                     "file_format": "code/html",
                     "file_extension": "html"
                 }
@@ -3097,7 +3097,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "1594770efe758c711f3ef7cbf4bf2f78",
         "timestamp": "2025-07-30T11:01:32Z",
         "author": {
@@ -3122,7 +3122,7 @@
                     "action": "sourced",
                     "sha256": "e450a7a9eff2e8c436186ca4d8db1d4301cdd04e7be74e23c2b17dd07410f039",
                     "timestamp": "2025-07-30T11:01:32Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 54883,
                     "filename": "e450a7a9eff2e8c436186ca4d8db1d4301cdd04e7be74e23c2b17dd07410f039.exe"
@@ -3140,7 +3140,7 @@
             "size": 54883,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -3150,7 +3150,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -3188,7 +3188,7 @@
                     "tlsh": "T14133d7da2392f813c94d797ebe401999b2d51812d07b76fe1f2c243928b85c62f4cd6d",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -3202,7 +3202,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "30da1d310150bc2ff97aaefdede5da38",
         "timestamp": "2025-07-30T11:01:43Z",
         "author": {
@@ -3227,7 +3227,7 @@
                     "action": "sourced",
                     "sha256": "e866d6ef377ce48bc7633a01b2a3ca5d2fb38c6a039c834789648354522cdaa3",
                     "timestamp": "2025-07-30T11:01:43Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 108,
                     "filename": "e866d6ef377ce48bc7633a01b2a3ca5d2fb38c6a039c834789648354522cdaa3.txt"
@@ -3244,7 +3244,7 @@
             "size": 108,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -3254,7 +3254,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -3291,7 +3291,7 @@
                     "tlsh": "T1afb0923ebbc082a80b888200ae290088d660ab062209424c9a6416527a0a92913664a4",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -3305,7 +3305,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "f68308528b1f6f81e62287315f533bd8",
         "timestamp": "2025-07-30T11:01:49Z",
         "author": {
@@ -3330,7 +3330,7 @@
                     "action": "sourced",
                     "sha256": "e9b8b72695ce302bff6e2b740fd421f6d96ba0e3475fff1199ea5e26f87c9693",
                     "timestamp": "2025-07-30T11:01:49Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 623,
                     "filename": "e9b8b72695ce302bff6e2b740fd421f6d96ba0e3475fff1199ea5e26f87c9693.txt"
@@ -3347,7 +3347,7 @@
             "size": 623,
             "mime": "text/plain",
             "magic": "ASCII text, with very long lines (623), with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -3357,7 +3357,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -3394,7 +3394,7 @@
                     "tlsh": "T1a6f07d0b17451372a76394907b1d32c5db51ad68332ec5c86cac814d652b9f543b6fc9",
                     "mime": "text/plain",
                     "magic": "ASCII text, with very long lines (623), with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -3408,7 +3408,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "2f6d234f58639cfc5539c584fabc1a80",
         "timestamp": "2025-07-30T11:01:51Z",
         "author": {
@@ -3433,7 +3433,7 @@
                     "action": "sourced",
                     "sha256": "16fa9f6bb5ca3504a1bda4ea857651277f833566e68a28be5d60d1ce1c2e969f",
                     "timestamp": "2025-07-30T11:01:51Z",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "size": 117292,
                     "filename": "16fa9f6bb5ca3504a1bda4ea857651277f833566e68a28be5d60d1ce1c2e969f.jpg"
@@ -3451,7 +3451,7 @@
             "size": 117292,
             "mime": "image/jpeg",
             "magic": "JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 1280x853, components 3",
-            "file_format_legacy": "JPG",
+            "file_format": "JPG",
             "file_format": "image/jpg",
             "file_extension": "jpg",
             "features": [
@@ -3461,7 +3461,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "JPG",
                     "type": "string"
                 },
@@ -3499,7 +3499,7 @@
                     "tlsh": "T14db30143f5cd9ba6510f92e0760a50970917bef97ec1adf690830a41f0421ee7dfa62d",
                     "mime": "image/jpeg",
                     "magic": "JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 1280x853, components 3",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "file_extension": "jpg"
                 }
@@ -3513,7 +3513,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "f5b6a5c71dc3c2db2f171c6cf39c4218",
         "timestamp": "2025-07-30T11:01:55Z",
         "author": {
@@ -3538,7 +3538,7 @@
                     "action": "sourced",
                     "sha256": "4d764525ca24130a8921ce26818068d53de9c704d360e238ad14480322b75382",
                     "timestamp": "2025-07-30T11:01:55Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe64",
                     "size": 554432,
                     "filename": "4d764525ca24130a8921ce26818068d53de9c704d360e238ad14480322b75382.exe"
@@ -3556,7 +3556,7 @@
             "size": 554432,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32+ executable (GUI) x86-64, for MS Windows, 7 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe64",
             "file_extension": "exe",
             "features": [
@@ -3566,7 +3566,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -3604,7 +3604,7 @@
                     "tlsh": "T180c4ae09e7e804f8e0b7e5b8d9a64902e7767c4e1771d78f03a856561f233a09e3db21",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32+ executable (GUI) x86-64, for MS Windows, 7 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe64",
                     "file_extension": "exe"
                 }
@@ -3618,7 +3618,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "5e84bfec7a855e2f00af355eb78929e2",
         "timestamp": "2025-07-30T11:02:00Z",
         "author": {
@@ -3643,7 +3643,7 @@
                     "action": "sourced",
                     "sha256": "d638e4a78974bb62f5ec3498bb369b29e30d4946ca377007517e75d80a9f6c31",
                     "timestamp": "2025-07-30T11:02:00Z",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "size": 2401956,
                     "filename": "d638e4a78974bb62f5ec3498bb369b29e30d4946ca377007517e75d80a9f6c31.jpg"
@@ -3661,7 +3661,7 @@
             "size": 2401956,
             "mime": "image/jpeg",
             "magic": "JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 3648x5472, components 3",
-            "file_format_legacy": "JPG",
+            "file_format": "JPG",
             "file_format": "image/jpg",
             "file_extension": "jpg",
             "features": [
@@ -3671,7 +3671,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "JPG",
                     "type": "string"
                 },
@@ -3709,7 +3709,7 @@
                     "tlsh": "T108b5336648ffdf64ebb063bc92569353b233d8c13099b33b5058bba9752d1a8d193093",
                     "mime": "image/jpeg",
                     "magic": "JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 3648x5472, components 3",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "file_extension": "jpg"
                 }
@@ -3723,7 +3723,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "5677b1475eef4b8b05da64bb41b84041",
         "timestamp": "2025-07-30T11:02:01Z",
         "author": {
@@ -3748,7 +3748,7 @@
                     "action": "sourced",
                     "sha256": "41686a7cb10eebddcc561f09da58a4e0821979d18205f6a61971070a41046566",
                     "timestamp": "2025-07-30T11:02:01Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 128,
                     "filename": "41686a7cb10eebddcc561f09da58a4e0821979d18205f6a61971070a41046566.txt"
@@ -3765,7 +3765,7 @@
             "size": 128,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -3775,7 +3775,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -3812,7 +3812,7 @@
                     "tlsh": "T1bab02b23431000101952a05145d119d0d574332b100c00ada424dc79005a82003b2010",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -3826,7 +3826,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "54001d089ab58531a08d212da6ed8e21",
         "timestamp": "2025-07-30T11:02:04Z",
         "author": {
@@ -3851,7 +3851,7 @@
                     "action": "sourced",
                     "sha256": "94378bf74868c396c984bef0552cb676f19b57493c53dad7e0a8c6f7b3690591",
                     "timestamp": "2025-07-30T11:02:04Z",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown",
                     "size": 512,
                     "filename": "94378bf74868c396c984bef0552cb676f19b57493c53dad7e0a8c6f7b3690591.unknown"
@@ -3868,7 +3868,7 @@
             "size": 512,
             "mime": "application/octet-stream",
             "magic": "data",
-            "file_format_legacy": "Data",
+            "file_format": "Data",
             "file_format": "unknown",
             "features": [
                 {
@@ -3877,7 +3877,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Data",
                     "type": "string"
                 },
@@ -3909,7 +3909,7 @@
                     "tlsh": "T134f0757220cac767b560602cf44480d4be3d4ec6e016ff8d8d01fee21e682a8421350f",
                     "mime": "application/octet-stream",
                     "magic": "data",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown"
                 }
             ]
@@ -3922,7 +3922,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "3addb993702ea3da0063e39fcc15620d",
         "timestamp": "2025-07-30T11:02:15Z",
         "author": {
@@ -3947,7 +3947,7 @@
                     "action": "sourced",
                     "sha256": "90a4967d92e1ddea6a46268efd1d851bff8a58a57ab2461ee02bce934261a0f9",
                     "timestamp": "2025-07-30T11:02:15Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 101,
                     "filename": "90a4967d92e1ddea6a46268efd1d851bff8a58a57ab2461ee02bce934261a0f9.txt"
@@ -3964,7 +3964,7 @@
             "size": 101,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -3974,7 +3974,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -4011,7 +4011,7 @@
                     "tlsh": "T1f2b01201657b91f88541d91408f8580f85338d2373c84b7843a7ca40958e1461b5f632",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -4025,7 +4025,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "20350706b323f1bd793542cc4727f772",
         "timestamp": "2025-07-30T11:02:26Z",
         "author": {
@@ -4050,7 +4050,7 @@
                     "action": "sourced",
                     "sha256": "eaefdcf726425143aa887888facba41698d258dad8d623f740602ccc6501095f",
                     "timestamp": "2025-07-30T11:02:26Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 1753132,
                     "filename": "eaefdcf726425143aa887888facba41698d258dad8d623f740602ccc6501095f.png"
@@ -4068,7 +4068,7 @@
             "size": 1753132,
             "mime": "image/png",
             "magic": "PNG image data, 1456 x 816, 8-bit/color RGB, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -4078,7 +4078,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -4116,7 +4116,7 @@
                     "tlsh": "T19d8533ed71a1d88408bc828d5cd66bba4030edf3ab6b44653a8d5b794391dc1fb633b1",
                     "mime": "image/png",
                     "magic": "PNG image data, 1456 x 816, 8-bit/color RGB, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -4130,7 +4130,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "7e9bab78912f14d62ff800e5ea65a2d8",
         "timestamp": "2025-07-30T11:02:28Z",
         "author": {
@@ -4155,7 +4155,7 @@
                     "action": "sourced",
                     "sha256": "e23aded720980dfad273cf3ac4fe6bf833df1776b4ffd7b8f91b27cde09adec6",
                     "timestamp": "2025-07-30T11:02:28Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 707206,
                     "filename": "e23aded720980dfad273cf3ac4fe6bf833df1776b4ffd7b8f91b27cde09adec6.png"
@@ -4173,7 +4173,7 @@
             "size": 707206,
             "mime": "image/png",
             "magic": "PNG image data, 1024 x 1024, 8-bit/color RGB, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -4183,7 +4183,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -4221,7 +4221,7 @@
                     "tlsh": "T140e42369f3ab8f79d58b8db1c35f37c02010bd625844413aea25f55ab3d42e84f298d7",
                     "mime": "image/png",
                     "magic": "PNG image data, 1024 x 1024, 8-bit/color RGB, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -4235,7 +4235,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "2b66d8e6081959d59d8ee8a8d94c01a2",
         "timestamp": "2025-07-30T11:02:43Z",
         "author": {
@@ -4260,7 +4260,7 @@
                     "action": "sourced",
                     "sha256": "b105e8476cd578e47f99867c19fde83c646a67a3ce569014cad9bc56e5da821b",
                     "timestamp": "2025-07-30T11:02:43Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 56350,
                     "filename": "b105e8476cd578e47f99867c19fde83c646a67a3ce569014cad9bc56e5da821b.exe"
@@ -4278,7 +4278,7 @@
             "size": 56350,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 6 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -4288,7 +4288,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -4326,7 +4326,7 @@
                     "tlsh": "T14e43f5e51d355f76d958307a0bbd36d9c9b748a602278a2ddee0d0cdbf35488d088ee2",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 6 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -4340,7 +4340,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "51b9fb3be338449bb0f1b7409dcfe7fd",
         "timestamp": "2025-07-30T11:02:47Z",
         "author": {
@@ -4365,7 +4365,7 @@
                     "action": "sourced",
                     "sha256": "ce576a9a5d59f38c5308e0d1e3c2a3f7f1dc3a628f973eb8a531db4e09b9ccbe",
                     "timestamp": "2025-07-30T11:02:47Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 157,
                     "filename": "ce576a9a5d59f38c5308e0d1e3c2a3f7f1dc3a628f973eb8a531db4e09b9ccbe.txt"
@@ -4382,7 +4382,7 @@
             "size": 157,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -4392,7 +4392,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -4429,7 +4429,7 @@
                     "tlsh": "T1e2c08c0982400211461080e0ca892be2a705402ecf133b8421d8acb1b040dec116e020",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -4443,7 +4443,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "a6e6030ca8ba15fe4cca3fe69f640142",
         "timestamp": "2025-07-30T11:03:02Z",
         "author": {
@@ -4468,7 +4468,7 @@
                     "action": "sourced",
                     "sha256": "78adf05c1a93df5c4a936a11630850b25dc0cb60c7a75c1dbf92f0cf1b73362d",
                     "timestamp": "2025-07-30T11:03:02Z",
-                    "file_format_legacy": "SGML",
+                    "file_format": "SGML",
                     "file_format": "code/sgml",
                     "size": 13389,
                     "filename": "78adf05c1a93df5c4a936a11630850b25dc0cb60c7a75c1dbf92f0cf1b73362d.sgml"
@@ -4486,7 +4486,7 @@
             "size": 13389,
             "mime": "text/plain",
             "magic": "exported SGML document, ISO-8859 text, with CRLF line terminators",
-            "file_format_legacy": "SGML",
+            "file_format": "SGML",
             "file_format": "code/sgml",
             "file_extension": "sgml",
             "features": [
@@ -4496,7 +4496,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "SGML",
                     "type": "string"
                 },
@@ -4534,7 +4534,7 @@
                     "tlsh": "T15b525266798e7d6385734316a321af45dea2ae0fdb11256c341e63eb1bf09e0438f358",
                     "mime": "text/plain",
                     "magic": "exported SGML document, ISO-8859 text, with CRLF line terminators",
-                    "file_format_legacy": "SGML",
+                    "file_format": "SGML",
                     "file_format": "code/sgml",
                     "file_extension": "sgml"
                 }
@@ -4548,7 +4548,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "24dd08b09470f781797ea00227ba7f8b",
         "timestamp": "2025-07-30T11:03:04Z",
         "author": {
@@ -4573,7 +4573,7 @@
                     "action": "sourced",
                     "sha256": "1e2cbc4cb55ca1d3ef1d0b4e4a9d089ca4ad4b1913a315e37765911b820f5c77",
                     "timestamp": "2025-07-30T11:03:04Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 1624602,
                     "filename": "1e2cbc4cb55ca1d3ef1d0b4e4a9d089ca4ad4b1913a315e37765911b820f5c77.png"
@@ -4591,7 +4591,7 @@
             "size": 1624602,
             "mime": "image/png",
             "magic": "PNG image data, 1456 x 816, 8-bit/color RGB, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -4601,7 +4601,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -4639,7 +4639,7 @@
                     "tlsh": "T1297533c14076a3fda6bf3f2f51d1c8c1d138e2a9b42642d68ca445f95ac1ee69843de3",
                     "mime": "image/png",
                     "magic": "PNG image data, 1456 x 816, 8-bit/color RGB, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -4653,7 +4653,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "5ce09bc54674db067b1b7627cc656f51",
         "timestamp": "2025-07-30T11:03:11Z",
         "author": {
@@ -4678,7 +4678,7 @@
                     "action": "sourced",
                     "sha256": "cbe2d494dea86696ca2a4336fd935633699d511eb45f1585bd02d38975c225c7",
                     "timestamp": "2025-07-30T11:03:11Z",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown",
                     "size": 131072,
                     "filename": "cbe2d494dea86696ca2a4336fd935633699d511eb45f1585bd02d38975c225c7.unknown"
@@ -4696,7 +4696,7 @@
             "size": 131072,
             "mime": "application/octet-stream",
             "magic": "data",
-            "file_format_legacy": "Data",
+            "file_format": "Data",
             "file_format": "unknown",
             "features": [
                 {
@@ -4705,7 +4705,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Data",
                     "type": "string"
                 },
@@ -4738,7 +4738,7 @@
                     "tlsh": "T169d3122b28770246d7b9fde8d5d984a1b0b41c5a735d318e2cea8e3d7a36e44d09f1d0",
                     "mime": "application/octet-stream",
                     "magic": "data",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown"
                 }
             ]
@@ -4751,7 +4751,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "d0659ab6c1cac5174fac8997225763fe",
         "timestamp": "2025-07-30T11:03:14Z",
         "author": {
@@ -4776,7 +4776,7 @@
                     "action": "sourced",
                     "sha256": "893f99695f27cedbcda032fa9b568c1289ffe7d6d653a95253e2059b764ad809",
                     "timestamp": "2025-07-30T11:03:14Z",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown",
                     "size": 2048,
                     "filename": "893f99695f27cedbcda032fa9b568c1289ffe7d6d653a95253e2059b764ad809.txt"
@@ -4793,7 +4793,7 @@
             "size": 2048,
             "mime": "application/octet-stream",
             "magic": "data",
-            "file_format_legacy": "Data",
+            "file_format": "Data",
             "file_format": "unknown",
             "features": [
                 {
@@ -4802,7 +4802,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Data",
                     "type": "string"
                 },
@@ -4834,7 +4834,7 @@
                     "tlsh": "T111414a0cfe1a7e9142d725b861383c73772078716e20b35508a8efea377023a5110b42",
                     "mime": "application/octet-stream",
                     "magic": "data",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown"
                 }
             ]
@@ -4847,7 +4847,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "55df048cf62642e898d17e52d0f06aea",
         "timestamp": "2025-07-30T11:03:16Z",
         "author": {
@@ -4872,7 +4872,7 @@
                     "action": "sourced",
                     "sha256": "ded1f68991c5fc9eb568d7ca7bfacbfdf65da9ff360fe16cfdb88a40ec9b0e9c",
                     "timestamp": "2025-07-30T11:03:16Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 612759,
                     "filename": "ded1f68991c5fc9eb568d7ca7bfacbfdf65da9ff360fe16cfdb88a40ec9b0e9c.exe"
@@ -4890,7 +4890,7 @@
             "size": 612759,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 14 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -4900,7 +4900,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -4938,7 +4938,7 @@
                     "tlsh": "T1ccd47d22b7e08432d1732a349d2796699c37bd417d34984a3aec2e4d5f79b8178273e3",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 14 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -4952,7 +4952,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "4ec135b8d6a3a34cf8d9fa54dd8f2d69",
         "timestamp": "2025-07-30T11:03:19Z",
         "author": {
@@ -4977,7 +4977,7 @@
                     "action": "sourced",
                     "sha256": "8126eb4682b3a46dffd94e706723a932017cf6dddd02e32020a4e17e1055d228",
                     "timestamp": "2025-07-30T11:03:19Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 1977954,
                     "filename": "8126eb4682b3a46dffd94e706723a932017cf6dddd02e32020a4e17e1055d228.png"
@@ -4995,7 +4995,7 @@
             "size": 1977954,
             "mime": "image/png",
             "magic": "PNG image data, 896 x 1344, 8-bit/color RGB, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -5005,7 +5005,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -5043,7 +5043,7 @@
                     "tlsh": "T1859533ff14d2a57e377a47d9d04913d4799062b7bb3e9200a8839a37f4c836ca31168b",
                     "mime": "image/png",
                     "magic": "PNG image data, 896 x 1344, 8-bit/color RGB, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -5057,7 +5057,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "d49c88700719dfa92c7f0f999dbfc907",
         "timestamp": "2025-07-30T11:03:23Z",
         "author": {
@@ -5082,7 +5082,7 @@
                     "action": "sourced",
                     "sha256": "33cf747739aa8745ef591f85f55741756ef60debb83f79f0e0ebc7b791e003fc",
                     "timestamp": "2025-07-30T11:03:23Z",
-                    "file_format_legacy": "HTML",
+                    "file_format": "HTML",
                     "file_format": "code/html",
                     "size": 24304,
                     "filename": "33cf747739aa8745ef591f85f55741756ef60debb83f79f0e0ebc7b791e003fc.html"
@@ -5100,7 +5100,7 @@
             "size": 24304,
             "mime": "text/html",
             "magic": "HTML document text",
-            "file_format_legacy": "HTML",
+            "file_format": "HTML",
             "file_format": "code/html",
             "file_extension": "html",
             "features": [
@@ -5110,7 +5110,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "HTML",
                     "type": "string"
                 },
@@ -5148,7 +5148,7 @@
                     "tlsh": "T193b20accfa7d5e3407740266b7aa71aff47fd864ee82d8e8e1ee802521c5f80816194d",
                     "mime": "text/html",
                     "magic": "HTML document text",
-                    "file_format_legacy": "HTML",
+                    "file_format": "HTML",
                     "file_format": "code/html",
                     "file_extension": "html"
                 }
@@ -5162,7 +5162,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "91548db11beeec1053f921099d1b48f5",
         "timestamp": "2025-07-30T11:03:30Z",
         "author": {
@@ -5187,7 +5187,7 @@
                     "action": "sourced",
                     "sha256": "b1f3de71b3c87586a78fc2e14492c9708206b9c9149d4907f6a4dd2839302b2b",
                     "timestamp": "2025-07-30T11:03:30Z",
-                    "file_format_legacy": "Android",
+                    "file_format": "Android",
                     "file_format": "android/apk",
                     "size": 41374,
                     "filename": "b1f3de71b3c87586a78fc2e14492c9708206b9c9149d4907f6a4dd2839302b2b.apk"
@@ -5205,7 +5205,7 @@
             "size": 41374,
             "mime": "application/vnd.android.package-archive",
             "magic": "Android package (APK), with classes.dex, with APK Signing Block",
-            "file_format_legacy": "Android",
+            "file_format": "Android",
             "file_format": "android/apk",
             "file_extension": "apk",
             "features": [
@@ -5215,7 +5215,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Android",
                     "type": "string"
                 },
@@ -5253,7 +5253,7 @@
                     "tlsh": "T119034b02b3415cb1edb86a7841839b08bb30eaf5d3139b8748c296eefdd76995f05780",
                     "mime": "application/vnd.android.package-archive",
                     "magic": "Android package (APK), with classes.dex, with APK Signing Block",
-                    "file_format_legacy": "Android",
+                    "file_format": "Android",
                     "file_format": "android/apk",
                     "file_extension": "apk"
                 }
@@ -5267,7 +5267,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "8f8f3fdd004f80a8e1d33e7601e74502",
         "timestamp": "2025-07-30T11:03:34Z",
         "author": {
@@ -5292,7 +5292,7 @@
                     "action": "sourced",
                     "sha256": "a288f47c3b80a09aae8323cbb86ce3832b53fe09ebf3ca3a0dc0ec69ccf80257",
                     "timestamp": "2025-07-30T11:03:34Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "code/javascript",
                     "size": 9119,
                     "filename": "a288f47c3b80a09aae8323cbb86ce3832b53fe09ebf3ca3a0dc0ec69ccf80257.js"
@@ -5310,7 +5310,7 @@
             "size": 9119,
             "mime": "application/javascript",
             "magic": "JavaScript source, ASCII text",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "code/javascript",
             "file_extension": "js",
             "features": [
@@ -5320,7 +5320,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -5358,7 +5358,7 @@
                     "tlsh": "T13d12941ca591662b48f370beb65b910427318f236040fa193b6f07991fad28fe5b75cd",
                     "mime": "application/javascript",
                     "magic": "JavaScript source, ASCII text",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "code/javascript",
                     "file_extension": "js"
                 }
@@ -5372,7 +5372,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "4f159095ae21fcba57f363efc20c385a",
         "timestamp": "2025-07-30T11:03:36Z",
         "author": {
@@ -5397,7 +5397,7 @@
                     "action": "sourced",
                     "sha256": "80628e39145c339aad296c2e175f631a7f3dcb9c552f36704f16bd099ff7b102",
                     "timestamp": "2025-07-30T11:03:36Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 38,
                     "filename": "80628e39145c339aad296c2e175f631a7f3dcb9c552f36704f16bd099ff7b102.txt"
@@ -5413,7 +5413,7 @@
             "size": 38,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -5423,7 +5423,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -5459,7 +5459,7 @@
                     "md5": "25fc8578f1b514ca0b4d4df700f26f53",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -5473,7 +5473,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "33e661b5d96aa4eccf0e051e4c4f013b",
         "timestamp": "2025-07-30T11:03:39Z",
         "author": {
@@ -5498,7 +5498,7 @@
                     "action": "sourced",
                     "sha256": "e6ca0d6adb6c1469c47277d87024fc8c779df9174f5da11991b3401ea54fc913",
                     "timestamp": "2025-07-30T11:03:39Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 17,
                     "filename": "e6ca0d6adb6c1469c47277d87024fc8c779df9174f5da11991b3401ea54fc913.txt"
@@ -5514,7 +5514,7 @@
             "size": 17,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -5524,7 +5524,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -5560,7 +5560,7 @@
                     "md5": "54133d628392cd0590df3416ef315ded",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -5574,7 +5574,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "091eb217502c1737330f94a2a9a69452",
         "timestamp": "2025-07-30T11:03:40Z",
         "author": {
@@ -5599,7 +5599,7 @@
                     "action": "sourced",
                     "sha256": "6f221c75249813ab6c764c7633c4af37435990039ba81d70985a8aed44eec990",
                     "timestamp": "2025-07-30T11:03:40Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 336,
                     "filename": "6f221c75249813ab6c764c7633c4af37435990039ba81d70985a8aed44eec990.txt"
@@ -5616,7 +5616,7 @@
             "size": 336,
             "mime": "text/plain",
             "magic": "ASCII text, with very long lines (336), with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -5626,7 +5626,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -5663,7 +5663,7 @@
                     "tlsh": "T1ace0260aab40136caf820339f50a6bd0fb7957df53048a14663ba931650e93708f6888",
                     "mime": "text/plain",
                     "magic": "ASCII text, with very long lines (336), with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -5677,7 +5677,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "4266d40be762016188b1e10cbaded523",
         "timestamp": "2025-07-30T11:03:46Z",
         "author": {
@@ -5702,7 +5702,7 @@
                     "action": "sourced",
                     "sha256": "7baf28a2f87df59649523bcbc3a8ee84ccdac405e64d1f241160ea2b82e4e4fd",
                     "timestamp": "2025-07-30T11:03:46Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 2250310,
                     "filename": "7baf28a2f87df59649523bcbc3a8ee84ccdac405e64d1f241160ea2b82e4e4fd.png"
@@ -5720,7 +5720,7 @@
             "size": 2250310,
             "mime": "image/png",
             "magic": "PNG image data, 1456 x 816, 8-bit/color RGB, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -5730,7 +5730,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -5768,7 +5768,7 @@
                     "tlsh": "T193a533b616a24483d1c9af1753957b10da1c0e8d3140e4bb13a9be38afed0de4e7e5d8",
                     "mime": "image/png",
                     "magic": "PNG image data, 1456 x 816, 8-bit/color RGB, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -5782,7 +5782,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "13bbc42478b8f02d688446300a88597e",
         "timestamp": "2025-07-30T11:03:48Z",
         "author": {
@@ -5807,7 +5807,7 @@
                     "action": "sourced",
                     "sha256": "3166f755341c26ecc08747e20200801ec083790b7cb2aebf02cb526a7b050619",
                     "timestamp": "2025-07-30T11:03:48Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 141,
                     "filename": "3166f755341c26ecc08747e20200801ec083790b7cb2aebf02cb526a7b050619.txt"
@@ -5824,7 +5824,7 @@
             "size": 141,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -5834,7 +5834,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -5871,7 +5871,7 @@
                     "tlsh": "T1b9c02b742f41333bc76145c02e1f03c9cfc015d04b02a78c5c0638c42a2ab0882309ec",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -5885,7 +5885,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "475100d63ed26c2a2dab8f7ddf2effd2",
         "timestamp": "2025-07-30T11:03:52Z",
         "author": {
@@ -5910,7 +5910,7 @@
                     "action": "sourced",
                     "sha256": "b9b6942f157ccaa747cd8c7ebcb278cc8ccd432dc2640bdd13bd81fcbe6399cd",
                     "timestamp": "2025-07-30T11:03:52Z",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown",
                     "size": 2097152,
                     "filename": "b9b6942f157ccaa747cd8c7ebcb278cc8ccd432dc2640bdd13bd81fcbe6399cd.unknown"
@@ -5928,7 +5928,7 @@
             "size": 2097152,
             "mime": "application/octet-stream",
             "magic": "data",
-            "file_format_legacy": "Data",
+            "file_format": "Data",
             "file_format": "unknown",
             "features": [
                 {
@@ -5937,7 +5937,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Data",
                     "type": "string"
                 },
@@ -5970,7 +5970,7 @@
                     "tlsh": "T1b6a533516d7ff4a00a89e6ce2d0b67ca89484ef4f3b63f686417652c67711bc8793322",
                     "mime": "application/octet-stream",
                     "magic": "data",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown"
                 }
             ]
@@ -5983,7 +5983,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "c7fc4dd2bbe8a78ec2f5aa6cb8ef3aab",
         "timestamp": "2025-07-30T11:03:53Z",
         "author": {
@@ -6008,7 +6008,7 @@
                     "action": "sourced",
                     "sha256": "6bfb56d80331faf60d212603f12ee865bd2dc36538e74ac0ad9b887bbc9eef36",
                     "timestamp": "2025-07-30T11:03:53Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 54685,
                     "filename": "6bfb56d80331faf60d212603f12ee865bd2dc36538e74ac0ad9b887bbc9eef36.exe"
@@ -6026,7 +6026,7 @@
             "size": 54685,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -6036,7 +6036,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -6074,7 +6074,7 @@
                     "tlsh": "T1b1335b0c77615937f53e07f1e857be4c0a9a340abef9e751993682d34830b9b620b71a",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -6088,7 +6088,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "11efbc25be09f35ee75f691a081a6a67",
         "timestamp": "2025-07-30T11:04:00Z",
         "author": {
@@ -6113,7 +6113,7 @@
                     "action": "sourced",
                     "sha256": "b403a101c5034d8b35ace9ece169c4439e9981c10ee64b2e255b32e3017ba56b",
                     "timestamp": "2025-07-30T11:04:00Z",
-                    "file_format_legacy": "Android",
+                    "file_format": "Android",
                     "file_format": "android/apk",
                     "size": 2340044,
                     "filename": "b403a101c5034d8b35ace9ece169c4439e9981c10ee64b2e255b32e3017ba56b.apk"
@@ -6131,7 +6131,7 @@
             "size": 2340044,
             "mime": "application/vnd.android.package-archive",
             "magic": "Android package (APK), with zipflinger virtual entry, with APK Signing Block",
-            "file_format_legacy": "Android",
+            "file_format": "Android",
             "file_format": "android/apk",
             "file_extension": "apk",
             "features": [
@@ -6141,7 +6141,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Android",
                     "type": "string"
                 },
@@ -6179,7 +6179,7 @@
                     "tlsh": "T121b5cf86ff58692fc87700320baa563536678d168f8397436998372c78776d80f99fc8",
                     "mime": "application/vnd.android.package-archive",
                     "magic": "Android package (APK), with zipflinger virtual entry, with APK Signing Block",
-                    "file_format_legacy": "Android",
+                    "file_format": "Android",
                     "file_format": "android/apk",
                     "file_extension": "apk"
                 }
@@ -6193,7 +6193,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "c85f8fa19cc67889b66fcb0cedee4cd7",
         "timestamp": "2025-07-30T11:04:08Z",
         "author": {
@@ -6218,7 +6218,7 @@
                     "action": "sourced",
                     "sha256": "4fd0fb87008e3de05ca3724feb8331a9985803c81f99fa9339267d5a8ec4afc6",
                     "timestamp": "2025-07-30T11:04:08Z",
-                    "file_format_legacy": "JAR",
+                    "file_format": "JAR",
                     "file_format": "java/jar",
                     "size": 1199109,
                     "filename": "4fd0fb87008e3de05ca3724feb8331a9985803c81f99fa9339267d5a8ec4afc6.apk"
@@ -6236,7 +6236,7 @@
             "size": 1199109,
             "mime": "application/vnd.android.package-archive",
             "magic": "Android package (APK), with APK Signing Block",
-            "file_format_legacy": "JAR",
+            "file_format": "JAR",
             "file_format": "java/jar",
             "file_extension": "jar",
             "features": [
@@ -6246,7 +6246,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "JAR",
                     "type": "string"
                 },
@@ -6284,7 +6284,7 @@
                     "tlsh": "T12845f1939ba49c2aea76dd3045f52f97b732de817403eb638114b5360db37e247820ad",
                     "mime": "application/vnd.android.package-archive",
                     "magic": "Android package (APK), with APK Signing Block",
-                    "file_format_legacy": "JAR",
+                    "file_format": "JAR",
                     "file_format": "java/jar",
                     "file_extension": "jar"
                 }
@@ -6298,7 +6298,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "2e01fe1bdea5d7cdb74e9e4f888c23c4",
         "timestamp": "2025-07-30T11:04:09Z",
         "author": {
@@ -6323,7 +6323,7 @@
                     "action": "sourced",
                     "sha256": "3deceadcd03dd9df247509e4977cc8187300fd74842c0712597cf4733b3855dd",
                     "timestamp": "2025-07-30T11:04:09Z",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown",
                     "size": 2048,
                     "filename": "3deceadcd03dd9df247509e4977cc8187300fd74842c0712597cf4733b3855dd.unknown"
@@ -6340,7 +6340,7 @@
             "size": 2048,
             "mime": "application/octet-stream",
             "magic": "data",
-            "file_format_legacy": "Data",
+            "file_format": "Data",
             "file_format": "unknown",
             "features": [
                 {
@@ -6349,7 +6349,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Data",
                     "type": "string"
                 },
@@ -6381,7 +6381,7 @@
                     "tlsh": "T1c041189b04afca99d969a729cc50594b7e8e138af3b004690a66ed1e56f8330bc51058",
                     "mime": "application/octet-stream",
                     "magic": "data",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown"
                 }
             ]
@@ -6394,7 +6394,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "a9b11bd61ff9d116a601b1764d422d1e",
         "timestamp": "2025-07-30T11:04:12Z",
         "author": {
@@ -6419,7 +6419,7 @@
                     "action": "sourced",
                     "sha256": "51f2c40eedb6a30edcafb33297f2681f1b2489ebc8014fe3dab2e7e7fe2c32a4",
                     "timestamp": "2025-07-30T11:04:12Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 369664,
                     "filename": "51f2c40eedb6a30edcafb33297f2681f1b2489ebc8014fe3dab2e7e7fe2c32a4.exe"
@@ -6437,7 +6437,7 @@
             "size": 369664,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 5 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -6447,7 +6447,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -6485,7 +6485,7 @@
                     "tlsh": "T11d747c04baa4f0f6dd95047800ebaf36967eb4281726cbc7e354ce5d99113c3a9346af",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 5 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -6499,7 +6499,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "2deff0df38cd07c876b0c295092913e0",
         "timestamp": "2025-07-30T11:04:14Z",
         "author": {
@@ -6524,7 +6524,7 @@
                     "action": "sourced",
                     "sha256": "71761ac88850affd8a9fd0bfeadcd4b9ad6c75991c88a0c147d825ef2337f975",
                     "timestamp": "2025-07-30T11:04:14Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "code/java",
                     "size": 2159,
                     "filename": "71761ac88850affd8a9fd0bfeadcd4b9ad6c75991c88a0c147d825ef2337f975.java"
@@ -6541,7 +6541,7 @@
             "size": 2159,
             "mime": "text/x-java",
             "magic": "Java source, ASCII text",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "code/java",
             "file_extension": "txt",
             "features": [
@@ -6551,7 +6551,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -6588,7 +6588,7 @@
                     "tlsh": "T1c541ce27cd871dc229a730984d6ba092e1ff41ab19599fd4f91ccb703f89074175a7b2",
                     "mime": "text/x-java",
                     "magic": "Java source, ASCII text",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "code/java",
                     "file_extension": "txt"
                 }
@@ -6602,7 +6602,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "9c0f19b6b70acf69fd90afd8c8170b4c",
         "timestamp": "2025-07-30T11:04:23Z",
         "author": {
@@ -6627,7 +6627,7 @@
                     "action": "sourced",
                     "sha256": "3a25d1194e864b4e98c0c0dc8669ed5a52bc6855d7b7e3e77800fcb2d92cebb3",
                     "timestamp": "2025-07-30T11:04:23Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 1615616,
                     "filename": "3a25d1194e864b4e98c0c0dc8669ed5a52bc6855d7b7e3e77800fcb2d92cebb3.png"
@@ -6645,7 +6645,7 @@
             "size": 1615616,
             "mime": "image/png",
             "magic": "PNG image data, 1024 x 1024, 8-bit/color RGB, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -6655,7 +6655,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -6693,7 +6693,7 @@
                     "tlsh": "T1617533e20cc6a915046feb5304c6031cfd98a5f623ac65e3b387b6f6817dd532f2a946",
                     "mime": "image/png",
                     "magic": "PNG image data, 1024 x 1024, 8-bit/color RGB, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -6707,7 +6707,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "abaf4c72c84ee1e88246ec68e621e43a",
         "timestamp": "2025-07-30T11:04:28Z",
         "author": {
@@ -6732,7 +6732,7 @@
                     "action": "sourced",
                     "sha256": "bf6ab6a34aaa2210f0246571021f21307fdbe4938a43e6c8ebe888f01047b172",
                     "timestamp": "2025-07-30T11:04:28Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 95384,
                     "filename": "bf6ab6a34aaa2210f0246571021f21307fdbe4938a43e6c8ebe888f01047b172.exe"
@@ -6750,7 +6750,7 @@
             "size": 95384,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -6760,7 +6760,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -6798,7 +6798,7 @@
                     "tlsh": "T1b7935b3f3b1b9d33ca1a30b0ac631ce4ca756464aeb1f7f6d3794835012534a9668d6d",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -6812,7 +6812,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "27516559d3d0626812158ac0f8fae93f",
         "timestamp": "2025-07-30T11:04:31Z",
         "author": {
@@ -6837,7 +6837,7 @@
                     "action": "sourced",
                     "sha256": "f6e10816ee67b26e99af45da6c7b5b72dd77390a58350134114344901e0d4312",
                     "timestamp": "2025-07-30T11:04:31Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 1699022,
                     "filename": "f6e10816ee67b26e99af45da6c7b5b72dd77390a58350134114344901e0d4312.png"
@@ -6855,7 +6855,7 @@
             "size": 1699022,
             "mime": "image/png",
             "magic": "PNG image data, 1344 x 896, 8-bit/color RGB, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -6865,7 +6865,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -6903,7 +6903,7 @@
                     "tlsh": "T1bb75336bdc4617c2e6ca21d64e67678030883573fd84b5692ac4bfa1c674c18f3ed39a",
                     "mime": "image/png",
                     "magic": "PNG image data, 1344 x 896, 8-bit/color RGB, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -6917,7 +6917,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "988d97527fff27b00b258e33e0e69f5d",
         "timestamp": "2025-07-30T11:04:32Z",
         "author": {
@@ -6942,7 +6942,7 @@
                     "action": "sourced",
                     "sha256": "867ab2ace30d09163b159112ef5ed2e5210e39ae997566d33e5dea160250c863",
                     "timestamp": "2025-07-30T11:04:32Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 64723,
                     "filename": "867ab2ace30d09163b159112ef5ed2e5210e39ae997566d33e5dea160250c863.exe"
@@ -6960,7 +6960,7 @@
             "size": 64723,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -6970,7 +6970,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -7008,7 +7008,7 @@
                     "tlsh": "T12253597b49f4b07bdb260a3020a4345cd7938c58b63aedb2e66107995c42ff242dd5bb",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -7022,7 +7022,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "be8d8ef5b64dac57c153a3b15aa72cf1",
         "timestamp": "2025-07-30T11:04:34Z",
         "author": {
@@ -7047,7 +7047,7 @@
                     "action": "sourced",
                     "sha256": "991debda3aaaf439bcc4fbd3cd37a4e5e66a3c097dbe681772b1eb6e24222e25",
                     "timestamp": "2025-07-30T11:04:34Z",
-                    "file_format_legacy": "PDF",
+                    "file_format": "PDF",
                     "file_format": "document/pdf",
                     "size": 119692,
                     "filename": "991debda3aaaf439bcc4fbd3cd37a4e5e66a3c097dbe681772b1eb6e24222e25.pdf"
@@ -7065,7 +7065,7 @@
             "size": 119692,
             "mime": "application/pdf",
             "magic": "PDF document, version 1.4, 0 page(s)",
-            "file_format_legacy": "PDF",
+            "file_format": "PDF",
             "file_format": "document/pdf",
             "file_extension": "pdf",
             "features": [
@@ -7075,7 +7075,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PDF",
                     "type": "string"
                 },
@@ -7113,7 +7113,7 @@
                     "tlsh": "T12dc3f1b9f4ce0c4ce9c7c281a4767c5e423e33278ed53889b4714b92bc66858a752bd7",
                     "mime": "application/pdf",
                     "magic": "PDF document, version 1.4, 0 page(s)",
-                    "file_format_legacy": "PDF",
+                    "file_format": "PDF",
                     "file_format": "document/pdf",
                     "file_extension": "pdf"
                 }
@@ -7127,7 +7127,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "e3bf63e3b14f308559c5e9e43bb34663",
         "timestamp": "2025-07-30T11:04:36Z",
         "author": {
@@ -7152,7 +7152,7 @@
                     "action": "sourced",
                     "sha256": "cf54fc33131f19529e8a60ad61ae351b13760e59461685540bc462e6b84481bf",
                     "timestamp": "2025-07-30T11:04:36Z",
-                    "file_format_legacy": "Win32 DLL",
+                    "file_format": "Win32 DLL",
                     "file_format": "executable/windows/dll32",
                     "size": 396720,
                     "filename": "cf54fc33131f19529e8a60ad61ae351b13760e59461685540bc462e6b84481bf.dll"
@@ -7170,7 +7170,7 @@
             "size": 396720,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (DLL) (console) Intel 80386, for MS Windows, 5 sections",
-            "file_format_legacy": "Win32 DLL",
+            "file_format": "Win32 DLL",
             "file_format": "executable/windows/dll32",
             "file_extension": "dll",
             "features": [
@@ -7180,7 +7180,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 DLL",
                     "type": "string"
                 },
@@ -7218,7 +7218,7 @@
                     "tlsh": "T17984f502ad438454c642243ce9b962af526d1729171089ebedc06857ebcf5e32e7bf73",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (DLL) (console) Intel 80386, for MS Windows, 5 sections",
-                    "file_format_legacy": "Win32 DLL",
+                    "file_format": "Win32 DLL",
                     "file_format": "executable/windows/dll32",
                     "file_extension": "dll"
                 }
@@ -7232,7 +7232,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "ee1c6f411a1d345c2f5dc9ead6483b89",
         "timestamp": "2025-07-30T11:05:02Z",
         "author": {
@@ -7257,7 +7257,7 @@
                     "action": "sourced",
                     "sha256": "9c5d9f6e5b1808949fb12af053173e21805bbd87126231b7023cee86340314d4",
                     "timestamp": "2025-07-30T11:05:02Z",
-                    "file_format_legacy": "HTML",
+                    "file_format": "HTML",
                     "file_format": "code/html",
                     "size": 36619,
                     "filename": "9c5d9f6e5b1808949fb12af053173e21805bbd87126231b7023cee86340314d4.html"
@@ -7275,7 +7275,7 @@
             "size": 36619,
             "mime": "text/html",
             "magic": "HTML document text",
-            "file_format_legacy": "HTML",
+            "file_format": "HTML",
             "file_format": "code/html",
             "file_extension": "html",
             "features": [
@@ -7285,7 +7285,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "HTML",
                     "type": "string"
                 },
@@ -7323,7 +7323,7 @@
                     "tlsh": "T1f7f2e7d9e6ada93947380196a772a68ff06fd934ef8388d4f2ee415773c5e50827008d",
                     "mime": "text/html",
                     "magic": "HTML document text",
-                    "file_format_legacy": "HTML",
+                    "file_format": "HTML",
                     "file_format": "code/html",
                     "file_extension": "html"
                 }
@@ -7337,7 +7337,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "5fe51a344eb9a724fb78b3883ca1f56e",
         "timestamp": "2025-07-30T11:05:07Z",
         "author": {
@@ -7362,7 +7362,7 @@
                     "action": "sourced",
                     "sha256": "290663cb98457a832cd8d456a5312f899466683ea1f820659fa07869be6d90d5",
                     "timestamp": "2025-07-30T11:05:07Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 30,
                     "filename": "290663cb98457a832cd8d456a5312f899466683ea1f820659fa07869be6d90d5.txt"
@@ -7378,7 +7378,7 @@
             "size": 30,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -7388,7 +7388,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -7424,7 +7424,7 @@
                     "md5": "c45f89dabc63933a005608afa2d8f93e",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -7438,7 +7438,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "371ddd32ca8d32035e1acd501cc4f6e2",
         "timestamp": "2025-07-30T11:05:36Z",
         "author": {
@@ -7463,7 +7463,7 @@
                     "action": "sourced",
                     "sha256": "332a167791f3e3aa0a0d88d820ea368c2bd6537525408d3ed2205c2ca4ee6a08",
                     "timestamp": "2025-07-30T11:05:36Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 15,
                     "filename": "332a167791f3e3aa0a0d88d820ea368c2bd6537525408d3ed2205c2ca4ee6a08.txt"
@@ -7479,7 +7479,7 @@
             "size": 15,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -7489,7 +7489,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -7525,7 +7525,7 @@
                     "md5": "778384f613d343608913b5a9f406bf06",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -7539,7 +7539,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "4d550e655374404e1b93f9e41fe66414",
         "timestamp": "2025-07-30T11:05:48Z",
         "author": {
@@ -7564,7 +7564,7 @@
                     "action": "sourced",
                     "sha256": "5fbc628e8cfb5aba24d0141eb7cc0992bd1bea6aa331f5e1b123820bc7a90ee5",
                     "timestamp": "2025-07-30T11:05:48Z",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "size": 3820012,
                     "filename": "5fbc628e8cfb5aba24d0141eb7cc0992bd1bea6aa331f5e1b123820bc7a90ee5.jpg"
@@ -7582,7 +7582,7 @@
             "size": 3820012,
             "mime": "image/jpeg",
             "magic": "JPEG image data, JFIF standard 1.01, resolution (DPI), density 300x300, segment length 16, comment: \"Generated by  IJG JPEG Library\", Exif Standard: [TIFF image data, little-endian, direntries=5, manufacturer=NIKON CORPORATION, model=NIKON D7200",
-            "file_format_legacy": "JPG",
+            "file_format": "JPG",
             "file_format": "image/jpg",
             "file_extension": "jpg",
             "features": [
@@ -7592,7 +7592,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "JPG",
                     "type": "string"
                 },
@@ -7630,7 +7630,7 @@
                     "tlsh": "T14f06336e2c51e844d28147f1eef2a63451a81fb80bbd428b19389f71e1d81f4df7e16a",
                     "mime": "image/jpeg",
                     "magic": "JPEG image data, JFIF standard 1.01, resolution (DPI), density 300x300, segment length 16, comment: \"Generated by  IJG JPEG Library\", Exif Standard: [TIFF image data, little-endian, direntries=5, manufacturer=NIKON CORPORATION, model=NIKON D7200",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "file_extension": "jpg"
                 }
@@ -7644,7 +7644,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "4145c262f4cf989a7d6eda5c235b64d0",
         "timestamp": "2025-07-30T11:05:52Z",
         "author": {
@@ -7669,7 +7669,7 @@
                     "action": "sourced",
                     "sha256": "1950486583fd09c74ab209b642687e1d1353400c93181d4c062f86ac6e6c2ec0",
                     "timestamp": "2025-07-30T11:05:52Z",
-                    "file_format_legacy": "PDF",
+                    "file_format": "PDF",
                     "file_format": "document/pdf",
                     "size": 473835,
                     "filename": "1950486583fd09c74ab209b642687e1d1353400c93181d4c062f86ac6e6c2ec0.pdf"
@@ -7687,7 +7687,7 @@
             "size": 473835,
             "mime": "application/pdf",
             "magic": "PDF document, version 1.7, 9 page(s)",
-            "file_format_legacy": "PDF",
+            "file_format": "PDF",
             "file_format": "document/pdf",
             "file_extension": "pdf",
             "features": [
@@ -7697,7 +7697,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PDF",
                     "type": "string"
                 },
@@ -7735,7 +7735,7 @@
                     "tlsh": "T14ca401240448a8cfd54656f07f2f3d6aac5d71a2b1ca424436bcc6d78b84f7ee523a87",
                     "mime": "application/pdf",
                     "magic": "PDF document, version 1.7, 9 page(s)",
-                    "file_format_legacy": "PDF",
+                    "file_format": "PDF",
                     "file_format": "document/pdf",
                     "file_extension": "pdf"
                 }
@@ -7749,7 +7749,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "a366f105a2b2e4c73773623433548ebe",
         "timestamp": "2025-07-30T11:05:53Z",
         "author": {
@@ -7774,7 +7774,7 @@
                     "action": "sourced",
                     "sha256": "cc6780ea3226913b23132a13e442cbe0648446b1d63739675c6e83798a6a4f4a",
                     "timestamp": "2025-07-30T11:05:53Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 81,
                     "filename": "cc6780ea3226913b23132a13e442cbe0648446b1d63739675c6e83798a6a4f4a.txt"
@@ -7791,7 +7791,7 @@
             "size": 81,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -7801,7 +7801,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -7838,7 +7838,7 @@
                     "tlsh": "T195a01201d004905a46805012110168c08ee97100061005ec921b14562c010c4871207d",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -7852,7 +7852,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "0c3825fe5a36aa714eb110de0104010c",
         "timestamp": "2025-07-30T11:05:54Z",
         "author": {
@@ -7877,7 +7877,7 @@
                     "action": "sourced",
                     "sha256": "ec3b0400f37bfadf5e2c47d7cbbfde17dc77caa79db04e2fe60503d1bcd0f932",
                     "timestamp": "2025-07-30T11:05:54Z",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown",
                     "size": 1024,
                     "filename": "ec3b0400f37bfadf5e2c47d7cbbfde17dc77caa79db04e2fe60503d1bcd0f932.unknown"
@@ -7894,7 +7894,7 @@
             "size": 1024,
             "mime": "application/octet-stream",
             "magic": "data",
-            "file_format_legacy": "Data",
+            "file_format": "Data",
             "file_format": "unknown",
             "features": [
                 {
@@ -7903,7 +7903,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Data",
                     "type": "string"
                 },
@@ -7935,7 +7935,7 @@
                     "tlsh": "T10711b5c488ac0e95ffb60ec8dd718445df549ca6a4824349a0972c9e9197848c0f596d",
                     "mime": "application/octet-stream",
                     "magic": "data",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown"
                 }
             ]
@@ -7948,7 +7948,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "cc2c60711723fedabcecca827281d99c",
         "timestamp": "2025-07-30T11:06:08Z",
         "author": {
@@ -7973,7 +7973,7 @@
                     "action": "sourced",
                     "sha256": "54e8e8e5c6289f460d6a3d71fef0e3b3dca06e6b990d80dc9cdac0d5df6f16ce",
                     "timestamp": "2025-07-30T11:06:08Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 1656243,
                     "filename": "54e8e8e5c6289f460d6a3d71fef0e3b3dca06e6b990d80dc9cdac0d5df6f16ce.png"
@@ -7991,7 +7991,7 @@
             "size": 1656243,
             "mime": "image/png",
             "magic": "PNG image data, 1024 x 1024, 8-bit/color RGB, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -8001,7 +8001,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -8039,7 +8039,7 @@
                     "tlsh": "T1a67533de64a796c4e3405aa7278b43b036308bff8236d2138b1c79a5353bad59530e77",
                     "mime": "image/png",
                     "magic": "PNG image data, 1024 x 1024, 8-bit/color RGB, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -8053,7 +8053,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "61d42801b01d770748b4147038c348ad",
         "timestamp": "2025-07-30T11:06:23Z",
         "author": {
@@ -8078,7 +8078,7 @@
                     "action": "sourced",
                     "sha256": "b7d89c71873aee06ed4c4bf198382f1c6aa03e18286e320858c6668927883e29",
                     "timestamp": "2025-07-30T11:06:23Z",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "size": 231830,
                     "filename": "b7d89c71873aee06ed4c4bf198382f1c6aa03e18286e320858c6668927883e29.jpg"
@@ -8096,7 +8096,7 @@
             "size": 231830,
             "mime": "image/jpeg",
             "magic": "JPEG image data, Exif Standard: [TIFF image data, big-endian, direntries=3",
-            "file_format_legacy": "JPG",
+            "file_format": "JPG",
             "file_format": "image/jpg",
             "file_extension": "jpg",
             "features": [
@@ -8106,7 +8106,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "JPG",
                     "type": "string"
                 },
@@ -8144,7 +8144,7 @@
                     "tlsh": "T1833423933a240e15c73790f4b8c80ae5d4743ef228599f60fb04b9985b35ecdeb645a6",
                     "mime": "image/jpeg",
                     "magic": "JPEG image data, Exif Standard: [TIFF image data, big-endian, direntries=3",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "file_extension": "jpg"
                 }
@@ -8158,7 +8158,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "9fe8b2d48a8617781b111fbe923eee9c",
         "timestamp": "2025-07-30T11:06:59Z",
         "author": {
@@ -8183,7 +8183,7 @@
                     "action": "sourced",
                     "sha256": "7f35ff7000b67ce06dd36e0bbe4151164ad782f1fdb8861eedf152d0a37caa67",
                     "timestamp": "2025-07-30T11:06:59Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 1556799,
                     "filename": "7f35ff7000b67ce06dd36e0bbe4151164ad782f1fdb8861eedf152d0a37caa67.png"
@@ -8201,7 +8201,7 @@
             "size": 1556799,
             "mime": "image/png",
             "magic": "PNG image data, 1024 x 1024, 8-bit/color RGB, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -8211,7 +8211,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -8249,7 +8249,7 @@
                     "tlsh": "T14e7533da66e18d60deef87a0425b538050e6c7b1916760932cbf1270b3ee7cb2736935",
                     "mime": "image/png",
                     "magic": "PNG image data, 1024 x 1024, 8-bit/color RGB, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -8263,7 +8263,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "880eeeb96963e9e234f410464920a8be",
         "timestamp": "2025-07-30T11:07:09Z",
         "author": {
@@ -8288,7 +8288,7 @@
                     "action": "sourced",
                     "sha256": "acab50375c35c1781f276d875d61ba0d11f5afc3e57db1fc5366ff4c3ec12487",
                     "timestamp": "2025-07-30T11:07:09Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 261,
                     "filename": "acab50375c35c1781f276d875d61ba0d11f5afc3e57db1fc5366ff4c3ec12487.txt"
@@ -8305,7 +8305,7 @@
             "size": 261,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -8315,7 +8315,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -8352,7 +8352,7 @@
                     "tlsh": "T151d02b16a0d127725f87189173508a297b7f92a915000a31d5658100d8154acc2ff302",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -8366,7 +8366,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "ac29efadc0476629b0989ae40f332204",
         "timestamp": "2025-07-30T11:07:14Z",
         "author": {
@@ -8391,7 +8391,7 @@
                     "action": "sourced",
                     "sha256": "fdfcdee0cb53b8169958815de82398769a4262e7a2e5fa71a22f5e9ecec7ffc9",
                     "timestamp": "2025-07-30T11:07:14Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 1726859,
                     "filename": "fdfcdee0cb53b8169958815de82398769a4262e7a2e5fa71a22f5e9ecec7ffc9.png"
@@ -8409,7 +8409,7 @@
             "size": 1726859,
             "mime": "image/png",
             "magic": "PNG image data, 1080 x 1080, 8-bit/color RGBA, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -8419,7 +8419,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -8457,7 +8457,7 @@
                     "tlsh": "T1b08533c221a448d2e6c92f167edc78d1de562dc7dc7aa3806bcc1ad21852af7bf90c51",
                     "mime": "image/png",
                     "magic": "PNG image data, 1080 x 1080, 8-bit/color RGBA, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -8471,7 +8471,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "8d7f3e64d48e04f4b42299d7b8dfaa83",
         "timestamp": "2025-07-30T11:07:17Z",
         "author": {
@@ -8496,7 +8496,7 @@
                     "action": "sourced",
                     "sha256": "e99d1e5f6aef8462e3adc9c14d60bb582ae60fc29881923837264d7dd9d5ae42",
                     "timestamp": "2025-07-30T11:07:17Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 1368926,
                     "filename": "e99d1e5f6aef8462e3adc9c14d60bb582ae60fc29881923837264d7dd9d5ae42.png"
@@ -8514,7 +8514,7 @@
             "size": 1368926,
             "mime": "image/png",
             "magic": "PNG image data, 1024 x 1024, 8-bit/color RGB, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -8524,7 +8524,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -8562,7 +8562,7 @@
                     "tlsh": "T1ca55335cab6b4e4ca4b97e904413073df800b3fed781a0c16f9a685c69f6dd6334ea49",
                     "mime": "image/png",
                     "magic": "PNG image data, 1024 x 1024, 8-bit/color RGB, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -8576,7 +8576,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "80a496c744781eff1cc1cbf9d9fd9bc0",
         "timestamp": "2025-07-30T11:07:27Z",
         "author": {
@@ -8601,7 +8601,7 @@
                     "action": "sourced",
                     "sha256": "a68c1b4b0c56e03ba38ba675c5d1563fb3efdbd9af4fb8a10a6877ee7176c8fd",
                     "timestamp": "2025-07-30T11:07:27Z",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "size": 140944,
                     "filename": "a68c1b4b0c56e03ba38ba675c5d1563fb3efdbd9af4fb8a10a6877ee7176c8fd.jpg"
@@ -8619,7 +8619,7 @@
             "size": 140944,
             "mime": "image/jpeg",
             "magic": "JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 1080x1350, components 3",
-            "file_format_legacy": "JPG",
+            "file_format": "JPG",
             "file_format": "image/jpg",
             "file_extension": "jpg",
             "features": [
@@ -8629,7 +8629,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "JPG",
                     "type": "string"
                 },
@@ -8667,7 +8667,7 @@
                     "tlsh": "T1b2d31245f3f26c93731be4e2f0a74d5eba22e99920db11aeb1c0b4804f665c14b5cb87",
                     "mime": "image/jpeg",
                     "magic": "JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 1080x1350, components 3",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "file_extension": "jpg"
                 }
@@ -8681,7 +8681,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "f810d5d517ec33ce10eab81534932b98",
         "timestamp": "2025-07-30T11:07:33Z",
         "author": {
@@ -8706,7 +8706,7 @@
                     "action": "sourced",
                     "sha256": "d517998ad05a29bda6ffb7342da53546ec165bc09f1bd8532961160ed6b5a4bd",
                     "timestamp": "2025-07-30T11:07:33Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 23,
                     "filename": "d517998ad05a29bda6ffb7342da53546ec165bc09f1bd8532961160ed6b5a4bd.txt"
@@ -8722,7 +8722,7 @@
             "size": 23,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -8732,7 +8732,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -8768,7 +8768,7 @@
                     "md5": "0fb686a35ce3142fa1ffa259a1ca2596",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -8782,7 +8782,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "04747b19b1b304c264293cace0d9fd40",
         "timestamp": "2025-07-30T11:07:40Z",
         "author": {
@@ -8807,7 +8807,7 @@
                     "action": "sourced",
                     "sha256": "154fe7454936c9aa502245425c90a556bf3b462f90806b0bd1bbb99311ffbb60",
                     "timestamp": "2025-07-30T11:07:40Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 312784,
                     "filename": "154fe7454936c9aa502245425c90a556bf3b462f90806b0bd1bbb99311ffbb60.exe"
@@ -8825,7 +8825,7 @@
             "size": 312784,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 5 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -8835,7 +8835,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -8873,7 +8873,7 @@
                     "tlsh": "T175647c11b9c48432c673383147b4e2b28dbdb8302d655b8f57a81d7a9f741d0ea29b6f",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 5 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -8887,7 +8887,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "d680d74cdecf69df5da82cc93b425217",
         "timestamp": "2025-07-30T11:07:43Z",
         "author": {
@@ -8912,7 +8912,7 @@
                     "action": "sourced",
                     "sha256": "1d9d36d0c1cb65165d7b27a793de32ae95b5c77c1cab95180939b5ad263504f7",
                     "timestamp": "2025-07-30T11:07:43Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 2346186,
                     "filename": "1d9d36d0c1cb65165d7b27a793de32ae95b5c77c1cab95180939b5ad263504f7.png"
@@ -8930,7 +8930,7 @@
             "size": 2346186,
             "mime": "image/png",
             "magic": "PNG image data, 880 x 1360, 8-bit/color RGB, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -8940,7 +8940,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -8978,7 +8978,7 @@
                     "tlsh": "T1a6b533d91cc6578bfc537d3b603eab040d7f5fa289d22054690ba1e3725a9f9394cab0",
                     "mime": "image/png",
                     "magic": "PNG image data, 880 x 1360, 8-bit/color RGB, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -8992,7 +8992,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "409fe9193bafcf8ccd2d7e57dbf4fcbe",
         "timestamp": "2025-07-30T11:08:01Z",
         "author": {
@@ -9017,7 +9017,7 @@
                     "action": "sourced",
                     "sha256": "5e4c28b6219c0c63a2d7deabfef673cc8f2a4d172fb64a4c0e32816ec487092b",
                     "timestamp": "2025-07-30T11:08:01Z",
-                    "file_format_legacy": "Android",
+                    "file_format": "Android",
                     "file_format": "android/apk",
                     "size": 4104409,
                     "filename": "5e4c28b6219c0c63a2d7deabfef673cc8f2a4d172fb64a4c0e32816ec487092b.apk"
@@ -9035,7 +9035,7 @@
             "size": 4104409,
             "mime": "application/vnd.android.package-archive",
             "magic": "Android package (APK), with APK Signing Block",
-            "file_format_legacy": "Android",
+            "file_format": "Android",
             "file_format": "android/apk",
             "file_extension": "apk",
             "features": [
@@ -9045,7 +9045,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Android",
                     "type": "string"
                 },
@@ -9083,7 +9083,7 @@
                     "tlsh": "T122160142f7e8e91fc87791338eab5a3611564c22c646c7038b69f23c69bbad04e55fc4",
                     "mime": "application/vnd.android.package-archive",
                     "magic": "Android package (APK), with APK Signing Block",
-                    "file_format_legacy": "Android",
+                    "file_format": "Android",
                     "file_format": "android/apk",
                     "file_extension": "apk"
                 }
@@ -9097,7 +9097,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "0055365a3f974377f1ede6a4d09edd01",
         "timestamp": "2025-07-30T11:08:05Z",
         "author": {
@@ -9122,7 +9122,7 @@
                     "action": "sourced",
                     "sha256": "db7a83f64afd7e3156a8a1782a21e25467d8a9989150bf223ffc6b69d69e5207",
                     "timestamp": "2025-07-30T11:08:05Z",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "size": 1986884,
                     "filename": "db7a83f64afd7e3156a8a1782a21e25467d8a9989150bf223ffc6b69d69e5207.png"
@@ -9140,7 +9140,7 @@
             "size": 1986884,
             "mime": "image/png",
             "magic": "PNG image data, 928 x 1232, 8-bit/color RGB, non-interlaced",
-            "file_format_legacy": "PNG",
+            "file_format": "PNG",
             "file_format": "image/png",
             "file_extension": "png",
             "features": [
@@ -9150,7 +9150,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "PNG",
                     "type": "string"
                 },
@@ -9188,7 +9188,7 @@
                     "tlsh": "T151953398b5262db3116ec4a8c93d575daf0b6c7f1f6f5096a016bf031cd8af0ae07846",
                     "mime": "image/png",
                     "magic": "PNG image data, 928 x 1232, 8-bit/color RGB, non-interlaced",
-                    "file_format_legacy": "PNG",
+                    "file_format": "PNG",
                     "file_format": "image/png",
                     "file_extension": "png"
                 }
@@ -9202,7 +9202,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "e11c5d3148bc4e5766057d84aff675dd",
         "timestamp": "2025-07-30T11:08:07Z",
         "author": {
@@ -9227,7 +9227,7 @@
                     "action": "sourced",
                     "sha256": "a680b445275fe9cdd803189d793e2a4a412aa116de3c669ca28231431f2dfa8c",
                     "timestamp": "2025-07-30T11:08:07Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 4355008,
                     "filename": "a680b445275fe9cdd803189d793e2a4a412aa116de3c669ca28231431f2dfa8c.exe"
@@ -9245,7 +9245,7 @@
             "size": 4355008,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 5 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -9255,7 +9255,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -9293,7 +9293,7 @@
                     "tlsh": "T1471633517b419476d5a721320f78cb5a66bef6202f27964f73880ead8f30681e734f26",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386, for MS Windows, 5 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -9307,7 +9307,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "1b28b0458557c23940fabd5fad2c8c1d",
         "timestamp": "2025-07-30T11:08:10Z",
         "author": {
@@ -9332,7 +9332,7 @@
                     "action": "sourced",
                     "sha256": "d5f13309e51a82db2ee7dde5e50f04bd9c994c81aa264496caf02bf480c4011c",
                     "timestamp": "2025-07-30T11:08:10Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 53969,
                     "filename": "d5f13309e51a82db2ee7dde5e50f04bd9c994c81aa264496caf02bf480c4011c.exe"
@@ -9350,7 +9350,7 @@
             "size": 53969,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -9360,7 +9360,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -9398,7 +9398,7 @@
                     "tlsh": "T1f8333a2d7e21b832e43ec7b19ca3b95ccd750c497ea5ea816879c1c3152436b538eb6c",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -9412,7 +9412,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "befbd3e49f3c9cdf4e0d7bef722895db",
         "timestamp": "2025-07-30T11:08:25Z",
         "author": {
@@ -9437,7 +9437,7 @@
                     "action": "sourced",
                     "sha256": "8b01779d2567081dea07c9643b1f72a8ad53a831b459b9391bb96b1fdc8c4fc6",
                     "timestamp": "2025-07-30T11:08:25Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 130,
                     "filename": "8b01779d2567081dea07c9643b1f72a8ad53a831b459b9391bb96b1fdc8c4fc6.txt"
@@ -9454,7 +9454,7 @@
             "size": 130,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -9464,7 +9464,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -9501,7 +9501,7 @@
                     "tlsh": "T1f3c02b30830076a53612b244e80d1fe30a36c730cb4b5880c034d1741400cc213fc53c",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -9515,7 +9515,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "1330d46d301d9c7e31c04ec24bcbeb02",
         "timestamp": "2025-07-30T11:08:27Z",
         "author": {
@@ -9540,7 +9540,7 @@
                     "action": "sourced",
                     "sha256": "a4be258bac38bf330c1975f04865ae1b2f924c61dad2f21884a1e98892cc0f20",
                     "timestamp": "2025-07-30T11:08:27Z",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "size": 48379,
                     "filename": "a4be258bac38bf330c1975f04865ae1b2f924c61dad2f21884a1e98892cc0f20.exe"
@@ -9558,7 +9558,7 @@
             "size": 48379,
             "mime": "application/vnd.microsoft.portable-executable",
             "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-            "file_format_legacy": "Win32 EXE",
+            "file_format": "Win32 EXE",
             "file_format": "executable/windows/pe32",
             "file_extension": "exe",
             "features": [
@@ -9568,7 +9568,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Win32 EXE",
                     "type": "string"
                 },
@@ -9606,7 +9606,7 @@
                     "tlsh": "T19a237c6f3d09fa71e3f760782b3432f68c216c591574b9fb9a290a634530eb2d4dc529",
                     "mime": "application/vnd.microsoft.portable-executable",
                     "magic": "PE32 executable (GUI) Intel 80386 (stripped to external PDB), for MS Windows, 3 sections",
-                    "file_format_legacy": "Win32 EXE",
+                    "file_format": "Win32 EXE",
                     "file_format": "executable/windows/pe32",
                     "file_extension": "exe"
                 }
@@ -9620,7 +9620,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "6a619707d2f70ecbb213296b68d13553",
         "timestamp": "2025-07-30T11:08:28Z",
         "author": {
@@ -9645,7 +9645,7 @@
                     "action": "sourced",
                     "sha256": "ae3487733ae590210e73a697fa93032d5cf3e0520aafa0c080a17d378ed8fc7f",
                     "timestamp": "2025-07-30T11:08:28Z",
-                    "file_format_legacy": "Python Code",
+                    "file_format": "Python Code",
                     "file_format": "code/python",
                     "size": 21551,
                     "filename": "ae3487733ae590210e73a697fa93032d5cf3e0520aafa0c080a17d378ed8fc7f.py"
@@ -9663,7 +9663,7 @@
             "size": 21551,
             "mime": "text/x-script.python",
             "magic": "Python script, Unicode text, UTF-8 text executable, with very long lines (802)",
-            "file_format_legacy": "Python Code",
+            "file_format": "Python Code",
             "file_format": "code/python",
             "file_extension": "py",
             "features": [
@@ -9673,7 +9673,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Python Code",
                     "type": "string"
                 },
@@ -9711,7 +9711,7 @@
                     "tlsh": "T14ea2fa0352e527b1c5f303b6dd4fa191bb37d8091f9c1811fabc81686baca6d96773a0",
                     "mime": "text/x-script.python",
                     "magic": "Python script, Unicode text, UTF-8 text executable, with very long lines (802)",
-                    "file_format_legacy": "Python Code",
+                    "file_format": "Python Code",
                     "file_format": "code/python",
                     "file_extension": "py"
                 }
@@ -9725,7 +9725,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "3769aac81d3d70e46f979e7f88117b24",
         "timestamp": "2025-07-30T11:08:32Z",
         "author": {
@@ -9750,7 +9750,7 @@
                     "action": "sourced",
                     "sha256": "7fe24f4ad729aa18c4f2d3ee27a55cb73062b1537bbfd9a1e5c55fb36b19e24e",
                     "timestamp": "2025-07-30T11:08:32Z",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "size": 711619,
                     "filename": "7fe24f4ad729aa18c4f2d3ee27a55cb73062b1537bbfd9a1e5c55fb36b19e24e.jpg"
@@ -9768,7 +9768,7 @@
             "size": 711619,
             "mime": "image/jpeg",
             "magic": "JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, Exif Standard: [TIFF image data, little-endian, direntries=12, manufacturer=Canon, model=Canon EOS-1D X, orientation=upper-left, xresolution=196, yresolution=204, resolutionunit=2, datetime=2018:07:27 06:04:34",
-            "file_format_legacy": "JPG",
+            "file_format": "JPG",
             "file_format": "image/jpg",
             "file_extension": "jpg",
             "features": [
@@ -9778,7 +9778,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "JPG",
                     "type": "string"
                 },
@@ -9816,7 +9816,7 @@
                     "tlsh": "T1b7e42379f6e2a462e85e2670b1f221035f715fa106cf8319341d18eebfdbac465d908e",
                     "mime": "image/jpeg",
                     "magic": "JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, Exif Standard: [TIFF image data, little-endian, direntries=12, manufacturer=Canon, model=Canon EOS-1D X, orientation=upper-left, xresolution=196, yresolution=204, resolutionunit=2, datetime=2018:07:27 06:04:34",
-                    "file_format_legacy": "JPG",
+                    "file_format": "JPG",
                     "file_format": "image/jpg",
                     "file_extension": "jpg"
                 }
@@ -9830,7 +9830,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "2628f33b78099f3231eafea67ad843c6",
         "timestamp": "2025-07-30T11:08:33Z",
         "author": {
@@ -9855,7 +9855,7 @@
                     "action": "sourced",
                     "sha256": "df4897b39d378a430d9980fb6214985913ede2500fd52b8c775ee47bc5905b66",
                     "timestamp": "2025-07-30T11:08:33Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 108,
                     "filename": "df4897b39d378a430d9980fb6214985913ede2500fd52b8c775ee47bc5905b66.txt"
@@ -9872,7 +9872,7 @@
             "size": 108,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -9882,7 +9882,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -9919,7 +9919,7 @@
                     "tlsh": "T120b01249b2ab1bc957c365f7d4640e2e4e29c20747ac433e5b5ed0cd18ac5fb5623b24",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -9933,7 +9933,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "7e9cfeecd6ff30e1b514d1783161a1c4",
         "timestamp": "2025-07-30T11:08:43Z",
         "author": {
@@ -9958,7 +9958,7 @@
                     "action": "sourced",
                     "sha256": "c3eb29d03caaf4473da787936e5f5063048c8b17b54cc5b6ca69abfa1f89809b",
                     "timestamp": "2025-07-30T11:08:43Z",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown",
                     "size": 256,
                     "filename": "c3eb29d03caaf4473da787936e5f5063048c8b17b54cc5b6ca69abfa1f89809b.unknown"
@@ -9975,7 +9975,7 @@
             "size": 256,
             "mime": "application/octet-stream",
             "magic": "data",
-            "file_format_legacy": "Data",
+            "file_format": "Data",
             "file_format": "unknown",
             "features": [
                 {
@@ -9984,7 +9984,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Data",
                     "type": "string"
                 },
@@ -10016,7 +10016,7 @@
                     "tlsh": "T19cd09576729973d016523105c6513c7d0e28980633cfaec7141015d20f922f3d727114",
                     "mime": "application/octet-stream",
                     "magic": "data",
-                    "file_format_legacy": "Data",
+                    "file_format": "Data",
                     "file_format": "unknown"
                 }
             ]
@@ -10029,7 +10029,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "907f615f14cf1dbf298700717ec82567",
         "timestamp": "2025-07-30T11:08:44Z",
         "author": {
@@ -10054,7 +10054,7 @@
                     "action": "sourced",
                     "sha256": "e5d7993b1df3cf117673d13cc38d013695359de22c4f608127acf9fec3e8b20f",
                     "timestamp": "2025-07-30T11:08:44Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 4,
                     "filename": "e5d7993b1df3cf117673d13cc38d013695359de22c4f608127acf9fec3e8b20f.txt"
@@ -10070,7 +10070,7 @@
             "size": 4,
             "mime": "text/plain",
             "magic": "Non-ISO extended-ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -10080,7 +10080,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -10116,7 +10116,7 @@
                     "md5": "7c82a08acaaffb08937444e3cab0cb95",
                     "mime": "text/plain",
                     "magic": "Non-ISO extended-ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -10130,7 +10130,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "228a16bfb5b08ae2603aec5d41ee1d0f",
         "timestamp": "2025-07-30T11:08:45Z",
         "author": {
@@ -10155,7 +10155,7 @@
                     "action": "sourced",
                     "sha256": "8e623e948c6e0ee590efdecc35c850f58d38236032784fcc34796c6c4bd13379",
                     "timestamp": "2025-07-30T11:08:45Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 244,
                     "filename": "8e623e948c6e0ee590efdecc35c850f58d38236032784fcc34796c6c4bd13379.txt"
@@ -10172,7 +10172,7 @@
             "size": 244,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -10182,7 +10182,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -10219,7 +10219,7 @@
                     "tlsh": "T17ed097293a3492bea27284c2a6832fe2730e62f0622014e46843060db8204e662fc75e",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
@@ -10233,7 +10233,7 @@
         ]
     },
     {
-        "model_version": 5,
+        "model_version": 6,
         "kafka_key": "b7be3a0f03ed938e7c0b59e79e1be360",
         "timestamp": "2025-07-30T11:08:50Z",
         "author": {
@@ -10258,7 +10258,7 @@
                     "action": "sourced",
                     "sha256": "4a75e0017f8d9f99a8a3f921fbb1d649e572655c4a56c71c9ce5c04afa4bda4a",
                     "timestamp": "2025-07-30T11:08:50Z",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "size": 101,
                     "filename": "4a75e0017f8d9f99a8a3f921fbb1d649e572655c4a56c71c9ce5c04afa4bda4a.txt"
@@ -10275,7 +10275,7 @@
             "size": 101,
             "mime": "text/plain",
             "magic": "ASCII text, with no line terminators",
-            "file_format_legacy": "Text",
+            "file_format": "Text",
             "file_format": "text/plain",
             "file_extension": "txt",
             "features": [
@@ -10285,7 +10285,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "file_format_legacy",
+                    "name": "file_format",
                     "value": "Text",
                     "type": "string"
                 },
@@ -10322,7 +10322,7 @@
                     "tlsh": "T1cdb012319484047b0a010137eb4426723e38c1084ebf05dcf1f8834155603092273297",
                     "mime": "text/plain",
                     "magic": "ASCII text, with no line terminators",
-                    "file_format_legacy": "Text",
+                    "file_format": "Text",
                     "file_format": "text/plain",
                     "file_extension": "txt"
                 }
