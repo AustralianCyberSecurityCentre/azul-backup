@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/settings"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/settings"
 )
 
 type RestoreStats struct {
