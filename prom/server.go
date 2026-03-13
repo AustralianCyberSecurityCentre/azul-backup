@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/settings"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/settings"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 

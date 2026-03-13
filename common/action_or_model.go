@@ -1,7 +1,7 @@
 package common
 
 import (
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
 )
 
 func GetModelAndAction(source, modelOrAction string) (events.Model, events.BinaryAction) {

@@ -10,8 +10,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/events"
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v10/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/settings"
 )
 
 // 7=rwx, 6=rw, 5=rx, 4=r
