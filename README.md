@@ -7,6 +7,14 @@ Backup & restore critical Azul data.
 Run the go binary from this package with the command `backup` or `restore`.
 Set all settings via the environment variables found in the file common/settings.go
 
+## Purging and Backup
+
+When files are purged from the system they are not purged from backup.
+
+To purge a file from backup you need to create a new backup and then delete the existing backup.
+
+This can be done through azul-app.
+
 ## Testing
 
 The testify suite is being used.
