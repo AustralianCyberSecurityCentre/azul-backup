@@ -7,7 +7,6 @@ ARG BASE_TAG=1.26-trixie@sha256:ce3f1c8d3718a306811d8d5e547073b466b15e85bfa7e1b4
 FROM $REGISTRY/$BASE_IMAGE:$BASE_TAG AS builder
 ENV DEBIAN_FRONTEND=noninteractive
 ENV GOOS=linux GOARCH=amd64 CGO_ENABLED=0 GO111MODULE=on GOPATH=/src/tmp/go
-ENV GOPRIVATE=github.com/AustralianCyberSecurityCentre/*
 ARG XDG_CONFIG_HOME
 
 RUN apt-get update && \
@@ -20,8 +19,7 @@ RUN git config --global url."git@github.com:AustralianCyberSecurityCentre/".inst
 COPY . /src
 
 # full static builds with no ld deps, so we can copy it to scratch
-RUN --mount=type=ssh,id=id cd /src && \
-    go build -v -a -tags netgo -ldflags '-w -extldflags "-static"' -o /go/bin/backup main.go
+RUN cd /src && go build -v -a -tags netgo -ldflags '-w -extldflags "-static"' -o /go/bin/backup main.go
 
 # now copy artifacts to a lightweight image
 FROM scratch
