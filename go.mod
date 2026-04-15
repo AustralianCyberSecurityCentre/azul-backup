@@ -2,7 +2,7 @@ module github.com/AustralianCyberSecurityCentre/azul-backup.git
 
 go 1.26.0
 
-toolchain go1.26.1
+toolchain go1.26.2
 
 require (
 	github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.23
