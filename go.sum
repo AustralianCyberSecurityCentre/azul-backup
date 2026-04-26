@@ -1,5 +1,5 @@
-github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.52 h1:Fbo5h9D5D/RmrzN7ZKJM9XypUtiQ4BxullnSpLZLXRw=
-github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.52/go.mod h1:8EYBZj/+EDUGJ8Q+QIsmsUuQiisBkTzVW4BYt3f9/Us=
+github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.58 h1:wOUSjxqFsuRNrX0O16MlypfpUevytbh50nGlrfdfcyg=
+github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.58/go.mod h1:8EYBZj/+EDUGJ8Q+QIsmsUuQiisBkTzVW4BYt3f9/Us=
 github.com/Azure/azure-sdk-for-go/sdk/azcore v1.21.0 h1:fou+2+WFTib47nS+nz/ozhEBnvU96bKHy6LjRsY4E28=
 github.com/Azure/azure-sdk-for-go/sdk/azcore v1.21.0/go.mod h1:t76Ruy8AHvUAC8GfMWJMa0ElSbuIcO03NLpynfbgsPA=
 github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.13.1 h1:Hk5QBxZQC1jb2Fwj6mpzme37xbCDdNTxU7O9eb5+LB4=
