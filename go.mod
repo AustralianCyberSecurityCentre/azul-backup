@@ -5,7 +5,7 @@ go 1.26.0
 toolchain go1.26.1
 
 require (
-	github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v11.0.126
+	github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.30
 	github.com/go-viper/mapstructure/v2 v2.5.0
 	github.com/hashicorp/golang-lru/v2 v2.0.7
 	github.com/prometheus/client_golang v1.23.2
@@ -15,13 +15,13 @@ require (
 )
 
 // Uncomment and set correct version to get import of a dev version of bedrock you have
-// replace github.com/AustralianCyberSecurityCentre/azul-bedrock/v11 v10.0.39 => ../azul-bedrock
+// replace github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 => ../azul-bedrock
 
 require (
-	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.21.1 // indirect
-	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.13.1 // indirect
+	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.22.0 // indirect
+	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.14.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/internal v1.12.0 // indirect
-	github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v1.7.0 // indirect
+	github.com/Azure/azure-sdk-for-go/sdk/storage/azblob v1.8.0 // indirect
 	github.com/AzureAD/microsoft-authentication-library-for-go v1.7.2 // indirect
 	github.com/allegro/bigcache/v3 v3.1.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
@@ -47,7 +47,7 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/minio/crc64nvme v1.1.1 // indirect
 	github.com/minio/md5-simd v1.1.2 // indirect
-	github.com/minio/minio-go/v7 v7.2.0 // indirect
+	github.com/minio/minio-go/v7 v7.2.1 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
@@ -68,10 +68,10 @@ require (
 	github.com/zeebo/xxh3 v1.1.0 // indirect
 	go.yaml.in/yaml/v2 v2.4.4 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
-	golang.org/x/crypto v0.51.0 // indirect
-	golang.org/x/net v0.54.0 // indirect
-	golang.org/x/sys v0.44.0 // indirect
-	golang.org/x/text v0.37.0 // indirect
+	golang.org/x/crypto v0.53.0 // indirect
+	golang.org/x/net v0.56.0 // indirect
+	golang.org/x/sys v0.46.0 // indirect
+	golang.org/x/text v0.38.0 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
 	gopkg.in/ini.v1 v1.67.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

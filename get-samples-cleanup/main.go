@@ -9,9 +9,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/msginflight"
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/msginflight"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
 )
 
 const filePerms = 0766

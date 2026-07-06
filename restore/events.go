@@ -8,11 +8,11 @@ import (
 	"strings"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/client"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/events"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/models"
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/settings"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/store"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/models"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
 )
 
 type RestoreEvents struct {
@@ -77,13 +77,16 @@ func (re *RestoreEvents) CountObjectsPerPrefix() map[string]int {
 	ctx, cancelFunc := context.WithCancel(context.Background())
 	defer func() { cancelFunc() }()
 
+	total := 0
 	for obj := range re.Ev.List(ctx, prefix, "") {
+		total++
 		dayPrefix, err := extractNamePrefixKey(obj.Key)
 		if err != nil {
 			bedSet.Logger.Warn().Err(err).Msgf("Ignoring file with key %s when counting number of events per day.", obj.Key)
 		}
 		counts[dayPrefix] += 1
 	}
+	bedSet.Logger.Info().Msgf("events - listed %d objects under prefix %q", total, prefix)
 	return counts
 }
 
