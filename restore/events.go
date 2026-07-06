@@ -94,10 +94,6 @@ func (re *RestoreEvents) GetSortedBucketPrefixesOldestToNewest() []string {
 	// If the bucket path doesn't exist because there is no data there is nothing to restore.
 	dailyPrefixObjectCount := re.CountObjectsPerPrefix()
 	if len(dailyPrefixObjectCount) == 0 {
-		bedSet.Logger.Warn().Msgf(
-			"events - NO objects found for %s/%s under prefix %q - nothing will be restored for this event type (check bucket name, endpoint, region and credentials/permissions)",
-			re.source, re.modelAndAction, fmt.Sprintf("%s/%s/", re.source, re.modelAndAction),
-		)
 		return []string{}
 	}
 
