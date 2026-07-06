@@ -10,9 +10,9 @@ import (
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
 	restore "github.com/AustralianCyberSecurityCentre/azul-backup.git/restore"
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/client"
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/settings"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v11/gosrc/store"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
 	"github.com/spf13/cobra"
 )
 
@@ -273,6 +273,12 @@ func (rt *Restore) DoRestore(
 	stats := map[string]*restore.RestoreStats{}
 	startTime := time.Now()
 	defer restore.PrintRestoreState(startTime, stats)
+
+	bedSet.Logger.Info().Msgf(
+		"starting restore: type=%s backup_id=%q bucket_prefix=%q endpoint=%q region=%q sources=%d",
+		st.RestoreType, st.BackupID, st.BucketNamePrefix, st.ExternalBackup.Endpoint, st.ExternalBackup.Region,
+		len(dpEventClients),
+	)
 
 	// create stats monitor routine
 	chStats := make(chan map[string]*restore.RestoreStats)
