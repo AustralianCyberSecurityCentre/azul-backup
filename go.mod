@@ -8,6 +8,7 @@ require (
 	github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.30
 	github.com/go-viper/mapstructure/v2 v2.5.0
 	github.com/hashicorp/golang-lru/v2 v2.0.7
+	github.com/minio/minio-go/v7 v7.2.1
 	github.com/prometheus/client_golang v1.23.2
 	github.com/spf13/cobra v1.10.2
 	github.com/stretchr/testify v1.11.1
@@ -47,7 +48,6 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/minio/crc64nvme v1.1.1 // indirect
 	github.com/minio/md5-simd v1.1.2 // indirect
-	github.com/minio/minio-go/v7 v7.2.1 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect

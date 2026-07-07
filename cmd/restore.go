@@ -350,6 +350,11 @@ var restoreCmd = &cobra.Command{
 		go prom.StartStandalonePromServer()
 		st := bkupcom.Settings
 
+		// Probe S3 directly and log verbatim before the restore starts, so a
+		// silent no-op (bad credentials/permissions, wrong endpoint/bucket/region,
+		// or path- vs virtual-hosted addressing) is visible in the logs.
+		runS3Preflight(st)
+
 		author := NewAuthor("restore-streams", "all", "all", st.BackupID)
 		dpStreamsClient := bedclient.NewClient(st.DispatcherEvents, st.DispatcherEvents, *author, st.DeploymentKey)
 
