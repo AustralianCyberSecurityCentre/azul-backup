@@ -60,9 +60,43 @@ func runS3Preflight(st *bkupcom.RecoverySettings) {
 		BucketLookup: minio.BucketLookupPath,
 	})
 
+	// Enumerate what this identity can actually see. If the expected buckets are
+	// absent (or only newly-created empty ones are present) the target is wrong.
+	preflightListBuckets(client, streamBucket, eventBucket)
+
 	for _, b := range []string{streamBucket, eventBucket} {
 		bedSet.Logger.Info().Msgf("s3-preflight: ---------- probing bucket %q ----------", b)
 		preflightProbe(client, pathClient, b)
+	}
+}
+
+// preflightListBuckets logs every bucket the identity can see, so a wrong
+// account/endpoint (expected buckets absent) or wrong backup_id/bucket_prefix
+// (data lives in a differently-named bucket) becomes obvious. Creation dates
+// expose buckets that a previous restore auto-created empty.
+func preflightListBuckets(client *minio.Client, targets ...string) {
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	buckets, err := client.ListBuckets(ctx)
+	if err != nil {
+		bedSet.Logger.Error().Err(err).Msgf("s3-preflight: ListBuckets FAILED (%s) - identity cannot enumerate buckets", minio.ToErrorResponse(err).Code)
+		return
+	}
+	if len(buckets) == 0 {
+		bedSet.Logger.Warn().Msg("s3-preflight: identity sees ZERO buckets at this endpoint/account - almost certainly wrong endpoint/account/credentials")
+		return
+	}
+	seen := map[string]bool{}
+	bedSet.Logger.Info().Msgf("s3-preflight: identity sees %d bucket(s) at this endpoint:", len(buckets))
+	for _, b := range buckets {
+		seen[b.Name] = true
+		bedSet.Logger.Info().Msgf("s3-preflight:   bucket %q (created %s, region %q)", b.Name, b.CreationDate.Format(time.RFC3339), b.BucketRegion)
+	}
+	for _, t := range targets {
+		if !seen[t] {
+			bedSet.Logger.Warn().Msgf("s3-preflight: target bucket %q is NOT in the identity's bucket list - wrong endpoint/account, or wrong backup_id/bucket_prefix", t)
+		}
 	}
 }
 
