@@ -20,6 +20,13 @@ type StreamsS3Settings struct {
 	SecretKey string `koanf:"secret_key"`
 	Secure    bool   `koanf:"secure"`
 	Region    string `koanf:"region"`
+	// Set true when the endpoint embeds the real bucket in its hostname
+	// (virtual-hosted style, e.g. "my-bucket.s3.<region>.amazonaws.com"). In
+	// that case the per-type bucket names (`<prefix><id>-streams`/`-events`)
+	// are treated as folders (key prefixes) inside that bucket rather than as
+	// separate buckets, so restore lists/reads the same location backup wrote.
+	// Leave false for deployments that use a dedicated bucket per data type.
+	BucketInEndpoint bool `koanf:"bucket_in_endpoint"`
 }
 
 type RecoverySettings struct {
