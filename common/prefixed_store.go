@@ -8,15 +8,9 @@ import (
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
 )
 
-// FolderPrefixStore adapts a FileStorage whose objects live under a shared key
-// prefix ("folder") within a single real S3 bucket.
-//
-// It is needed when the backup S3 endpoint embeds the real bucket in its
-// hostname (virtual-hosted style, e.g.
-// "azul-test-backup-bucket.s3.ap-southeast-1.amazonaws.com"). In that setup the
-// bucket name the S3 client is given (e.g. "azul-backup-1-streams") is not used
-// as a bucket by AWS - it is folded into the object key as a leading path
-// segment, so objects land at "<real-bucket>/azul-backup-1-streams/...".
+// FolderPrefixStore is used when the backup S3 endpoint embeds the real bucket in its
+// hostname, e.g. azul-backup-bucket.s3.ap-southeast-1.amazonaws.com.
+// In this case, objects land at "<real-bucket>/azul-backup-1-streams/...
 //
 // Writes (PutObject) and single-object reads (GetObject) tolerate this because
 // the client puts the bucket segment in the request path, which AWS appends to
