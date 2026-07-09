@@ -18,8 +18,7 @@ func NewObjectS3Store(settings *RecoverySettings) store.FileStorage {
 		panic(err)
 	}
 	if settings.ExternalBackup.BucketInEndpoint {
-		// The bucket lives in the endpoint hostname, so streamBucket is a folder
-		// (key prefix) inside it - make listing look under that folder.
+		// The bucket name is in the hostname, so streamBucket is a folder (key prefix) inside it - make listing look under that folder.
 		return NewFolderPrefixStore(streamStore, streamBucket)
 	}
 	return streamStore
@@ -36,8 +35,7 @@ func NewEventS3Store(settings *RecoverySettings) store.FileStorage {
 		panic(err)
 	}
 	if settings.ExternalBackup.BucketInEndpoint {
-		// The bucket lives in the endpoint hostname, so eventBucket is a folder
-		// (key prefix) inside it - make listing look under that folder.
+		// The bucket name is in the hostname, so streamBucket is a folder (key prefix) inside it - make listing look under that folder.
 		return NewFolderPrefixStore(eventStore, eventBucket)
 	}
 	return eventStore
