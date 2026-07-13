@@ -58,11 +58,11 @@ func (s *FolderPrefixStore) Copy(sourceOld, labelOld, idOld, sourceNew, labelNew
 }
 
 func (s *FolderPrefixStore) List(ctx context.Context, prefix string, startAfter string) <-chan store.FileStorageObjectListInfo {
-	// The stored keys are folded under s.prefix in the real bucket, so both the
-	// list prefix and the StartAfter checkpoint (a previously returned - and
-	// therefore already stripped - key) must be re-qualified with the folder.
+	// When one bucket is used, files are located under a key such as
+	// `azul-backup-1-streams/source/label`, however the list query sends the prefix as `source/label`
 	innerStartAfter := startAfter
 	if innerStartAfter != "" {
+		// Add -streams or -events prefix
 		innerStartAfter = s.prefix + innerStartAfter
 	}
 
