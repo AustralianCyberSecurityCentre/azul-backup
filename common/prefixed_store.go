@@ -64,14 +64,17 @@ func (s *FolderPrefixStore) List(ctx context.Context, prefix string, startAfter 
 	if innerStartAfter != "" {
 		// Add -streams or -events prefix
 		innerStartAfter = s.prefix + innerStartAfter
+		// This becomes something like azul-backup-1-streams/source/label/01
 	}
 
 	out := make(chan store.FileStorageObjectListInfo)
 	go func() {
 		defer close(out)
+		// s.prefix+prefix becomes "azul-backup-1-streams/source/label/"
 		for obj := range s.inner.List(ctx, s.prefix+prefix, innerStartAfter) {
+			// Strip the folder back off
 			obj.Key = strings.TrimPrefix(obj.Key, s.prefix)
-			// Re-derive source/label/id from the stripped key so callers see the
+			// Derive source/label/id from the stripped key so callers see the
 			// same values they would against a dedicated bucket.
 			obj.Source, obj.Label, obj.Id = splitLastThree(obj.Key)
 			select {
