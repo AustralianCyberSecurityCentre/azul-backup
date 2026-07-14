@@ -8,7 +8,7 @@ import (
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
 )
 
-// splitBucketFromEndpoint splits a virtual-hosted-style S3 endpoint that embeds
+// splitBucketFromEndpoint splits a host style S3 endpoint that has
 // the bucket in its hostname (e.g. "azul-backup-bucket.s3.ap-southeast-1.amazonaws.com")
 // into the real bucket name and the plain regional endpoint
 // ("azul-backup-bucket", "s3.ap-southeast-1.amazonaws.com").
