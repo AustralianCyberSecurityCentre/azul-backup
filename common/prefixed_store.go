@@ -3,6 +3,7 @@ package common
 import (
 	"context"
 	"io"
+	"log"
 	"strings"
 
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
@@ -67,22 +68,32 @@ func (s *FolderPrefixStore) List(ctx context.Context, prefix string, startAfter 
 		// This becomes something like azul-backup-1-streams/source/label/01
 	}
 
+	log.Printf("[FolderPrefixStore.List] folder=%q caller prefix=%q startAfter=%q -> inner prefix=%q inner startAfter=%q",
+		s.prefix, prefix, startAfter, s.prefix+prefix, innerStartAfter)
+
 	out := make(chan store.FileStorageObjectListInfo)
 	go func() {
 		defer close(out)
+		var count int
 		// s.prefix+prefix becomes "azul-backup-1-streams/source/label/"
 		for obj := range s.inner.List(ctx, s.prefix+prefix, innerStartAfter) {
+			rawKey := obj.Key
 			// Strip the folder back off
 			obj.Key = strings.TrimPrefix(obj.Key, s.prefix)
 			// Derive source/label/id from the stripped key so callers see the
 			// same values they would against a dedicated bucket.
 			obj.Source, obj.Label, obj.Id = splitLastThree(obj.Key)
+			count++
+			log.Printf("[FolderPrefixStore.List] object %d: raw key=%q -> stripped key=%q (source=%q label=%q id=%q)",
+				count, rawKey, obj.Key, obj.Source, obj.Label, obj.Id)
 			select {
 			case <-ctx.Done():
+				log.Printf("[FolderPrefixStore.List] context cancelled after %d objects (inner prefix=%q)", count, s.prefix+prefix)
 				return
 			case out <- obj:
 			}
 		}
+		log.Printf("[FolderPrefixStore.List] done: emitted %d objects for inner prefix=%q", count, s.prefix+prefix)
 	}()
 	return out
 }
