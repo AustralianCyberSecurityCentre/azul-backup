@@ -93,9 +93,37 @@ func (s *FolderPrefixStore) List(ctx context.Context, prefix string, startAfter 
 			case out <- obj:
 			}
 		}
+		if count == 0 {
+			// Diagnostic: the qualified prefix matched nothing. Probe the real key
+			// layout so we can tell whether keys actually live under s.prefix or
+			// whether the request is failing/empty (BucketInEndpoint misconfig?).
+			logSampleKeys(ctx, s.inner, "", "bucket root (no prefix)")
+			logSampleKeys(ctx, s.inner, s.prefix, "folder root (s.prefix)")
+		}
 		log.Printf("[FolderPrefixStore.List] done: emitted %d objects for inner prefix=%q", count, s.prefix+prefix)
 	}()
 	return out
+}
+
+// logSampleKeys lists up to a handful of raw keys under probePrefix and logs
+// them, to reveal the true key layout when a list unexpectedly returns nothing.
+// Diagnostic only - remove once the listing issue is resolved.
+func logSampleKeys(ctx context.Context, inner store.FileStorage, probePrefix, note string) {
+	probeCtx, cancel := context.WithCancel(ctx)
+	defer cancel() // unblock the inner goroutine if we stop early
+
+	const maxKeys = 10
+	var n int
+	for obj := range inner.List(probeCtx, probePrefix, "") {
+		log.Printf("[FolderPrefixStore.List] PROBE %s: raw key=%q", note, obj.Key)
+		if n++; n >= maxKeys {
+			log.Printf("[FolderPrefixStore.List] PROBE %s: stopped after %d keys", note, maxKeys)
+			return
+		}
+	}
+	if n == 0 {
+		log.Printf("[FolderPrefixStore.List] PROBE %s: returned NO keys", note)
+	}
 }
 
 // splitLastThree mirrors the store package's key splitting: the trailing three
