@@ -63,11 +63,13 @@ type RecoverySettings struct {
 var Settings *RecoverySettings
 
 var defaults RecoverySettings = RecoverySettings{
-	BucketNamePrefix:        "azul-backup-",
-	BackupID:                "1",
-	StreamChannelSize:       500,
-	StreamRoutineCount:      20,
-	LocalData:               LocalDataSettings{RootDir: "/tmp/azul_recovery"},
+	BucketNamePrefix:   "azul-backup-",
+	BackupID:           "1",
+	StreamChannelSize:  500,
+	StreamRoutineCount: 20,
+	LocalData:          LocalDataSettings{RootDir: "/tmp/azul_recovery"},
+	// TODO: Remove default true after testing
+	ExternalBackup:          StreamsS3Settings{BucketInEndpoint: true},
 	RestoreType:             "all",
 	DeploymentKey:           "recovery",
 	EventBatchSize:          1000,
