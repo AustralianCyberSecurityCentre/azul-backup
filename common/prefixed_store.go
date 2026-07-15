@@ -5,6 +5,7 @@ import (
 	"io"
 	"strings"
 
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
 )
 
@@ -70,20 +71,34 @@ func (s *FolderPrefixStore) List(ctx context.Context, prefix string, startAfter 
 		innerStartAfter = s.prefix + innerStartAfter
 	}
 
+	innerPrefix := s.prefix + prefix
+	// DEBUG: show the exact physical prefix and checkpoint handed to S3.
+	bedSet.Logger.Info().Msgf("DEBUG FolderPrefixStore.List innerPrefix=%q innerStartAfter=%q", innerPrefix, innerStartAfter)
+
 	out := make(chan store.FileStorageObjectListInfo)
 	go func() {
 		defer close(out)
-		for obj := range s.inner.List(ctx, s.prefix+prefix, innerStartAfter) {
+		count := 0
+		for obj := range s.inner.List(ctx, innerPrefix, innerStartAfter) {
+			// DEBUG: log the first few RAW physical keys (before the folder is
+			// stripped) so the real on-disk layout is visible.
+			if count < 3 {
+				bedSet.Logger.Info().Msgf("DEBUG FolderPrefixStore.List innerPrefix=%q rawKey=%q", innerPrefix, obj.Key)
+			}
+			count++
 			obj.Key = strings.TrimPrefix(obj.Key, s.prefix)
 			// Re-derive source/label/id from the stripped key so callers see the
 			// same values they would against a dedicated bucket.
 			obj.Source, obj.Label, obj.Id = splitLastThree(obj.Key)
 			select {
 			case <-ctx.Done():
+				bedSet.Logger.Info().Msgf("DEBUG FolderPrefixStore.List innerPrefix=%q cancelled after %d objects", innerPrefix, count)
 				return
 			case out <- obj:
 			}
 		}
+		// DEBUG: total objects the physical prefix yielded.
+		bedSet.Logger.Info().Msgf("DEBUG FolderPrefixStore.List innerPrefix=%q yielded %d objects", innerPrefix, count)
 	}()
 	return out
 }
