@@ -87,31 +87,7 @@ func (re *RestoreEvents) CountObjectsPerPrefix() map[string]int {
 		counts[dayPrefix] += 1
 	}
 	bedSet.Logger.Info().Msgf("events - listed %d objects under prefix %q", total, prefix)
-
-	// DEBUG: when the expected "<source>/<model>/<action>/" prefix is empty, probe
-	// shallower prefixes to reveal the actual physical layout under the events
-	// folder for this source (and, failing that, the folder root).
-	if total == 0 {
-		re.debugProbe(ctx, re.source+"/")
-		re.debugProbe(ctx, "")
-	}
 	return counts
-}
-
-// debugProbe lists up to a handful of keys under prefix and logs them so the real
-// on-disk event structure can be compared against the expected
-// "<source>/<model>/<action>/<id>" layout. Temporary diagnostic.
-func (re *RestoreEvents) debugProbe(ctx context.Context, prefix string) {
-	probeCtx, cancel := context.WithCancel(ctx)
-	defer cancel()
-	keys := []string{}
-	for obj := range re.Ev.List(probeCtx, prefix, "") {
-		keys = append(keys, obj.Key)
-		if len(keys) >= 20 {
-			break
-		}
-	}
-	bedSet.Logger.Info().Msgf("DEBUG events - probe prefix %q (source %q) returned %d keys (first 20): %v", prefix, re.source, len(keys), keys)
 }
 
 func (re *RestoreEvents) GetSortedBucketPrefixesOldestToNewest() []string {

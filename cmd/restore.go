@@ -182,13 +182,8 @@ func (rt *Restore) createEventRoutine(
 		rt.CtxCancel()
 		return
 	}
-	// DEBUG: a non-empty checkpoint that never matches a listed key silently skips
-	// every event; log it so that case is distinguishable from an empty listing.
-	bedSet.Logger.Info().Msgf("DEBUG events - source %s restore checkpoint lastSuccesfulEvent=%q", sourceEvent, lastSuccesfulEvent)
 
-	dayPrefixes := restoreEvents.GetSortedBucketPrefixesOldestToNewest()
-	bedSet.Logger.Info().Msgf("DEBUG events - source %s has %d day-prefixes to restore: %v", sourceEvent, len(dayPrefixes), dayPrefixes)
-	for _, prefix := range dayPrefixes {
+	for _, prefix := range restoreEvents.GetSortedBucketPrefixesOldestToNewest() {
 		for objInfo := range restoreEvents.Ev.List(rt.ctx, prefix, "") {
 			select {
 			case <-rt.ctx.Done():
