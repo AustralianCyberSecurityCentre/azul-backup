@@ -2,45 +2,25 @@ package common
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
 )
 
-// splitBucketFromEndpoint splits a host style S3 endpoint that has
-// the bucket in its hostname (e.g. "azul-backup-bucket.s3.ap-southeast-1.amazonaws.com")
-// into the real bucket name and the plain regional endpoint
-// ("azul-backup-bucket", "s3.ap-southeast-1.amazonaws.com").
-func splitBucketFromEndpoint(endpoint string) (bucket, regionalEndpoint string) {
-	host := strings.TrimPrefix(strings.TrimPrefix(endpoint, "https://"), "http://")
-	if i := strings.Index(host, ".s3."); i > 0 {
-		return host[:i], host[i+1:] // "azul-backup-bucket", "s3.<region>.amazonaws.com"
-	}
-	return "", endpoint
-}
-
-// newS3Store builds an S3 store for the given per-store bucket. When the backup
-// bucket is embedded in the endpoint hostname, it addresses the real bucket via
-// the regional endpoint and folds bucketOrFolder down to a key prefix so every
-// operation - including List - works against the shared bucket.
-func newS3Store(settings *RecoverySettings, bucketOrFolder string) (store.FileStorage, error) {
-	endpoint := settings.ExternalBackup.Endpoint
-	bucket := bucketOrFolder
+// newS3Store builds an S3 store for one data type. dedicatedBucket is the bucket
+// name used when each data type has its own bucket (the default). When
+// ExternalBackup.Bucket is set, all data shares that single bucket and,
+// dedicatedBucket is folded down to a key prefix instead.
+func newS3Store(settings *RecoverySettings, dedicatedBucket string) (store.FileStorage, error) {
+	bucket := dedicatedBucket
 	folder := ""
-
-	if settings.ExternalBackup.BucketInEndpoint {
-		realBucket, regionalEndpoint := splitBucketFromEndpoint(endpoint)
-		if realBucket == "" {
-			return nil, fmt.Errorf("bucket_in_endpoint is set but could not extract a bucket from endpoint %q", endpoint)
-		}
-		endpoint = regionalEndpoint
-		bucket = realBucket
-		folder = bucketOrFolder
+	if settings.ExternalBackup.Bucket != "" {
+		bucket = settings.ExternalBackup.Bucket
+		folder = dedicatedBucket
 	}
 
 	inner, err := store.NewS3Store(
-		endpoint,
+		settings.ExternalBackup.Endpoint,
 		settings.ExternalBackup.AccessKey,
 		settings.ExternalBackup.SecretKey,
 		settings.ExternalBackup.Secure,
