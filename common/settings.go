@@ -20,11 +20,10 @@ type StreamsS3Settings struct {
 	SecretKey string `koanf:"secret_key"`
 	Secure    bool   `koanf:"secure"`
 	Region    string `koanf:"region"`
-	// Set truen when the bucket name is within the endpoint hostname
-	// (virtual-hosted style, e.g. "my-bucket.s3.<region>.amazonaws.com").
-	// Evnets and streams are folders within the bucket, rather than seperate buckets.
-	// Leave false for deployments that use a dedicated bucket per data type.
-	BucketInEndpoint bool `koanf:"bucket_in_endpoint"`
+	// Bucket, when set, is the single shared bucket that holds all backup data.
+	// Streams and events live under folders within it
+	// Leave empty for deployments that use a dedicated bucket per data type.
+	Bucket string `koanf:"bucket"`
 }
 
 type RecoverySettings struct {
@@ -63,13 +62,11 @@ type RecoverySettings struct {
 var Settings *RecoverySettings
 
 var defaults RecoverySettings = RecoverySettings{
-	BucketNamePrefix:   "azul-backup-",
-	BackupID:           "1",
-	StreamChannelSize:  500,
-	StreamRoutineCount: 20,
-	LocalData:          LocalDataSettings{RootDir: "/tmp/azul_recovery"},
-	// TODO: Remove default true after testing
-	ExternalBackup:          StreamsS3Settings{BucketInEndpoint: true},
+	BucketNamePrefix:        "azul-backup-",
+	BackupID:                "1",
+	StreamChannelSize:       500,
+	StreamRoutineCount:      20,
+	LocalData:               LocalDataSettings{RootDir: "/tmp/azul_recovery"},
 	RestoreType:             "all",
 	DeploymentKey:           "recovery",
 	EventBatchSize:          1000,
