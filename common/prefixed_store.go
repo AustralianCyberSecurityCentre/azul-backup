@@ -19,11 +19,9 @@ import (
 // keys as "<source>/<label>/<id>", prefixing the source is equivalent to
 // prefixing the whole key.
 //
-// Note: the inner store must address the real bucket directly (regional endpoint
-// + real bucket name). Pointing the inner store at an endpoint that embeds the
-// bucket in its hostname does NOT work for List - minio then uses path-style
-// addressing and pushes the folder into the request path, which AWS treats as a
-// malformed bucket listing and returns empty. See NewObjectS3Store.
+// Note: the inner store must use a regional endpoint + real bucket name. A
+// bucket-in-hostname endpoint forces minio into path-style addressing, which
+// pushes the folder into the request path and breaks List (AWS returns empty).
 type FolderPrefixStore struct {
 	inner  store.FileStorage
 	prefix string // folder including a single trailing slash, e.g. "azul-backup-1-streams/"
