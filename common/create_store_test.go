@@ -32,6 +32,9 @@ func s3StubSettings(t *testing.T) (*RecoverySettings, *string) {
 	}, &probedBucket
 }
 
+// With no shared bucket configured, the data type names a real bucket of its
+// own: an object for source "assemblyline" lands in bucket
+// "azul-backup-1-streams" under key "assemblyline/label/id".
 func TestNewS3StoreUsesDedicatedBucketWhenNoSharedBucketSet(t *testing.T) {
 	settings, probedBucket := s3StubSettings(t)
 
@@ -43,6 +46,8 @@ func TestNewS3StoreUsesDedicatedBucketWhenNoSharedBucketSet(t *testing.T) {
 	require.False(t, prefixed, "dedicated bucket should not be folded under a folder")
 }
 
+// With a shared bucket configured, the same object instead lands in bucket
+// "azul-backup-bucket" under key "azul-backup-1-streams/assemblyline/label/id".
 func TestNewS3StoreFoldsDedicatedBucketIntoFolderWhenSharedBucketSet(t *testing.T) {
 	settings, probedBucket := s3StubSettings(t)
 	settings.ExternalBackup.Bucket = "azul-backup-bucket"
