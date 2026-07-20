@@ -20,6 +20,10 @@ type StreamsS3Settings struct {
 	SecretKey string `koanf:"secret_key"`
 	Secure    bool   `koanf:"secure"`
 	Region    string `koanf:"region"`
+	// Bucket, when set, is the single shared bucket that holds all backup data.
+	// Streams and events live under folders within it
+	// Leave empty for deployments that use a dedicated bucket per data type.
+	Bucket string `koanf:"bucket"`
 }
 
 type RecoverySettings struct {
