@@ -33,9 +33,9 @@ func (bks *BackupStreams) BackupStream(obr *bkupcom.StreamBackupRequest) (bool, 
 	}
 	// compress resource
 	compressor := bkupcom.NewGzipCompressReader(raw)
-	copressorReadCloser := io.NopCloser(compressor)
+	compressorReadCloser := io.NopCloser(compressor)
 	// add to remove s3 storage
-	err = bks.obj.Put(obr.Source, obr.Label.Str(), obr.Sha256, copressorReadCloser, -1)
+	err = bks.obj.Put(obr.Source, obr.Label.Str(), obr.Sha256, compressorReadCloser, -1)
 	if err != nil {
 		return false, err
 	}

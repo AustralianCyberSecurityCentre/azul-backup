@@ -3,6 +3,8 @@ package common
 import (
 	"fmt"
 
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
+
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
 )
@@ -35,6 +37,16 @@ func newS3Store(settings *RecoverySettings, dedicatedBucket string) (store.FileS
 	)
 	if err != nil {
 		return nil, err
+	}
+
+	switch(settings.ExternalBackup.AesState){
+	case AesStateEnabled:
+		inner = store.NewAESCtrStore(inner, settings.ExternalBackup.AesKey, true)
+		bedSet.Logger.Info().Msg("AES encryption is enabled and AES is being used for reading and writing files.")
+	case AesStateReadOnly:
+		inner = store.NewAESCtrStore(inner, settings.ExternalBackup.AesKey, false)
+		bedSet.Logger.Info().Msg("AES encryption is being read but no new encryption is being done.")
+	case AesStateDisabled:
 	}
 
 	// NewFolderPrefixStore returns inner unchanged when folder is empty.
