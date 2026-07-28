@@ -16,7 +16,7 @@ type AesStateEnum string
 const (
 	AesStateEnabled  = AesStateEnum("enabled")
 	AesStateDisabled = AesStateEnum("disabled")
-	// Allows
+	// Allows for reading of AES encrypted events but no writing of new aes events.
 	AesStateReadOnly = AesStateEnum("readonly")
 )
 
