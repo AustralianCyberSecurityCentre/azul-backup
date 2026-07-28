@@ -39,7 +39,7 @@ func newS3Store(settings *RecoverySettings, dedicatedBucket string) (store.FileS
 		return nil, err
 	}
 
-	switch(settings.ExternalBackup.AesState){
+	switch settings.ExternalBackup.AesState {
 	case AesStateEnabled:
 		inner = store.NewAESCtrStore(inner, settings.ExternalBackup.AesKey, true)
 		bedSet.Logger.Info().Msg("AES encryption is enabled and AES is being used for reading and writing files.")
