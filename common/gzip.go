@@ -18,12 +18,11 @@ func NewGzipCompressReader(source io.Reader) io.Reader {
 			w.CloseWithError(err)
 		}
 		defer zip.Close()
-
 		_, err = io.Copy(zip, source)
 		if err != nil {
 			w.CloseWithError(err)
 		}
-		err = zip.Flush()
+		err = zip.Close()
 		if err != nil {
 			w.CloseWithError(err)
 		}
