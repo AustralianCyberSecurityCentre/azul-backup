@@ -13,12 +13,12 @@ func NewGzipCompressReader(source io.Reader) io.Reader {
 	// TODO alternative implementation
 	var intermediateBuffer bytes.Buffer
 	zip, err := gzip.NewWriterLevel(&intermediateBuffer, gzip.BestSpeed)
-	if err != nil{
+	if err != nil {
 		panic("PANIC1!")
 	}
 	defer zip.Close()
 	_, err = io.Copy(zip, source)
-	if err != nil{
+	if err != nil {
 		panic("PANIC2!")
 	}
 	zip.Flush()
