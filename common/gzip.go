@@ -23,6 +23,10 @@ func NewGzipCompressReader(source io.Reader) io.Reader {
 		if err != nil {
 			w.CloseWithError(err)
 		}
+		err = zip.Flush()
+		if err != nil {
+			w.CloseWithError(err)
+		}
 	}()
 	return r
 }
