@@ -1,6 +1,7 @@
 package backup
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"io"
@@ -35,14 +36,14 @@ func (bks *BackupStreams) BackupStream(obr *bkupcom.StreamBackupRequest) (bool, 
 	compressor := bkupcom.NewGzipCompressReader(raw)
 	compressorReadCloser := io.NopCloser(compressor)
 	// TODO - confirm if this helps/hurts
-	// compressedBytes, err := io.ReadAll(compressorReadCloser)
-	// if err != nil {
-	// 	return false, fmt.Errorf("failed to zip the whole file with error: %v", err)
-	// }
-	// bytesBuffer := bytes.NewBuffer(compressedBytes)
-	// tempCloser := io.NopCloser(bytesBuffer)
+	compressedBytes, err := io.ReadAll(compressorReadCloser)
+	if err != nil {
+		return false, fmt.Errorf("failed to zip the whole file with error: %v", err)
+	}
+	bytesBuffer := bytes.NewBuffer(compressedBytes)
+	tempCloser := io.NopCloser(bytesBuffer)
 	// add to remove s3 storage
-	err = bks.obj.Put(obr.Source, obr.Label.Str(), obr.Sha256, compressorReadCloser, -1)
+	err = bks.obj.Put(obr.Source, obr.Label.Str(), obr.Sha256, tempCloser, -1)
 	if err != nil {
 		return false, err
 	}
