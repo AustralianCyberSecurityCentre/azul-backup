@@ -42,7 +42,7 @@ func NewGzipCompressReader(source io.Reader) io.Reader {
 		// }
 		defer w.Close()
 		_, err := io.Copy(w, r)
-		if err != nil{
+		if err != nil {
 			w.CloseWithError(err)
 		}
 	}()
