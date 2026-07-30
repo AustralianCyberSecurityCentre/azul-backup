@@ -40,7 +40,7 @@ func (rs *RestoreStreams) RestoreStreams(objInfo store.FileStorageObjectListInfo
 	zipDecompressReader, err = bkupcom.NewGzipDecompressReaderAsReader(dataSlice.DataReader)
 	if err != nil {
 		// Malformed data can't be decompressed by Gzip.
-		bedSet.Logger.Warn().Msgf("stream to restore was invalid gzip: %s", objInfo.Key)
+		bedSet.Logger.Warn().Err(err).Msgf("stream to restore was invalid gzip: %s", objInfo.Key)
 		return false, nil
 	}
 
