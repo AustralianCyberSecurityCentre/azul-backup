@@ -4,24 +4,25 @@ import (
 	"bufio"
 	"bytes"
 	"compress/gzip"
+	"fmt"
 	"io"
 )
 
 // Need to read a stream and compress
 // https://gist.github.com/tomcatzh/cf8040820962e0f8c04700eb3b2f26be
-func NewGzipCompressReader(source io.Reader) io.Reader {
+func NewGzipCompressReader(source io.Reader) (io.Reader, error) {
 	var intermediateBuffer bytes.Buffer
 	zip, err := gzip.NewWriterLevel(&intermediateBuffer, gzip.BestSpeed)
 	if err != nil {
-		panic("PANIC1!")
+		return nil, fmt.Errorf("error during creation of gzip writer: %v", err)
 	}
 	defer zip.Close()
 	_, err = io.Copy(zip, source)
 	if err != nil {
-		panic("PANIC2!")
+		return nil, fmt.Errorf("error during copy of zip file: %v", err)
 	}
 	zip.Flush()
-	return bufio.NewReader(&intermediateBuffer)
+	return bufio.NewReader(&intermediateBuffer), nil
 
 	// Old piped writer doesn't work if the entire file isn't read via io.readAll()
 	// The issue is noticed when AES is enabled.
