@@ -33,7 +33,7 @@ func (bks *BackupStreams) BackupStream(obr *bkupcom.StreamBackupRequest) (bool, 
 	}
 	// compress resource
 	compressor, err := bkupcom.NewGzipCompressReader(raw)
-	if err !=nil{
+	if err != nil {
 		return false, err
 	}
 	compressorReadCloser := io.NopCloser(compressor)
