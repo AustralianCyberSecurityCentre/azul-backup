@@ -15,7 +15,7 @@ require (
 )
 
 // Uncomment and set correct version to get import of a dev version of bedrock you have
-replace github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.54-dev2 => ../azul-bedrock
+// replace github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.54-dev2 => ../azul-bedrock
 
 require (
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.22.0 // indirect
