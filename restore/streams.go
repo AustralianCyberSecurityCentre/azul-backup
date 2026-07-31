@@ -1,11 +1,10 @@
 package restore
 
 import (
+	"compress/gzip"
 	"context"
 	"fmt"
-	"io"
 
-	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
 	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
@@ -30,14 +29,14 @@ func (rs *RestoreStreams) GetBucketIterator(ctx context.Context, startingKey str
 /*Restore S3 raw binaries from the backup S3 to dispatcher.*/
 func (rs *RestoreStreams) RestoreStreams(objInfo store.FileStorageObjectListInfo) (bool, error) {
 	var err error
-	var zipDecompressReader io.Reader
+	var zipDecompressReader *gzip.Reader
 	// Retry downloading and uploading the object.
 	dataSlice, err := rs.obj.Fetch(objInfo.Source, objInfo.Label, objInfo.Id)
 	if err != nil {
 		// Error connecting to S3
 		return false, fmt.Errorf("s3 fetch: %w", err)
 	}
-	zipDecompressReader, err = bkupcom.NewGzipDecompressReaderAsReader(dataSlice.DataReader)
+	zipDecompressReader, err = gzip.NewReader(dataSlice.DataReader)
 	if err != nil {
 		// Malformed data can't be decompressed by Gzip.
 		bedSet.Logger.Warn().Err(err).Msgf("stream to restore was invalid gzip: %s", objInfo.Key)
