@@ -5,7 +5,7 @@ go 1.26.0
 toolchain go1.26.1
 
 require (
-	github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.54-dev2
+	github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.53
 	github.com/go-viper/mapstructure/v2 v2.5.0
 	github.com/hashicorp/golang-lru/v2 v2.0.7
 	github.com/prometheus/client_golang v1.23.2
@@ -15,7 +15,7 @@ require (
 )
 
 // Uncomment and set correct version to get import of a dev version of bedrock you have
-// replace github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.54-dev2 => ../azul-bedrock
+// replace github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.53 => ../azul-bedrock
 
 require (
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.22.0 // indirect
