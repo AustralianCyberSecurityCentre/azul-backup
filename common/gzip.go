@@ -1,51 +1,34 @@
 package common
 
 import (
-	"bufio"
 	"bytes"
 	"compress/gzip"
-	"fmt"
 	"io"
 )
 
 // Need to read a stream and compress
 // https://gist.github.com/tomcatzh/cf8040820962e0f8c04700eb3b2f26be
 func NewGzipCompressReader(source io.Reader) (io.Reader, error) {
-	var intermediateBuffer bytes.Buffer
-	zip, err := gzip.NewWriterLevel(&intermediateBuffer, gzip.BestSpeed)
-	if err != nil {
-		return nil, fmt.Errorf("error during creation of gzip writer: %v", err)
-	}
-	defer zip.Close()
-	_, err = io.Copy(zip, source)
-	if err != nil {
-		return nil, fmt.Errorf("error during copy of zip file: %v", err)
-	}
-	zip.Flush()
-	return bufio.NewReader(&intermediateBuffer), nil
+	r, w := io.Pipe()
+	go func() {
+		defer w.Close()
 
-	// Old piped writer doesn't work if the entire file isn't read via io.readAll()
-	// The issue is noticed when AES is enabled.
-	// r, w := io.Pipe()
-	// go func() {
-	// 	defer w.Close()
-
-	// 	zip, err := gzip.NewWriterLevel(w, gzip.BestSpeed)
-	// 	if err != nil {
-	// 		w.CloseWithError(err)
-	// 	}
-	// 	defer zip.Close()
-	// 	_, err = io.Copy(zip, source)
-	// 	if err != nil {
-	// 		w.CloseWithError(err)
-	// 	}
-	// 	zip.Flush()
-	// 	err = zip.Close()
-	// 	if err != nil {
-	// 		w.CloseWithError(err)
-	// 	}
-	// }()
-	// return r
+		zip, err := gzip.NewWriterLevel(w, gzip.BestSpeed)
+		if err != nil {
+			w.CloseWithError(err)
+		}
+		defer zip.Close()
+		_, err = io.Copy(zip, source)
+		if err != nil {
+			w.CloseWithError(err)
+		}
+		zip.Flush()
+		err = zip.Close()
+		if err != nil {
+			w.CloseWithError(err)
+		}
+	}()
+	return r, nil
 }
 
 func NewGzipDecompressBytes(source []byte) ([]byte, error) {
