@@ -47,6 +47,7 @@ func newS3Store(settings *RecoverySettings, dedicatedBucket string) (store.FileS
 		inner = store.NewAESCtrStore(inner, settings.ExternalBackup.AesKey, false)
 		bedSet.Logger.Info().Msg("AES encryption is being read but no new encryption is being done.")
 	case AesStateDisabled:
+		bedSet.Logger.Info().Msg("!!!!!!!!!!!!!!!! Regular store has been created. !!!!!!!!!!!!!!!!!!!!!")
 	}
 
 	// NewFolderPrefixStore returns inner unchanged when folder is empty.
