@@ -5,6 +5,8 @@ import (
 	"io"
 	"strings"
 
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
+
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
 )
 
@@ -32,8 +34,10 @@ type FolderPrefixStore struct {
 func NewFolderPrefixStore(inner store.FileStorage, folder string) store.FileStorage {
 	folder = strings.TrimSuffix(folder, "/")
 	if folder == "" {
+		bedSet.Logger.Warn().Msg("NOT USING FOLDER PREFIX STORE")
 		return inner
 	}
+	bedSet.Logger.Warn().Msg("DANGER, USING  FOLDER PREFIX STORE when we shouldn't !!!!!!!!!!!!!!!!!")
 	return &FolderPrefixStore{inner: inner, prefix: folder + "/"}
 }
 
