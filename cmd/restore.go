@@ -44,18 +44,18 @@ func (rt *Restore) restartStreamRoutines(
 	// start workers
 	for i := 0; i < st.StreamRoutineCount; i++ {
 		streamsWg.Add(1)
-		go func() {
+		go func(rs *restore.RestoreStreams) {
 			var ok, fail int
 			defer func() {
 				// write to channel with results
 				// this ignores any mislabeled source artifacts
-				chStats <- map[string]*restore.RestoreStats{restoreStream.Source: {StreamsOk: ok, StreamsFail: fail}}
+				chStats <- map[string]*restore.RestoreStats{rs.Source: {StreamsOk: ok, StreamsFail: fail}}
 				// signal that the worker is done
 				streamsWg.Done()
 			}()
 			for objInfo := range chToRestore {
 				if ok%100 == 0 {
-					chStats <- map[string]*restore.RestoreStats{restoreStream.Source: {StreamsOk: ok, StreamsFail: fail}}
+					chStats <- map[string]*restore.RestoreStats{rs.Source: {StreamsOk: ok, StreamsFail: fail}}
 					// reset stats
 					ok = 0
 					fail = 0
@@ -63,10 +63,10 @@ func (rt *Restore) restartStreamRoutines(
 				select {
 				case <-rt.ctx.Done():
 					// Application has been cancelled.
-					bedSet.Logger.Info().Msgf("Stopped stream restore for source %s after restoring %d events", restoreStream.Source, ok)
+					bedSet.Logger.Info().Msgf("Stopped stream restore for source %s after restoring %d events", rs.Source, ok)
 					return
 				default:
-					wasUploaded, err := restoreStream.RestoreStreams(objInfo)
+					wasUploaded, err := rs.RestoreStreams(objInfo)
 					if wasUploaded {
 						ok += 1
 					} else {
@@ -80,7 +80,7 @@ func (rt *Restore) restartStreamRoutines(
 					}
 				}
 			}
-		}()
+		}(restoreStream)
 	}
 	return &streamsWg, chToRestore
 }
