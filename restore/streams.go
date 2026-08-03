@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"strings"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
@@ -24,7 +25,16 @@ func NewRestoreStreams(dpclient bedclient.ClientInterface, objStore store.FileSt
 }
 
 func (rs *RestoreStreams) GetBucketIterator(ctx context.Context, startingKey string) <-chan store.FileStorageObjectListInfo {
-	return rs.obj.List(ctx, rs.Source+"/", startingKey)
+	proxiedChannel := make(chan store.FileStorageObjectListInfo)
+	go func() {
+		defer close(proxiedChannel)
+		for val := range rs.obj.List(ctx, rs.Source+"/", startingKey) {
+			result := strings.Split(val.Key, ".")
+			val.Key = result[0]
+			proxiedChannel <- val
+		}
+	}()
+	return proxiedChannel
 }
 
 /*Restore S3 raw binaries from the backup S3 to dispatcher.*/
