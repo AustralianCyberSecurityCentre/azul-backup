@@ -27,8 +27,9 @@ func NewRestoreStreams(dpclient bedclient.ClientInterface, objStore store.FileSt
 func (rs *RestoreStreams) GetBucketIterator(ctx context.Context, startingKey string) <-chan store.FileStorageObjectListInfo {
 	proxiedChannel := make(chan store.FileStorageObjectListInfo)
 	go func() {
-		defer close(proxiedChannel)
+		defer func() { close(proxiedChannel) }()
 		for val := range rs.obj.List(ctx, rs.Source+"/", startingKey) {
+			// Remove any extensions e.g XOR or AES attached to the sha256.
 			result := strings.Split(val.Key, ".")
 			val.Key = result[0]
 			proxiedChannel <- val
