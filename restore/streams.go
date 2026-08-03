@@ -43,9 +43,9 @@ func (rs *RestoreStreams) GetBucketIterator(ctx context.Context, startingKey str
 				}
 			}
 
-			// Remove any extensions e.g XOR or AES attached to the sha256.
-			result := strings.Split(parentObject.Key, ".")
-			parentObject.Key = result[0]
+			// Remove any extensions e.g XOR or AES attached to the sha256 (Id).
+			result := strings.Split(parentObject.Id, ".")
+			parentObject.Id = result[0]
 			// Feed it into new channel.
 			select {
 			case <-ctx.Done():
