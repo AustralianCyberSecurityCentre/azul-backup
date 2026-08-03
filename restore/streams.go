@@ -1,10 +1,12 @@
 package restore
 
 import (
-	"compress/gzip"
 	"context"
 	"fmt"
+	"io"
+	"strings"
 
+	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
 	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
@@ -23,23 +25,54 @@ func NewRestoreStreams(dpclient bedclient.ClientInterface, objStore store.FileSt
 }
 
 func (rs *RestoreStreams) GetBucketIterator(ctx context.Context, startingKey string) <-chan store.FileStorageObjectListInfo {
-	return rs.obj.List(ctx, rs.Source+"/", startingKey)
+	proxiedChannel := make(chan store.FileStorageObjectListInfo)
+	go func() {
+		defer func() { close(proxiedChannel) }()
+		parentChannel := rs.obj.List(ctx, rs.Source+"/", startingKey)
+		var parentObject store.FileStorageObjectListInfo
+		var ok bool
+		for {
+			// Get parent object.
+			select {
+			case <-ctx.Done():
+				return
+			case parentObject, ok = <-parentChannel:
+				// The source channel is closed so exit.
+				if !ok {
+					return
+				}
+			}
+
+			// Remove any extensions e.g XOR or AES attached to the sha256 (Id).
+			result := strings.Split(parentObject.Id, ".")
+			parentObject.Id = result[0]
+			// Feed it into new channel.
+			select {
+			case <-ctx.Done():
+				return
+			case proxiedChannel <- parentObject:
+				continue
+			}
+		}
+	}()
+
+	return proxiedChannel
 }
 
 /*Restore S3 raw binaries from the backup S3 to dispatcher.*/
 func (rs *RestoreStreams) RestoreStreams(objInfo store.FileStorageObjectListInfo) (bool, error) {
 	var err error
-	var zipDecompressReader *gzip.Reader
+	var zipDecompressReader io.Reader
 	// Retry downloading and uploading the object.
 	dataSlice, err := rs.obj.Fetch(objInfo.Source, objInfo.Label, objInfo.Id)
 	if err != nil {
 		// Error connecting to S3
 		return false, fmt.Errorf("s3 fetch: %w", err)
 	}
-	zipDecompressReader, err = gzip.NewReader(dataSlice.DataReader)
+	zipDecompressReader, err = bkupcom.NewGzipDecompressReaderAsReader(dataSlice.DataReader)
 	if err != nil {
 		// Malformed data can't be decompressed by Gzip.
-		bedSet.Logger.Warn().Msgf("stream to restore was invalid gzip: %s", objInfo.Key)
+		bedSet.Logger.Warn().Err(err).Msgf("stream to restore was invalid gzip: %s", objInfo.Key)
 		return false, nil
 	}
 

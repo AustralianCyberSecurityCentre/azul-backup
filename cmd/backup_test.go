@@ -4,9 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"cmp"
-	"compress/gzip"
 	"errors"
-	"io"
 	"slices"
 	"sync"
 	"testing"
@@ -260,9 +258,7 @@ func (s *BackupTestSuite) TestCombined() {
 	// inspect stream
 	compressedStream := s.streamStore.Data["testing/content/001f4f38b6a486ca8446a8f5d6f373bd58029735e1c1cfd198e6dd6754004001"]
 	reader := bytes.NewReader([]byte(compressedStream))
-	zipDecompressReader, err := gzip.NewReader(reader)
-	r.Nil(err)
-	streamBytes, err := io.ReadAll(zipDecompressReader)
+	streamBytes, err := bkupcom.NewGzipDecompressReader(reader)
 	r.Nil(err)
 	r.Equal(streamBytes, []byte("hello"))
 

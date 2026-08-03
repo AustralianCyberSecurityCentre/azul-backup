@@ -113,17 +113,17 @@ func (rt *Restore) restoreStreams(
 			cycleCount += 1
 			chToRestore <- objInfo
 			if cycleCount >= maxRestorePerCycle {
-				// close, wait for workers, mark checkpoint, then reopen and continue
-				// close channel
-				close(chToRestore)
-				// wait for workers to complete
-				wgStreamsRestore.Wait()
 				select {
 				case <-rt.ctx.Done():
 					// Application has been cancelled.
 					bedSet.Logger.Info().Msgf("Stopping after restoring %d streams to source %s", restoreCount, source)
 					break
 				default:
+					// close, wait for workers, mark checkpoint, then reopen and continue
+					// close channel
+					close(chToRestore)
+					// wait for workers to complete
+					wgStreamsRestore.Wait()
 					// must checkpoint the last binary saved
 					err = rt.LocalData.LastStreamKeyRestoredStash(source, objInfo.Key)
 					if err != nil {

@@ -24,7 +24,8 @@ import (
 // rawToGzip turns raw bytes into gzipped data
 func rawToGzip(t *testing.T, raw []byte) io.ReadCloser {
 	r := bytes.NewReader(raw)
-	compressor := bkupcom.NewGzipCompressReader(r)
+	compressor, err := bkupcom.NewGzipCompressReader(r)
+	require.Nil(t, err)
 	return io.NopCloser(compressor)
 }
 

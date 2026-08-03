@@ -10,6 +10,16 @@ import (
 
 const RECOVERY_VERSION = "3.0.0"
 
+type AesStateEnum string
+
+// All enums added here need to be added to Python's exception_enums.py as well.
+const (
+	AesStateEnabled  = AesStateEnum("enabled")
+	AesStateDisabled = AesStateEnum("disabled")
+	// Allows for reading of AES encrypted events but no writing of new aes events.
+	AesStateReadOnly = AesStateEnum("readonly")
+)
+
 type LocalDataSettings struct {
 	RootDir string `koanf:"rootdir"`
 }
@@ -23,7 +33,9 @@ type StreamsS3Settings struct {
 	// Bucket, when set, is the single shared bucket that holds all backup data.
 	// Streams and events live under folders within it
 	// Leave empty for deployments that use a dedicated bucket per data type.
-	Bucket string `koanf:"bucket"`
+	Bucket   string       `koanf:"bucket"`
+	AesKey   string       `koanf:"aes_key"`
+	AesState AesStateEnum `koanf:"aes_state"`
 }
 
 type RecoverySettings struct {

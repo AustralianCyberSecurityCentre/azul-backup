@@ -174,7 +174,10 @@ func (bke *BackupEvents) innerBackupEvents(evs []*msginflight.MsgInFlight) (*Bac
 	r := bytes.NewReader(bulk)
 
 	// compress resource
-	compressor := bkupcom.NewGzipCompressReader(r)
+	compressor, err := bkupcom.NewGzipCompressReader(r)
+	if err != nil {
+		return nil, err
+	}
 	compressorReadCloser := io.NopCloser(compressor)
 
 	// move to remote s3 storage

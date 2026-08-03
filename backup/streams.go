@@ -32,10 +32,13 @@ func (bks *BackupStreams) BackupStream(obr *bkupcom.StreamBackupRequest) (bool, 
 		return false, fmt.Errorf("failed to download the file %v because of an unexpected error: %v", key, err)
 	}
 	// compress resource
-	compressor := bkupcom.NewGzipCompressReader(raw)
-	copressorReadCloser := io.NopCloser(compressor)
+	compressor, err := bkupcom.NewGzipCompressReader(raw)
+	if err != nil {
+		return false, err
+	}
+	compressorReadCloser := io.NopCloser(compressor)
 	// add to remove s3 storage
-	err = bks.obj.Put(obr.Source, obr.Label.Str(), obr.Sha256, copressorReadCloser, -1)
+	err = bks.obj.Put(obr.Source, obr.Label.Str(), obr.Sha256, compressorReadCloser, -1)
 	if err != nil {
 		return false, err
 	}
