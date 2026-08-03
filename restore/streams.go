@@ -28,13 +28,34 @@ func (rs *RestoreStreams) GetBucketIterator(ctx context.Context, startingKey str
 	proxiedChannel := make(chan store.FileStorageObjectListInfo)
 	go func() {
 		defer func() { close(proxiedChannel) }()
-		for val := range rs.obj.List(ctx, rs.Source+"/", startingKey) {
+		parentChannel := rs.obj.List(ctx, rs.Source+"/", startingKey)
+		var parentObject store.FileStorageObjectListInfo
+		var ok bool
+		for {
+			// Get parent object.
+			select {
+			case <-ctx.Done():
+				return
+			case parentObject, ok = <-parentChannel:
+				// The source channel is closed so exit.
+				if !ok {
+					return
+				}
+			}
+
 			// Remove any extensions e.g XOR or AES attached to the sha256.
-			result := strings.Split(val.Key, ".")
-			val.Key = result[0]
-			proxiedChannel <- val
+			result := strings.Split(parentObject.Key, ".")
+			parentObject.Key = result[0]
+			// Feed it into new channel.
+			select {
+			case <-ctx.Done():
+				return
+			case proxiedChannel <- parentObject:
+				continue
+			}
 		}
 	}()
+
 	return proxiedChannel
 }
 
