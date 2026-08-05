@@ -123,6 +123,10 @@ func (rt *Restore) restoreStreams(
 		cycleCount := 0
 		var objInfo store.FileStorageObjectListInfo
 		for objInfo = range restoreStream.GetBucketIterator(rt.ctx, startFromObjectWithKey) {
+			if objInfo.Id == "" {
+				bedSet.Logger.Warn().Msgf("Discarding stream to restore which has no id with values: source='%s', label='%s', id='%s', key='%s'", objInfo.Source, objInfo.Label, objInfo.Id, objInfo.Key)
+				continue
+			}
 			cycleCount += 1
 			chToRestore <- objInfo
 			if cycleCount >= st.RestoreCheckpointBinaryCount {
@@ -364,7 +368,7 @@ var restoreCmd = &cobra.Command{
 		st := bkupcom.Settings
 
 		author := NewAuthor("restore-streams", "all", "all", st.BackupID)
-		dpStreamsClient := bedclient.NewClient(st.DispatcherEvents, st.DispatcherEvents, *author, st.DeploymentKey)
+		dpStreamsClient := bedclient.NewClient(st.DispatcherEvents, st.DispatcherStreams, *author, st.DeploymentKey)
 
 		dpEventClients := prepareSources("restore", nil)
 
