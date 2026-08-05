@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"math/rand"
 	"slices"
 	"sync"
 	"time"
@@ -66,7 +67,19 @@ func (rt *Restore) restartStreamRoutines(
 					bedSet.Logger.Info().Msgf("Stopped stream restore for source %s after restoring %d events", restoreStream.Source, ok)
 					return
 				default:
-					wasUploaded, err := restoreStream.RestoreStreams(objInfo)
+					var wasUploaded bool
+					var err error
+					// Restore stream with a retry.
+					for range st.RestoreStreamRetryCount {
+						wasUploaded, err = restoreStream.RestoreStream(objInfo)
+						if err == nil && wasUploaded {
+							break
+						}
+						// Random backoff for retry
+						r := rand.Intn(1000)
+						time.Sleep(time.Duration(r) * time.Millisecond)
+					}
+
 					if wasUploaded {
 						ok += 1
 					} else {
@@ -91,6 +104,7 @@ func (rt *Restore) restoreStreams(
 	backup_sources []string,
 	chStats chan map[string]*restore.RestoreStats,
 ) error {
+	st := bkupcom.Settings
 	// restore streams from each sources sequentially
 	for _, source := range backup_sources {
 		bedSet.Logger.Info().Msgf("streams - restoring for source %s", source)
@@ -105,14 +119,13 @@ func (rt *Restore) restoreStreams(
 		wgStreamsRestore, chToRestore := rt.restartStreamRoutines(restoreStream, chStats)
 
 		// use checkpointing to save state every x binaries
-		maxRestorePerCycle := 1000
 		restoreCount := 0
 		cycleCount := 0
 		var objInfo store.FileStorageObjectListInfo
 		for objInfo = range restoreStream.GetBucketIterator(rt.ctx, startFromObjectWithKey) {
 			cycleCount += 1
 			chToRestore <- objInfo
-			if cycleCount >= maxRestorePerCycle {
+			if cycleCount >= st.RestoreCheckpointBinaryCount {
 				select {
 				case <-rt.ctx.Done():
 					// Application has been cancelled.
