@@ -60,19 +60,21 @@ func (rs *RestoreStreams) GetBucketIterator(ctx context.Context, startingKey str
 }
 
 /*Restore S3 raw binaries from the backup S3 to dispatcher.*/
-func (rs *RestoreStreams) RestoreStreams(objInfo store.FileStorageObjectListInfo) (bool, error) {
+func (rs *RestoreStreams) RestoreStream(objInfo store.FileStorageObjectListInfo) (bool, error) {
 	var err error
 	var zipDecompressReader io.Reader
 	// Retry downloading and uploading the object.
 	dataSlice, err := rs.obj.Fetch(objInfo.Source, objInfo.Label, objInfo.Id)
 	if err != nil {
 		// Error connecting to S3
-		return false, fmt.Errorf("s3 fetch: %w", err)
+		return false, fmt.Errorf("s3 fetch on file %s/%s/%s: %w", objInfo.Source, objInfo.Label, objInfo.Id, err)
 	}
+	defer dataSlice.DataReader.Close()
+
 	zipDecompressReader, err = bkupcom.NewGzipDecompressReaderAsReader(dataSlice.DataReader)
 	if err != nil {
 		// Malformed data can't be decompressed by Gzip.
-		bedSet.Logger.Warn().Err(err).Msgf("stream to restore was invalid gzip: %s", objInfo.Key)
+		bedSet.Logger.Warn().Err(err).Msgf("stream to restore was invalid gzip: %s/%s/%s", objInfo.Source, objInfo.Label, objInfo.Id)
 		return false, nil
 	}
 
