@@ -368,7 +368,7 @@ var restoreCmd = &cobra.Command{
 		st := bkupcom.Settings
 
 		author := NewAuthor("restore-streams", "all", "all", st.BackupID)
-		dpStreamsClient := bedclient.NewClient(st.DispatcherEvents, st.DispatcherEvents, *author, st.DeploymentKey)
+		dpStreamsClient := bedclient.NewClient(st.DispatcherEvents, st.DispatcherStreams, *author, st.DeploymentKey)
 
 		dpEventClients := prepareSources("restore", nil)
 
