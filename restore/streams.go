@@ -60,13 +60,15 @@ func (rs *RestoreStreams) GetBucketIterator(ctx context.Context, startingKey str
 }
 
 /*Restore S3 raw binaries from the backup S3 to dispatcher.*/
-func (rs *RestoreStreams) RestoreStream(objInfo store.FileStorageObjectListInfo) (bool, error) {
+func (rs *RestoreStreams) RestoreStream(objInfo store.FileStorageObjectListInfo, restoreSkipExistingStreams bool) (bool, error) {
 	var err error
 
-	// Skip restore if the file already exists
-	exists, err := rs.obj.Exists(objInfo.Source, objInfo.Label, objInfo.Id)
-	if err == nil && exists {
-		return true, nil
+	if restoreSkipExistingStreams {
+		// Skip restore if the file already exists
+		exists, err := rs.obj.Exists(objInfo.Source, objInfo.Label, objInfo.Id)
+		if err == nil && exists {
+			return true, nil
+		}
 	}
 
 	var zipDecompressReader io.Reader
