@@ -71,7 +71,7 @@ func (rt *Restore) restartStreamRoutines(
 					var err error
 					// Restore stream with a retry.
 					for range st.RestoreStreamRetryCount {
-						wasUploaded, err = restoreStream.RestoreStream(objInfo)
+						wasUploaded, err = restoreStream.RestoreStream(objInfo, st.RestoreSkipExistingStreams)
 						if err == nil && wasUploaded {
 							break
 						}

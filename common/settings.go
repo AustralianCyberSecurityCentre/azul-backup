@@ -74,6 +74,8 @@ type RecoverySettings struct {
 	EnableAutomaticAgeOff bool `koanf:"enable_automatic_ageoff"`
 	// If automatic ageoff is disabled, should the old rules be cleaned up?
 	EnableCleanupAutoAgeOff bool `koanf:"enable_automatic_ageoff_cleanup"`
+	// Check if streams exist in dispatcher and don't restore it if it already exists.
+	RestoreSkipExistingStreams bool `koanf:"restore_skip_existing_streams"`
 }
 
 var Settings *RecoverySettings
@@ -91,6 +93,7 @@ var defaults RecoverySettings = RecoverySettings{
 	EventBatchSize:               1000,
 	EnableAutomaticAgeOff:        false,
 	EnableCleanupAutoAgeOff:      false,
+	RestoreSkipExistingStreams:   false,
 }
 
 func parseSettings() *RecoverySettings {
