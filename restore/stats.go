@@ -1,7 +1,10 @@
 package restore
 
 import (
+	"bytes"
+	"fmt"
 	"slices"
+	"text/tabwriter"
 	"time"
 
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
@@ -28,7 +31,7 @@ func (rt *RestoreStats) Add(v *RestoreStats) {
 }
 
 // printRestoreState prints stats for each source
-func PrintRestoreState(startTime time.Time, stats map[string]*RestoreStats) {
+func UpdateRestoreStats(startTime time.Time, stats map[string]*RestoreStats, printStats bool) {
 	// sort sources alphabetically
 	keys := []string{}
 	for k := range stats {
@@ -38,13 +41,16 @@ func PrintRestoreState(startTime time.Time, stats map[string]*RestoreStats) {
 	var totalEvents, totalStreams int
 	runtime := time.Since(startTime).Seconds()
 
-	bedSet.Logger.Info().Msg("Restore stats:\nsource\tevents-ok\tevents-fail\tevent-types-complete\tstreams-ok\tstreams-fail\tstreams-complete\t\n")
+	var statLogBuffer bytes.Buffer
+	statLogWriter := tabwriter.NewWriter(&statLogBuffer, 1, 1, 2, ' ', 0)
+
+	fmt.Fprintln(statLogWriter, "source\tevents-ok\tevents-fail\tevent-types-complete\tstreams-ok\tstreams-fail\tstreams-complete")
 
 	for _, source := range keys {
 		stat := stats[source]
 		totalEvents += stat.EventsOk
 		totalStreams += stat.StreamsOk
-		bedSet.Logger.Info().Msgf("%s\t %d\t %d\t %d\t %d\t %d\t %t\t\n",
+		fmt.Fprintf(statLogWriter, "%s\t %d\t %d\t %d\t %d\t %d\t %t\t\n",
 			source, stat.EventsOk, stat.EventsFail, stat.EventTypesComplete, stat.StreamsOk, stat.StreamsFail, stat.StreamsComplete)
 
 		// Set prometheus stat for the printed data.
@@ -62,5 +68,9 @@ func PrintRestoreState(startTime time.Time, stats map[string]*RestoreStats) {
 		}
 
 	}
-	bedSet.Logger.Info().Msgf("Processed %d events (%.2f/s) and %d streams (%.2f/s)\n", totalEvents, float64(totalEvents)/runtime, totalStreams, float64(totalStreams)/runtime)
+	if printStats {
+		statLogWriter.Flush()
+		bedSet.Logger.Info().Msgf("Restore stats:\n%s", statLogBuffer.String())
+		bedSet.Logger.Info().Msgf("Processed %d events (%.2f/s) and %d streams (%.2f/s)\n", totalEvents, float64(totalEvents)/runtime, totalStreams, float64(totalStreams)/runtime)
+	}
 }

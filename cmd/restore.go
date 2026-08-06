@@ -289,7 +289,7 @@ func (rt *Restore) DoRestore(
 	st := bkupcom.Settings
 	stats := map[string]*restore.RestoreStats{}
 	startTime := time.Now()
-	defer restore.PrintRestoreState(startTime, stats)
+	defer restore.UpdateRestoreStats(startTime, stats, true)
 
 	bedSet.Logger.Info().Msgf(
 		"starting restore: type=%s backup_id=%q bucket_prefix=%q endpoint=%q region=%q sources=%d",
@@ -313,13 +313,29 @@ func (rt *Restore) DoRestore(
 	// print status as we go
 	go func() {
 		// stats every minute
+		TICKER_MAX_FAST_PRINTS := 31
+		tickerCount := 0
+		TICKER_FREQUENCY := 60
 		ticker := time.NewTicker(time.Minute * 1)
 		for {
 			select {
 			case <-rt.ctx.Done():
 				return
 			case <-ticker.C:
-				restore.PrintRestoreState(startTime, stats)
+				tickerCount += 1
+				if tickerCount == TICKER_MAX_FAST_PRINTS {
+					bedSet.Logger.Info().Msg("reducing stat printing frequency to every hour")
+				}
+				if tickerCount < TICKER_MAX_FAST_PRINTS {
+					// Print + stats
+					restore.UpdateRestoreStats(startTime, stats, true)
+				} else if (tickerCount % TICKER_FREQUENCY) == 0 {
+					// Print + stats
+					restore.UpdateRestoreStats(startTime, stats, true)
+				} else {
+					// Stats only
+					restore.UpdateRestoreStats(startTime, stats, false)
+				}
 			}
 		}
 	}()

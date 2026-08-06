@@ -1,7 +1,10 @@
 package backup
 
 import (
+	"bytes"
+	"fmt"
 	"slices"
+	"text/tabwriter"
 	"time"
 
 	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
@@ -28,8 +31,8 @@ func (bk *BackupStats) Add(v *BackupStats) {
 	bk.StreamsFail += v.StreamsFail
 }
 
-// PrintBackupState prints stats for each source
-func PrintBackupState(startTime time.Time, stats map[string]*BackupStats) {
+// UpdateBackupStats prints stats for each source
+func UpdateBackupStats(startTime time.Time, stats map[string]*BackupStats, printStats bool) {
 	// sort sources alphabetically
 	keys := []string{}
 	for k := range stats {
@@ -38,12 +41,16 @@ func PrintBackupState(startTime time.Time, stats map[string]*BackupStats) {
 	slices.Sort(keys)
 	var totalEvents, totalStreams int
 	runtime := time.Since(startTime).Seconds()
-	bedSet.Logger.Info().Msg("Backup stats:\nsource\tevents-ok\tevents-fail\tstreams-ok\tstreams-missing\tstreams-fail\t\n")
+
+	var statLogBuffer bytes.Buffer
+	statLogWriter := tabwriter.NewWriter(&statLogBuffer, 1, 1, 2, ' ', 0)
+	fmt.Fprintln(statLogWriter, "source\tevents-ok\tevents-fail\tstreams-ok\tstreams-missing\tstreams-fail\t")
+
 	for _, source := range keys {
 		stat := stats[source]
 		totalEvents += stat.EventsOk
 		totalStreams += stat.StreamsOk
-		bedSet.Logger.Info().Msgf("%s\t %d\t %d\t %d\t %d\t %d\t\n",
+		fmt.Fprintf(statLogWriter, "%s\t %d\t %d\t %d\t %d\t %d\t\n",
 			source, stat.EventsOk, stat.EventsFail, stat.StreamsOk, stat.StreamsMissing, stat.StreamsFail)
 
 		// Set prometheus stat for the printed data.
@@ -53,5 +60,10 @@ func PrintBackupState(startTime time.Time, stats map[string]*BackupStats) {
 		prom.BackupEventStatus.WithLabelValues(source, "streams-missing").Set(float64(stat.StreamsMissing))
 		prom.BackupEventStatus.WithLabelValues(source, "streams-fail").Set(float64(stat.StreamsFail))
 	}
-	bedSet.Logger.Info().Msgf("Processed %d events (%.2f/s) and %d streams (%.2f/s)\n", totalEvents, float64(totalEvents)/runtime, totalStreams, float64(totalStreams)/runtime)
+	if printStats {
+		statLogWriter.Flush()
+		bedSet.Logger.Info().Msgf("Backup stats:\n%s", statLogBuffer.String())
+		bedSet.Logger.Info().Msgf("Processed %d events (%.2f/s) and %d streams (%.2f/s)\n", totalEvents, float64(totalEvents)/runtime, totalStreams, float64(totalStreams)/runtime)
+	}
+
 }
