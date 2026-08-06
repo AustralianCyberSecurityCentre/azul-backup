@@ -276,7 +276,7 @@ func (bk *Backup) DoBackup(
 	st := bkupcom.Settings
 	stats := map[string]*backup.BackupStats{}
 	startTime := time.Now()
-	defer backup.PrintBackupState(startTime, stats)
+	defer backup.UpdateBackupStats(startTime, stats, true)
 
 	chBackupStreams := make(chan bkupcom.StreamBackupRequest, st.StreamChannelSize)
 	chBackupStreamsDeduped := make(chan bkupcom.StreamBackupRequest, st.StreamChannelSize)
@@ -301,23 +301,29 @@ func (bk *Backup) DoBackup(
 
 	// print status as we go
 	go func() {
-		// stats every hour
-		tickerSlow := time.NewTicker(time.Minute * 60)
-		// stats every minute for first 30 minutes to show backup is working
-		tickerFastMax := 30
+		// print output for the first 30 minutes and then reduce printing to once an hour.
+		TICKER_MAX_FAST_PRINTS := 31
+		tickerCount := 0
+		TICKER_FREQUENCY := 60
 		tickerFast := time.NewTicker(time.Minute * 1)
 		for {
 			select {
 			case <-bk.ctxStreams.Done():
 				return
-			case <-tickerSlow.C:
-				backup.PrintBackupState(startTime, stats)
 			case <-tickerFast.C:
-				backup.PrintBackupState(startTime, stats)
-				tickerFastMax -= 1
-				if tickerFastMax <= 0 {
+				tickerCount += 1
+				if tickerCount == TICKER_MAX_FAST_PRINTS {
 					bedSet.Logger.Info().Msg("reducing stat printing frequency to every hour")
-					tickerFast.Stop()
+				}
+				if tickerCount < TICKER_MAX_FAST_PRINTS {
+					// Print + stats
+					backup.UpdateBackupStats(startTime, stats, true)
+				} else if (tickerCount % TICKER_FREQUENCY) == 0 {
+					// Print + stats
+					backup.UpdateBackupStats(startTime, stats, true)
+				} else {
+					// Stats only
+					backup.UpdateBackupStats(startTime, stats, false)
 				}
 			}
 		}
