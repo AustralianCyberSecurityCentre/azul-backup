@@ -71,7 +71,7 @@ func convertEventPathToSourceLabelIdFromKey(objKey string) (string, string, stri
 	return "", "", "", fmt.Errorf("failed to parse key %s due to unexpected format should be <source>/<model>/<action>/<dateNano>-<count>", objKey)
 }
 
-func (re *RestoreEvents) CountObjectsPerPrefix() map[string]int {
+func (re *RestoreEvents) CountObjectsPerPrefix() (map[string]int, error) {
 	prefix := fmt.Sprintf("%s/%s/", re.source, re.modelAndAction)
 	counts := map[string]int{}
 	ctx, cancelFunc := context.WithCancel(context.Background())
@@ -79,6 +79,9 @@ func (re *RestoreEvents) CountObjectsPerPrefix() map[string]int {
 
 	total := 0
 	for obj := range re.Ev.List(ctx, prefix, "") {
+		if obj.Err != nil {
+			return counts, obj.Err
+		}
 		total++
 		dayPrefix, err := extractNamePrefixKey(obj.Key)
 		if err != nil {
@@ -87,14 +90,17 @@ func (re *RestoreEvents) CountObjectsPerPrefix() map[string]int {
 		counts[dayPrefix] += 1
 	}
 	bedSet.Logger.Info().Msgf("events - listed %d objects under prefix %q", total, prefix)
-	return counts
+	return counts, nil
 }
 
-func (re *RestoreEvents) GetSortedBucketPrefixesOldestToNewest() []string {
+func (re *RestoreEvents) GetSortedBucketPrefixesOldestToNewest() ([]string, error) {
 	// If the bucket path doesn't exist because there is no data there is nothing to restore.
-	dailyPrefixObjectCount := re.CountObjectsPerPrefix()
+	dailyPrefixObjectCount, err := re.CountObjectsPerPrefix()
+	if err != nil {
+		return []string{}, err
+	}
 	if len(dailyPrefixObjectCount) == 0 {
-		return []string{}
+		return []string{}, nil
 	}
 
 	sortedPrefixes := make([]string, 0, len(dailyPrefixObjectCount))
@@ -105,7 +111,7 @@ func (re *RestoreEvents) GetSortedBucketPrefixesOldestToNewest() []string {
 	// Sort keys into order
 	sort.Strings(sortedPrefixes)
 
-	return sortedPrefixes
+	return sortedPrefixes, nil
 }
 
 /*Restore a bundle of events from the backup storage to dispatcher.*/
@@ -114,7 +120,14 @@ func (re *RestoreEvents) RestoreEvent(objInfo store.FileStorageObjectListInfo) (
 	var notFoundError *store.NotFoundError
 	restoreSource, restoreLabel, restoreId, err := convertEventPathToSourceLabelIdFromKey(objInfo.Key)
 	if err != nil {
-		return nil, fmt.Errorf("s3 fetch parsing key: %w", err)
+		// Invalid format.
+		bedSet.Logger.Warn().Msgf("Failed to restore the events with the key %s", objInfo.Key)
+		return &models.ResponsePostEvent{
+			TotalOk:       0,
+			TotalFailures: 0,
+			Failures:      []models.ResponsePostEventFailure{},
+			Ok:            []interface{}{},
+		}, nil
 	}
 	compressedData, err := re.Ev.Fetch(restoreSource, restoreLabel, restoreId)
 	if errors.As(err, &notFoundError) {
