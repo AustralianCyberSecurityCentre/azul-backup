@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"math/rand"
 	"slices"
@@ -12,6 +13,7 @@ import (
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
 	restore "github.com/AustralianCyberSecurityCentre/azul-backup.git/restore"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/models"
 	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
 	"github.com/spf13/cobra"
@@ -98,6 +100,21 @@ func (rt *Restore) restartStreamRoutines(
 	return &streamsWg, chToRestore
 }
 
+func RetryListWithBackoffLoop(maxRetries int, retryFunc func() error) error {
+	var err error
+	for range maxRetries {
+		err = retryFunc()
+		if err == nil {
+			return nil
+		}
+		bedSet.Logger.Err(err).Msg("A listing operation has failed retrying.")
+		r := rand.Intn(2000)
+		time.Sleep(time.Duration(r) * time.Millisecond)
+	}
+	bedSet.Logger.Err(err).Msgf("A listing operation has failed %d times and is not going to be retried.", maxRetries)
+	return err
+}
+
 func (rt *Restore) restoreStreams(
 	streamStore store.FileStorage,
 	dpStreamsClient bedclient.ClientInterface,
@@ -122,37 +139,52 @@ func (rt *Restore) restoreStreams(
 		restoreCount := 0
 		cycleCount := 0
 		var objInfo store.FileStorageObjectListInfo
-		for objInfo = range restoreStream.GetBucketIterator(rt.ctx, startFromObjectWithKey) {
-			if objInfo.Id == "" {
-				bedSet.Logger.Warn().Msgf("Discarding stream to restore which has no id with values: source='%s', label='%s', id='%s', key='%s'", objInfo.Source, objInfo.Label, objInfo.Id, objInfo.Key)
-				continue
-			}
-			cycleCount += 1
-			chToRestore <- objInfo
-			if cycleCount >= st.RestoreCheckpointBinaryCount {
-				select {
-				case <-rt.ctx.Done():
-					// Application has been cancelled.
-					bedSet.Logger.Info().Msgf("Stopping after restoring %d streams to source %s", restoreCount, source)
-					break
-				default:
-					// close, wait for workers, mark checkpoint, then reopen and continue
-					// close channel
-					close(chToRestore)
-					// wait for workers to complete
-					wgStreamsRestore.Wait()
-					// must checkpoint the last binary saved
-					err = rt.LocalData.LastStreamKeyRestoredStash(source, objInfo.Key)
-					if err != nil {
-						bedSet.Logger.Warn().Err(err).Msgf("couldn't save the last backed up stream Key %s to filecache.", objInfo.Key)
+		funcRef := func() error {
+			for objInfo = range restoreStream.GetBucketIterator(rt.ctx, startFromObjectWithKey) {
+				if objInfo.Id == "" {
+					bedSet.Logger.Warn().Msgf("Discarding stream to restore which has no id with values: source='%s', label='%s', id='%s', key='%s'", objInfo.Source, objInfo.Label, objInfo.Id, objInfo.Key)
+					continue
+				}
+				if objInfo.Err != nil {
+					errMsg := fmt.Sprintf("Failed to list streams for source %s starting from object %s", restoreStream.Source, startFromObjectWithKey)
+					return errors.New(errMsg)
+				}
+				// update the start object key in case of restart
+				startFromObjectWithKey = objInfo.Key
+
+				cycleCount += 1
+				chToRestore <- objInfo
+				if cycleCount >= st.RestoreCheckpointBinaryCount {
+					select {
+					case <-rt.ctx.Done():
+						// Application has been cancelled.
+						bedSet.Logger.Info().Msgf("Stopping after restoring %d streams to source %s", restoreCount, source)
+						break
+					default:
+						// close, wait for workers, mark checkpoint, then reopen and continue
+						// close channel
+						close(chToRestore)
+						// wait for workers to complete
+						wgStreamsRestore.Wait()
+						// must checkpoint the last binary saved
+						err = rt.LocalData.LastStreamKeyRestoredStash(source, objInfo.Key)
+						if err != nil {
+							bedSet.Logger.Warn().Err(err).Msgf("couldn't save the last backed up stream Key %s to filecache.", objInfo.Key)
+						}
+						restoreCount += cycleCount
+						// restart workers until next checkpoint reached
+						wgStreamsRestore, chToRestore = rt.restartStreamRoutines(restoreStream, chStats)
+						cycleCount = 0
 					}
-					restoreCount += cycleCount
-					// restart workers until next checkpoint reached
-					wgStreamsRestore, chToRestore = rt.restartStreamRoutines(restoreStream, chStats)
-					cycleCount = 0
 				}
 			}
+			return nil
 		}
+		err = RetryListWithBackoffLoop(st.RestoreListRetryCount, funcRef)
+		if err != nil {
+			return err
+		}
+
 		// close channel
 		close(chToRestore)
 		// wait for workers to complete
@@ -193,45 +225,98 @@ func (rt *Restore) createEventRoutine(
 	sourceEvent := fmt.Sprintf("%s/%s", source, modelOrAction)
 	restoreEvents := restore.NewRestoreEvents(dpclient, eventStore, rt.LocalData, MAX_RETRIES, source, model, action)
 
-	lastSuccesfulEvent, err := restoreEvents.LoadLastEventSavedKey()
+	st := bkupcom.Settings
+	var sortedBucketPrefixes []string
+	getSortedFunc := func() error {
+		var err error
+		sortedBucketPrefixes, err = restoreEvents.GetSortedBucketPrefixesOldestToNewest()
+		return err
+	}
+	err = RetryListWithBackoffLoop(st.RestoreListRetryCount, getSortedFunc)
+	if err != nil {
+		bedSet.Logger.Error().Err(err).Msgf("Failed to list buckets in sorted order for event source %s. Stopping now.", sourceEvent)
+		rt.CtxCancel()
+		return
+	}
+
+	lastSuccessfulEvent, err := restoreEvents.LoadLastEventSavedKey()
 	if err != nil {
 		bedSet.Logger.Error().Err(err).Msgf("Failed to load event state for restore event %s. Stopping now.", sourceEvent)
 		rt.CtxCancel()
 		return
 	}
 
-	for _, prefix := range restoreEvents.GetSortedBucketPrefixesOldestToNewest() {
-		for objInfo := range restoreEvents.Ev.List(rt.ctx, prefix, "") {
-			select {
-			case <-rt.ctx.Done():
-				bedSet.Logger.Info().Msgf("stopped event restore for source %s", sourceEvent)
-				return
-			default:
-				// Skip all keys until we get up to the one we successfully backed up last.
-				// FUTURE use StartAfter with minio
-				if lastSuccesfulEvent != "" {
-					if lastSuccesfulEvent == objInfo.Key {
-						lastSuccesfulEvent = ""
+	for _, prefix := range sortedBucketPrefixes {
+		retryableListFunc := func() error {
+			for objInfo := range restoreEvents.Ev.List(rt.ctx, prefix, "") {
+				if objInfo.Err != nil {
+					// Attempt to load the last successful event for a retry from the current prefix.
+					lastSuccessfulEvent, err = restoreEvents.LoadLastEventSavedKey()
+					if err != nil {
+						bedSet.Logger.Error().Err(err).Msgf("Failed to load event state for restore event %s. Stopping now.", sourceEvent)
+						rt.CtxCancel()
+						return nil
 					}
-					continue
+					return objInfo.Err
 				}
-				resp, err := restoreEvents.RestoreEvent(objInfo)
-				if err != nil {
-					bedSet.Logger.Error().Err(err).Msgf("Cancelling restore for source %s", sourceEvent)
-					rt.CtxCancel()
-					return
-				}
-				if resp.TotalFailures > 0 {
-					// print the bad messages to stdout
-					// FUTURE should be put in LocalData storage for manual inspection
-					bedSet.Logger.Warn().Msgf("Events were rejected by dispatcher (%d ok, %d bad) from %s", resp.TotalOk, resp.TotalFailures, objInfo.Key)
-					for _, failure := range resp.Failures {
-						bedSet.Logger.Warn().Msgf("%s\n%s", failure.Event, failure.Error)
+
+				select {
+				case <-rt.ctx.Done():
+					bedSet.Logger.Info().Msgf("stopped event restore for source %s", sourceEvent)
+					return nil // retry will stop and exit immediately
+				default:
+					// Skip all keys until we get up to the one we successfully backed up last.
+					// FUTURE use StartAfter with minio
+					if lastSuccessfulEvent != "" {
+						if lastSuccessfulEvent == objInfo.Key {
+							lastSuccessfulEvent = ""
+						}
+						continue
 					}
+
+					// Restore event with a retry on failure.
+					var resp *models.ResponsePostEvent
+					for range st.RestoreStreamRetryCount {
+						resp, err = restoreEvents.RestoreEvent(objInfo)
+						if err == nil {
+							break
+						}
+						// Random backoff for retry
+						r := rand.Intn(1000)
+						time.Sleep(time.Duration(r) * time.Millisecond)
+					}
+					if err != nil {
+						bedSet.Logger.Error().Err(err).Msgf("Cancelling restore for source %s, failure on event bundle '%s'", sourceEvent, objInfo.Key)
+						rt.CtxCancel()
+						return nil // retry will stop and exit immediately
+					}
+					if resp.TotalFailures > 0 {
+						// print the bad messages to stdout
+						// FUTURE should be put in LocalData storage for manual inspection
+						bedSet.Logger.Warn().Msgf("Events were rejected by dispatcher (%d ok, %d bad) from %s", resp.TotalOk, resp.TotalFailures, objInfo.Key)
+						for _, failure := range resp.Failures {
+							bedSet.Logger.Warn().Msgf("%s\n%s", failure.Event, failure.Error)
+						}
+					}
+					chStats <- map[string]*restore.RestoreStats{source: {EventsOk: resp.TotalOk, EventsFail: resp.TotalFailures}}
 				}
-				chStats <- map[string]*restore.RestoreStats{source: {EventsOk: resp.TotalOk, EventsFail: resp.TotalFailures}}
 			}
+			return nil
 		}
+		err = RetryListWithBackoffLoop(st.RestoreListRetryCount, retryableListFunc)
+		select {
+		case <-rt.ctx.Done():
+			// if context has been cancelled exit.
+			return
+		default:
+
+		}
+		if err != nil {
+			bedSet.Logger.Error().Err(err).Msgf("Cancelling restore for source %s.", sourceEvent)
+			rt.CtxCancel()
+			return
+		}
+
 	}
 	bedSet.Logger.Info().Msgf("events - restored all %s/%s events", source, modelOrAction)
 	chStats <- map[string]*restore.RestoreStats{source: {EventTypesComplete: 1}}

@@ -53,6 +53,8 @@ type RecoverySettings struct {
 	// Restore checkpoint binary distance (distance between backup checkpoints), note the larger this is
 	// The more performant Restore will be but at the cost of if there is an error it will take longer to get back to where it was up to.
 	RestoreCheckpointBinaryCount int `koanf:"checkpoint_binary_count"`
+	// Number of times to retry a listing operation if it fails.
+	RestoreListRetryCount int `koanf:"restore_list_retry_count"`
 	// Number of times to attempt to retry and restore a stream.
 	RestoreStreamRetryCount int `koanf:"restore_stream_retry_count"`
 	// Controls number of concurrent routines for stream backup and restore
@@ -86,6 +88,7 @@ var defaults RecoverySettings = RecoverySettings{
 	StreamChannelSize:            500,
 	RestoreCheckpointBinaryCount: 1000,
 	RestoreStreamRetryCount:      5,
+	RestoreListRetryCount:        5,
 	StreamRoutineCount:           20,
 	LocalData:                    LocalDataSettings{RootDir: "/tmp/azul_recovery"},
 	RestoreType:                  "all",
