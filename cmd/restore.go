@@ -141,13 +141,13 @@ func (rt *Restore) restoreStreams(
 		var objInfo store.FileStorageObjectListInfo
 		funcRef := func() error {
 			for objInfo = range restoreStream.GetBucketIterator(rt.ctx, startFromObjectWithKey) {
-				if objInfo.Id == "" {
-					bedSet.Logger.Warn().Msgf("Discarding stream to restore which has no id with values: source='%s', label='%s', id='%s', key='%s'", objInfo.Source, objInfo.Label, objInfo.Id, objInfo.Key)
-					continue
-				}
 				if objInfo.Err != nil {
 					errMsg := fmt.Sprintf("Failed to list streams for source %s starting from object %s", restoreStream.Source, startFromObjectWithKey)
 					return errors.New(errMsg)
+				}
+				if objInfo.Id == "" {
+					bedSet.Logger.Warn().Msgf("Discarding stream to restore which has no id with values: source='%s', label='%s', id='%s', key='%s'", objInfo.Source, objInfo.Label, objInfo.Id, objInfo.Key)
+					continue
 				}
 				// update the start object key in case of restart
 				startFromObjectWithKey = objInfo.Key
