@@ -107,9 +107,9 @@ func RetryListWithBackoffLoop(maxRetries int, retryFunc func() error) error {
 		if err == nil {
 			return nil
 		}
-		bedSet.Logger.Err(err).Msg("A listing operation has failed retrying.")
 		r := rand.Intn(2000)
 		time.Sleep(time.Duration(r) * time.Millisecond)
+		bedSet.Logger.Warn().Err(err).Msg("A listing operation has failed retrying.")
 	}
 	bedSet.Logger.Err(err).Msgf("A listing operation has failed %d times and is not going to be retried.", maxRetries)
 	return err
@@ -131,6 +131,7 @@ func (rt *Restore) restoreStreams(
 		if err != nil {
 			return err
 		}
+		bedSet.Logger.Info().Msgf("Starting restore for source %s from key %s", source, startFromObjectWithKey)
 
 		// start the initial workers
 		wgStreamsRestore, chToRestore := rt.restartStreamRoutines(restoreStream, chStats)
