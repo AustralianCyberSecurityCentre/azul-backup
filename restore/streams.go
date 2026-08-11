@@ -1,9 +1,11 @@
 package restore
 
 import (
+	"bufio"
 	"context"
 	"fmt"
 	"io"
+	"os"
 	"strings"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
@@ -59,8 +61,55 @@ func (rs *RestoreStreams) GetBucketIterator(ctx context.Context, startingKey str
 	return proxiedChannel
 }
 
+func (rs *RestoreStreams) GetLocalBucketIterator(ctx context.Context, startingKey string, filePath string) <-chan store.FileStorageObjectListInfo {
+	proxiedChannel := make(chan store.FileStorageObjectListInfo)
+	go func() {
+		defer func() { close(proxiedChannel) }()
+		file, err := os.Open(filePath)
+		if err != nil {
+			bedSet.Logger.Fatal().Msgf("Could not find the S3 listing file %s", filePath)
+			panic("Listing file not found")
+		}
+		defer file.Close()
+
+		scanner := bufio.NewScanner(file)
+		for scanner.Scan() {
+			line := scanner.Text()
+			line = strings.TrimSpace(line)
+			splitKey := strings.Split(line, "/")
+			if len(splitKey) != 3 {
+				bedSet.Logger.Fatal().Msgf("Failed to read interpret line: %s", line)
+				panic("FAILED to read line")
+			}
+
+			var nextObject = store.FileStorageObjectListInfo{
+				Key:    line,
+				Source: splitKey[0],
+				Label:  splitKey[1],
+				Id:     splitKey[2],
+				Err:    nil,
+			}
+			// Remove any extensions e.g XOR or AES attached to the sha256 (Id).
+			cleanedId := strings.Split(nextObject.Id, ".")
+			nextObject.Id = cleanedId[0]
+			// Feed it into new channel.
+			select {
+			case <-ctx.Done():
+				return
+			case proxiedChannel <- nextObject:
+				continue
+			}
+		}
+		if err := scanner.Err(); err != nil {
+			bedSet.Logger.Fatal().Msgf("Failure occurred when reading from file listing with error %s", err)
+		}
+	}()
+
+	return proxiedChannel
+}
+
 /*Restore S3 raw binaries from the backup S3 to dispatcher.*/
-func (rs *RestoreStreams) RestoreStream(objInfo store.FileStorageObjectListInfo, restoreSkipExistingStreams bool) (bool, error) {
+func (rs *RestoreStreams) RestoreStream(objInfo store.FileStorageObjectListInfo, restoreSkipExistingStreams bool, ignoreRestoreNotFound bool) (bool, error) {
 	var err error
 
 	if restoreSkipExistingStreams {
@@ -75,6 +124,10 @@ func (rs *RestoreStreams) RestoreStream(objInfo store.FileStorageObjectListInfo,
 	// Retry downloading and uploading the object.
 	dataSlice, err := rs.obj.Fetch(objInfo.Source, objInfo.Label, objInfo.Id)
 	if err != nil {
+		if ignoreRestoreNotFound {
+			bedSet.Logger.Info().Msgf("Skipping file that could not be found in backup %s/%s/%s", objInfo.Source, objInfo.Label, objInfo.Id)
+			return true, nil
+		}
 		// Error connecting to S3
 		return false, fmt.Errorf("s3 fetch on file %s/%s/%s: %w", objInfo.Source, objInfo.Label, objInfo.Id, err)
 	}

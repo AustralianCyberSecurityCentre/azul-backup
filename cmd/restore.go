@@ -73,7 +73,7 @@ func (rt *Restore) restartStreamRoutines(
 					var err error
 					// Restore stream with a retry.
 					for range st.RestoreStreamRetryCount {
-						wasUploaded, err = restoreStream.RestoreStream(objInfo, st.RestoreSkipExistingStreams)
+						wasUploaded, err = restoreStream.RestoreStream(objInfo, st.RestoreSkipExistingStreams, st.IgnoreRestoreNotFound)
 						if err == nil && wasUploaded {
 							break
 						}
@@ -140,7 +140,14 @@ func (rt *Restore) restoreStreams(
 		cycleCount := 0
 		var objInfo store.FileStorageObjectListInfo
 		funcRef := func() error {
-			for objInfo = range restoreStream.GetBucketIterator(rt.ctx, startFromObjectWithKey) {
+			var bucketChannelIterator <-chan store.FileStorageObjectListInfo
+			if len(st.ListingFilePath) > 0 {
+				bedSet.Logger.Info().Msgf("Using local bucket iterator with file path %s", st.ListingFilePath)
+				bucketChannelIterator = restoreStream.GetLocalBucketIterator(rt.ctx, startFromObjectWithKey, st.ListingFilePath)
+			} else {
+				bucketChannelIterator = restoreStream.GetBucketIterator(rt.ctx, startFromObjectWithKey)
+			}
+			for objInfo = range bucketChannelIterator {
 				if objInfo.Err != nil {
 					errMsg := fmt.Sprintf("Failed to list streams for source %s starting from object %s", restoreStream.Source, startFromObjectWithKey)
 					return errors.New(errMsg)

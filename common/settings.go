@@ -78,6 +78,9 @@ type RecoverySettings struct {
 	EnableCleanupAutoAgeOff bool `koanf:"enable_automatic_ageoff_cleanup"`
 	// Check if streams exist in dispatcher and don't restore it if it already exists.
 	RestoreSkipExistingStreams bool `koanf:"restore_skip_existing_streams"`
+	// Path to file which has listing of files to restore.
+	ListingFilePath       string `koanf:"listing_file_path"`
+	IgnoreRestoreNotFound bool   `koanf:"ignore_restore_not_found"`
 }
 
 var Settings *RecoverySettings
@@ -97,6 +100,8 @@ var defaults RecoverySettings = RecoverySettings{
 	EnableAutomaticAgeOff:        false,
 	EnableCleanupAutoAgeOff:      false,
 	RestoreSkipExistingStreams:   false,
+	ListingFilePath:              "",
+	IgnoreRestoreNotFound:        false,
 }
 
 func parseSettings() *RecoverySettings {
