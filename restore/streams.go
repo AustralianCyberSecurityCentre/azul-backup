@@ -89,9 +89,8 @@ func (rs *RestoreStreams) GetLocalBucketIterator(ctx context.Context, startingKe
 				bedSet.Logger.Fatal().Msgf("Failed to read interpret line: %s", line)
 				panic("FAILED to read line")
 			}
-
 			var nextObject = store.FileStorageObjectListInfo{
-				Key:    line,
+				Key:    "/" + line,
 				Source: splitKey[0],
 				Label:  splitKey[1],
 				Id:     splitKey[2],
