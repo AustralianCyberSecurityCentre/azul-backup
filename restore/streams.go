@@ -65,7 +65,7 @@ func (rs *RestoreStreams) RestoreStream(objInfo store.FileStorageObjectListInfo,
 
 	if restoreSkipExistingStreams {
 		// Skip restore if the file already exists
-		exists, err := rs.obj.Exists(objInfo.Source, objInfo.Label, objInfo.Id)
+		exists, err := rs.dp.Exists(objInfo.Source, events.DatastreamLabel(objInfo.Label), objInfo.Id)
 		if err == nil && exists {
 			return true, nil
 		}
