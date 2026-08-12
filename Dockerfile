@@ -22,7 +22,7 @@ COPY . /src
 RUN cd /src && go build -v -a -tags netgo -ldflags '-w -extldflags "-static"' -o /go/bin/backup main.go
 
 # now copy artifacts to a lightweight image
-FROM scratch
+FROM $REGISTRY/$BASE_IMAGE:$BASE_TAG
 COPY --from=builder /go/bin /bin
 COPY --from=builder /etc/ssl/certs /etc/ssl/certs
 ENTRYPOINT ["/bin/backup"]
