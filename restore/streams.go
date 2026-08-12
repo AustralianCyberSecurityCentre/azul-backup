@@ -73,9 +73,17 @@ func (rs *RestoreStreams) GetLocalBucketIterator(ctx context.Context, startingKe
 		defer file.Close()
 
 		scanner := bufio.NewScanner(file)
+		startingKeyFound := false
 		for scanner.Scan() {
 			line := scanner.Text()
 			line = strings.TrimSpace(line)
+			if startingKey != "" && !startingKeyFound {
+				if startingKey == line {
+					startingKeyFound = true
+				} else {
+					continue
+				}
+			}
 			splitKey := strings.Split(line, "/")
 			if len(splitKey) != 3 {
 				bedSet.Logger.Fatal().Msgf("Failed to read interpret line: %s", line)
