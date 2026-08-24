@@ -53,10 +53,14 @@ type RecoverySettings struct {
 	// Restore checkpoint binary distance (distance between backup checkpoints), note the larger this is
 	// The more performant Restore will be but at the cost of if there is an error it will take longer to get back to where it was up to.
 	RestoreCheckpointBinaryCount int `koanf:"checkpoint_binary_count"`
+	// Number of sequential streams that can fail to be backed up before giving up and crashing out.
+	ConsecutiveBackupStreamFailures int `koanf:"consecutive_backup_stream_failures"`
+	// When performing backups how many times to attempt a retry of an upload/download of events/streams.
+	RetryCount int `koanf:"retry_count"`
+	// When performing a retry how long to wait between attempts (note there is some randomness added)
+	RetryAverageDelayMs int `koanf:"retry_average_delay_ms"`
 	// Number of times to retry a listing operation if it fails.
 	RestoreListRetryCount int `koanf:"restore_list_retry_count"`
-	// Number of times to attempt to retry and restore a stream.
-	RestoreStreamRetryCount int `koanf:"restore_stream_retry_count"`
 	// Controls number of concurrent routines for stream backup and restore
 	StreamRoutineCount int `koanf:"stream_routine_count"`
 	// local data to allow recovery from failures
@@ -83,20 +87,22 @@ type RecoverySettings struct {
 var Settings *RecoverySettings
 
 var defaults RecoverySettings = RecoverySettings{
-	BucketNamePrefix:             "azul-backup-",
-	BackupID:                     "1",
-	StreamChannelSize:            500,
-	RestoreCheckpointBinaryCount: 1000,
-	RestoreStreamRetryCount:      5,
-	RestoreListRetryCount:        5,
-	StreamRoutineCount:           20,
-	LocalData:                    LocalDataSettings{RootDir: "/tmp/azul_recovery"},
-	RestoreType:                  "all",
-	DeploymentKey:                "recovery",
-	EventBatchSize:               1000,
-	EnableAutomaticAgeOff:        false,
-	EnableCleanupAutoAgeOff:      false,
-	RestoreSkipExistingStreams:   false,
+	BucketNamePrefix:                "azul-backup-",
+	BackupID:                        "1",
+	StreamChannelSize:               500,
+	RestoreCheckpointBinaryCount:    1000,
+	ConsecutiveBackupStreamFailures: 5,
+	RetryCount:                      5,
+	RetryAverageDelayMs:             1000,
+	RestoreListRetryCount:           5,
+	StreamRoutineCount:              20,
+	LocalData:                       LocalDataSettings{RootDir: "/tmp/azul_recovery"},
+	RestoreType:                     "all",
+	DeploymentKey:                   "recovery",
+	EventBatchSize:                  1000,
+	EnableAutomaticAgeOff:           false,
+	EnableCleanupAutoAgeOff:         false,
+	RestoreSkipExistingStreams:      false,
 }
 
 func parseSettings() *RecoverySettings {
