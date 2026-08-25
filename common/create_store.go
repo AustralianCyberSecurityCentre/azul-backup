@@ -38,6 +38,9 @@ func newS3Store(settings *RecoverySettings, dedicatedBucket string) (store.FileS
 	if err != nil {
 		return nil, err
 	}
+	// Add splitter store immediately to store because it should be the first wrapper.
+	// The order is important to ensuring the abstraction between layers still works.
+	inner = store.NewDirectorySplitterStore(inner)
 
 	switch settings.ExternalBackup.AesState {
 	case AesStateEnabled:
