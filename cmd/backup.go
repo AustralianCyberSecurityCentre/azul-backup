@@ -137,8 +137,9 @@ func (bk *Backup) createStreamRoutines(
 				// signal that the worker is done
 				wgObjBkup.Done()
 			}()
-			retries := 0
+			consecutiveStreamFails := 0
 			backupCount := 0
+			var err error
 			// Keep streaming files while they are in the channel.
 			for {
 				if backupCount%100 == 0 {
@@ -153,7 +154,7 @@ func (bk *Backup) createStreamRoutines(
 				case streamFile := <-chBackupStreams:
 					backupCount += 1
 					// Too many consecutive file errors, something is wrong so save files to disk and crash.
-					if retries > 5 {
+					if consecutiveStreamFails > st.ConsecutiveBackupStreamFailures {
 						err := bk.LocalData.BackupStreamStashAppend(streamFile)
 						if err != nil {
 							bedSet.Logger.Warn().Err(err).Msgf("streams - failed to backup stream %s", streamFile.GetDestS3Path())
@@ -163,9 +164,16 @@ func (bk *Backup) createStreamRoutines(
 						bk.CtxEventsCancel()
 						continue
 					}
-					backedUp, err := backupStreams.BackupStream(&streamFile)
+					var backedUp bool
+					// Retry backing up the stream a few times
+					for range st.RetryCount {
+						backedUp, err = backupStreams.BackupStream(&streamFile)
+						if err == nil {
+							break
+						}
+					}
 					if err == nil {
-						retries = 0
+						consecutiveStreamFails = 0
 						if backedUp {
 							stats[streamFile.Source].StreamsOk += 1
 						} else {
@@ -174,7 +182,7 @@ func (bk *Backup) createStreamRoutines(
 					} else {
 						stats[streamFile.Source].StreamsFail += 1
 						bedSet.Logger.Error().Err(err).Msg("streams - backup streams failed.")
-						retries += 1
+						consecutiveStreamFails += 1
 						innerserr := bk.LocalData.BackupStreamStashAppend(streamFile)
 						if innerserr != nil {
 							bedSet.Logger.Error().Err(innerserr).Msgf("data lost failed to backup a stream with dest path %s", streamFile.GetDestS3Path())

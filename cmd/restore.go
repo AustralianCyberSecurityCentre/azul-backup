@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"math/rand"
 	"slices"
 	"sync"
 	"time"
@@ -72,14 +71,13 @@ func (rt *Restore) restartStreamRoutines(
 					var wasUploaded bool
 					var err error
 					// Restore stream with a retry.
-					for range st.RestoreStreamRetryCount {
+					for range st.RetryCount {
 						wasUploaded, err = restoreStream.RestoreStream(objInfo, st.RestoreSkipExistingStreams)
 						if err == nil && wasUploaded {
 							break
 						}
 						// Random backoff for retry
-						r := rand.Intn(1000)
-						time.Sleep(time.Duration(r) * time.Millisecond)
+						bkupcom.SleepRandDuration(st.RetryAverageDelayMs)
 					}
 
 					if wasUploaded {
@@ -100,15 +98,14 @@ func (rt *Restore) restartStreamRoutines(
 	return &streamsWg, chToRestore
 }
 
-func RetryListWithBackoffLoop(maxRetries int, retryFunc func() error) error {
+func RetryListWithBackoffLoop(maxRetries int, averageRandomDelayMs int, retryFunc func() error) error {
 	var err error
 	for range maxRetries {
 		err = retryFunc()
 		if err == nil {
 			return nil
 		}
-		r := rand.Intn(2000)
-		time.Sleep(time.Duration(r) * time.Millisecond)
+		bkupcom.SleepRandDuration(averageRandomDelayMs)
 		bedSet.Logger.Warn().Err(err).Msg("A listing operation has failed retrying.")
 	}
 	bedSet.Logger.Err(err).Msgf("A listing operation has failed %d times and is not going to be retried.", maxRetries)
@@ -181,7 +178,7 @@ func (rt *Restore) restoreStreams(
 			}
 			return nil
 		}
-		err = RetryListWithBackoffLoop(st.RestoreListRetryCount, funcRef)
+		err = RetryListWithBackoffLoop(st.RestoreListRetryCount, st.RetryAverageDelayMs, funcRef)
 		if err != nil {
 			return err
 		}
@@ -233,7 +230,7 @@ func (rt *Restore) createEventRoutine(
 		sortedBucketPrefixes, err = restoreEvents.GetSortedBucketPrefixesOldestToNewest()
 		return err
 	}
-	err = RetryListWithBackoffLoop(st.RestoreListRetryCount, getSortedFunc)
+	err = RetryListWithBackoffLoop(st.RestoreListRetryCount, st.RetryAverageDelayMs, getSortedFunc)
 	if err != nil {
 		bedSet.Logger.Error().Err(err).Msgf("Failed to list buckets in sorted order for event source %s. Stopping now.", sourceEvent)
 		rt.CtxCancel()
@@ -277,14 +274,13 @@ func (rt *Restore) createEventRoutine(
 
 					// Restore event with a retry on failure.
 					var resp *models.ResponsePostEvent
-					for range st.RestoreStreamRetryCount {
+					for range st.RetryCount {
 						resp, err = restoreEvents.RestoreEvent(objInfo)
 						if err == nil {
 							break
 						}
 						// Random backoff for retry
-						r := rand.Intn(1000)
-						time.Sleep(time.Duration(r) * time.Millisecond)
+						bkupcom.SleepRandDuration(st.RetryAverageDelayMs)
 					}
 					if err != nil {
 						bedSet.Logger.Error().Err(err).Msgf("Cancelling restore for source %s, failure on event bundle '%s'", sourceEvent, objInfo.Key)
@@ -304,7 +300,7 @@ func (rt *Restore) createEventRoutine(
 			}
 			return nil
 		}
-		err = RetryListWithBackoffLoop(st.RestoreListRetryCount, retryableListFunc)
+		err = RetryListWithBackoffLoop(st.RestoreListRetryCount, st.RetryAverageDelayMs, retryableListFunc)
 		select {
 		case <-rt.ctx.Done():
 			// if context has been cancelled exit.

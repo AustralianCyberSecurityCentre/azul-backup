@@ -70,28 +70,34 @@ func (bke *BackupEvents) FetchEvents() ([]*msginflight.MsgInFlight, *models.Even
 	var bulk []byte
 	var info *models.EventResponseInfo
 	var err error
-	if bke.model != events.ModelBinary {
-		// non-binary model, no action
-		bulk, info, err = bke.dp.GetEventsBytes(&bedclient.FetchEventsStruct{
-			AvroFormat:      true,
-			Model:           bke.model,
-			Count:           st.EventBatchSize, // large amount of collected events
-			Deadline:        30,                // wait some time for events
-			IsTask:          false,             // not a task, do not track state or expect published statuses
-			RequireHistoric: true,              // track ONLY historical data, not live
-		})
-	} else {
-		// binary model
-		bulk, info, err = bke.dp.GetEventsBytes(&bedclient.FetchEventsStruct{
-			AvroFormat:      true,
-			Model:           bke.model,                         // only backup binary docs
-			Count:           st.EventBatchSize,                 // large amount of collected events
-			Deadline:        30,                                // wait some time for events
-			RequireHistoric: true,                              // track ONLY historical data, not live or expedite
-			IsTask:          false,                             // not a task, do not track state or expect published statuses
-			RequireSources:  []string{bke.source},              // back up a specific source
-			RequireActions:  []events.BinaryAction{bke.action}, // back up a specific type of event
-		})
+
+	for range st.RetryCount {
+		if bke.model != events.ModelBinary {
+			// non-binary model, no action
+			bulk, info, err = bke.dp.GetEventsBytes(&bedclient.FetchEventsStruct{
+				AvroFormat:      true,
+				Model:           bke.model,
+				Count:           st.EventBatchSize, // large amount of collected events
+				Deadline:        30,                // wait some time for events
+				IsTask:          false,             // not a task, do not track state or expect published statuses
+				RequireHistoric: true,              // track ONLY historical data, not live
+			})
+		} else {
+			// binary model
+			bulk, info, err = bke.dp.GetEventsBytes(&bedclient.FetchEventsStruct{
+				AvroFormat:      true,
+				Model:           bke.model,                         // only backup binary docs
+				Count:           st.EventBatchSize,                 // large amount of collected events
+				Deadline:        30,                                // wait some time for events
+				RequireHistoric: true,                              // track ONLY historical data, not live or expedite
+				IsTask:          false,                             // not a task, do not track state or expect published statuses
+				RequireSources:  []string{bke.source},              // back up a specific source
+				RequireActions:  []events.BinaryAction{bke.action}, // back up a specific type of event
+			})
+		}
+		if err == nil {
+			break
+		}
 	}
 	if err != nil {
 		return nil, nil, err
@@ -171,18 +177,28 @@ func (bke *BackupEvents) innerBackupEvents(evs []*msginflight.MsgInFlight) (*Bac
 	if err != nil {
 		return nil, err
 	}
-	r := bytes.NewReader(bulk)
 
-	// compress resource
-	compressor, err := bkupcom.NewGzipCompressReader(r)
-	if err != nil {
-		return nil, err
+	st := bkupcom.Settings
+
+	// Forward events to dispatcher
+	for range st.RetryCount {
+		r := bytes.NewReader(bulk)
+		// compress resource
+		compressor, err := bkupcom.NewGzipCompressReader(r)
+		if err != nil {
+			return nil, err
+		}
+		compressorReadCloser := io.NopCloser(compressor)
+
+		// move to remote s3 storage
+		customId := fmt.Sprintf("%s-%d-%s", lastTimestamp.Format(time.RFC3339Nano), len(evs), lastId)
+		err = bke.ev.Put(bke.source, bke.modelAndAction, customId, compressorReadCloser, -1)
+		// exit on success
+		if err == nil {
+			break
+		}
+		bkupcom.SleepRandDuration(st.RetryAverageDelayMs)
 	}
-	compressorReadCloser := io.NopCloser(compressor)
-
-	// move to remote s3 storage
-	customId := fmt.Sprintf("%s-%d-%s", lastTimestamp.Format(time.RFC3339Nano), len(evs), lastId)
-	err = bke.ev.Put(bke.source, bke.modelAndAction, customId, compressorReadCloser, -1)
 	if err != nil {
 		return nil, err
 	}

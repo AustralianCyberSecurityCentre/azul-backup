@@ -54,7 +54,8 @@ func (s *BackupTestSuite) SetupTest() {
 
 	st := bkupcom.Settings
 	st.RestoreListRetryCount = 1
-	st.RestoreStreamRetryCount = 1
+	st.RetryCount = 1
+	st.RetryAverageDelayMs = 1
 	st.Sources.Sources = map[string]models.SourceItem{}
 	st.Sources.Sources["assemblyline"] = models.SourceItem{ExcludeFromBackup: true}
 	st.Sources.Sources["testing"] = models.SourceItem{ExcludeFromBackup: false}
