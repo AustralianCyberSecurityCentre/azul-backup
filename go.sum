@@ -2,6 +2,8 @@ github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.99 h1:N5osfu9dJO
 github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.99/go.mod h1:wq4fK5d2r+C5+gX2zBi2CSho8YU7COloN9UiCdJXdB0=
 github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.101 h1:CA8gQuTVeWLL82ja/vg+lH5/fEO6mE4GmyeSug1pNaE=
 github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.101/go.mod h1:wq4fK5d2r+C5+gX2zBi2CSho8YU7COloN9UiCdJXdB0=
+github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.105 h1:3GTQuS+oWuurMV0uMtkAfIXuDoyuadK90FSJTDjDSuA=
+github.com/AustralianCyberSecurityCentre/azul-bedrock/v12 v12.0.105/go.mod h1:wq4fK5d2r+C5+gX2zBi2CSho8YU7COloN9UiCdJXdB0=
 github.com/Azure/azure-sdk-for-go/sdk/azcore v1.23.0 h1:4gRPBpN1f6xt88yi4WR26m7XaD9OlWtVT6bWPdGUIok=
 github.com/Azure/azure-sdk-for-go/sdk/azcore v1.23.0/go.mod h1:G7QVLxw1j1JVyrO1MA95S8m8HStaaleDZYTcfGgjB2o=
 github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.14.0 h1:CU4+EJeJi3TKYWEcYuSdWsjzw0nVsK/H0MSQOiPcymU=
