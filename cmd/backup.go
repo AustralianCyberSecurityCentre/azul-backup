@@ -527,7 +527,7 @@ var backupCmd = &cobra.Command{
 		bk.DoBackup(streamStore, eventStore, dpStreamsClient, dpEventClients)
 
 		runtime := time.Since(startTime).Seconds()
-		bedSet.Logger.Info().Msgf("Backup terminated after %.2fs\n", runtime)
+		log.Printf("Backup terminated after %.2fs\n", runtime)
 	},
 }
 
@@ -547,7 +547,7 @@ var clearBadBackupStreams = &cobra.Command{
 			bedSet.Logger.Warn().Msg("Deleting all the streams that have failed to backup more than once.")
 			bk.LocalData.FailedBackupStreamDeleteFile()
 		} else {
-			bedSet.Logger.Info().Msg("Not deleting failed streams as you need to add the confirm flag to confirm data loss.")
+			log.Print("Not deleting failed streams as you need to add the --confirm flag to confirm data loss.")
 		}
 	},
 }
@@ -563,9 +563,9 @@ var listBadBackupStreams = &cobra.Command{
 		if err != nil {
 			bedSet.Logger.Error().Err(err).Msg("failed to load bad streams.")
 		}
-		bedSet.Logger.Info().Msg("Streams that have failed to backup.")
+		log.Print("Streams that have failed to backup.")
 		for _, curStream := range streams {
-			bedSet.Logger.Info().Msg(curStream.GetDestS3Path())
+			log.Print(curStream.GetDestS3Path())
 		}
 
 		failedStreams, err := bk.LocalData.FailedBackupStreamLoad()
@@ -573,9 +573,9 @@ var listBadBackupStreams = &cobra.Command{
 			bedSet.Logger.Error().Err(err).Msg("failed to load bad streams.")
 			return
 		}
-		bedSet.Logger.Info().Msg("Streams that have failed to backup and don't appear to exist in dispatcher.")
+		log.Print("Streams that have failed to backup and don't appear to exist in dispatcher.")
 		for _, curStream := range failedStreams {
-			bedSet.Logger.Info().Msg(curStream.GetDestS3Path())
+			log.Print(curStream.GetDestS3Path())
 		}
 	},
 }
@@ -601,15 +601,15 @@ var manualRetryBadBackupFiles = &cobra.Command{
 		var reAttempt ReattemptBackupStream
 		if simpleStreamRestore && notInDispatcherStreamRestore {
 			reAttempt = ReattemptBackupStreamBoth
-			bedSet.Logger.Info().Msg("Re-attempting to restore all failed streams.")
+			log.Print("Re-attempting to restore all failed streams.")
 		} else if simpleStreamRestore {
 			reAttempt = ReattemptBackupStreamSimpleFails
-			bedSet.Logger.Info().Msg("Re-attempting just the simple files that have only failed to restore once.")
+			log.Print("Re-attempting just the simple files that have only failed to restore once.")
 		} else if notInDispatcherStreamRestore {
 			reAttempt = ReattemptBackupStreamComplexFails
-			bedSet.Logger.Info().Msg("Re-attempting just the complex files that aren't in dispatcher and have failed more than once.")
+			log.Print("Re-attempting just the complex files that aren't in dispatcher and have failed more than once.")
 		} else {
-			bedSet.Logger.Info().Msg("Nothing selected to restore so nothing to restore.")
+			log.Print("Nothing selected to restore so nothing to restore.")
 			return
 		}
 
@@ -694,7 +694,7 @@ var addBadBackupStream = &cobra.Command{
 	Use:   "add-failed-stream [args]",
 	Short: "Add a new failed stream into the files to restore.",
 	Long:  `Add a new failed stream into the files to restore.`,
-	Args:  cobra.NoArgs,
+	Args:  cobra.ArbitraryArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		bk := NewBackup()
 		for _, path := range args {
@@ -708,6 +708,8 @@ var addBadBackupStream = &cobra.Command{
 			err := bk.LocalData.FailedBackupStreamStashAppend(backupRequest)
 			if err != nil {
 				bedSet.Logger.Warn().Err(err).Msgf("failed to add backup stream '%s' as a backup stream", path)
+			} else {
+				log.Printf("Successfully added %s", path)
 			}
 		}
 	},
