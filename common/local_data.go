@@ -172,7 +172,6 @@ func (fc *LocalData) FailedBackupStreamStashAppend(obr StreamBackupRequest) erro
 	fc.backupStreamsLock.Lock()
 	defer fc.backupStreamsLock.Unlock()
 	data := fmt.Sprintf("%s/%s/%s/%s\n", obr.EventId, obr.Source, obr.Label, obr.Sha256)
-	bedSet.Logger.Warn().Msgf("giving up trying to restore the file '%s'", data)
 	return fc.stashAppendToFile(fc.fpStreamBackupFailed(), []byte(data))
 }
 
