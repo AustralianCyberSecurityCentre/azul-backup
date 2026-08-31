@@ -113,6 +113,9 @@ func (fc *LocalData) BackupEventsDelete(source, model, action string) {
 func (fc *LocalData) fpStreamBackup() string {
 	return filepath.Join(fc.backupDir, "backup.stream")
 }
+func (fc *LocalData) fpStreamBackupFailed() string {
+	return filepath.Join(fc.backupDir, "backup-failed.stream")
+}
 
 /*Appends the info about a file that needs to be backed up but can't be right now.*/
 func (fc *LocalData) BackupStreamStashAppend(obr StreamBackupRequest) error {
@@ -120,6 +123,15 @@ func (fc *LocalData) BackupStreamStashAppend(obr StreamBackupRequest) error {
 	defer fc.backupStreamsLock.Unlock()
 	data := fmt.Sprintf("%s/%s/%s/%s\n", obr.EventId, obr.Source, obr.Label, obr.Sha256)
 	return fc.stashAppendToFile(fc.fpStreamBackup(), []byte(data))
+}
+
+// Stash a stream that has failed multiple times and won't be retried.
+func (fc *LocalData) BackupFailedStreamStashAppend(obr StreamBackupRequest) error {
+	fc.backupStreamsLock.Lock()
+	defer fc.backupStreamsLock.Unlock()
+	data := fmt.Sprintf("%s/%s/%s/%s\n", obr.EventId, obr.Source, obr.Label, obr.Sha256)
+	bedSet.Logger.Warn().Msgf("giving up trying to restore the file '%s'", data)
+	return fc.stashAppendToFile(fc.fpStreamBackupFailed(), []byte(data))
 }
 
 /*Load the streams that were not correctly saved during the last run.*/

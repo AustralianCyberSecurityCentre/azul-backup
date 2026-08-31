@@ -59,6 +59,7 @@ func NewBackup() *Backup {
 // and put them back into the bkupObject channel ready to be backed up.
 func (bk *Backup) createReattemptRoutines(
 	chBackupStreams chan bkupcom.StreamBackupRequest,
+	chBackupStreamsDeduped chan bkupcom.StreamBackupRequest,
 ) *sync.WaitGroup {
 	var wgReattempt sync.WaitGroup
 	wgReattempt.Add(1)
@@ -76,6 +77,20 @@ func (bk *Backup) createReattemptRoutines(
 		bk.LocalData.BackupStreamDelete()
 		for _, obr := range previouslyFailedStreams {
 			chBackupStreams <- obr
+		}
+		// Verify that all the stream channels are emptied.
+		MAX_SECONDS := 1000
+		ticker := time.NewTicker(1 * time.Second)
+		totalTicks := 0
+		for range ticker.C {
+			if totalTicks > MAX_SECONDS {
+				return
+			}
+			totalTicks += 1
+			if len(chBackupStreams) == 0 && len(chBackupStreamsDeduped) == 0 {
+				bedSet.Logger.Info().Msg("Backup streams that needed re-attempts now complete!")
+				return
+			}
 		}
 	}()
 	return &wgReattempt
@@ -380,12 +395,20 @@ func (bk *Backup) DoBackup(
 
 	backupStreams := backup.NewBackupStreams(dpStreamsClient, streamStore, &chBackupStreams)
 
-	wgReattempt := bk.createReattemptRoutines(chBackupStreams)
+	wgReattempt := bk.createReattemptRoutines(chBackupStreams, chBackupStreamsDeduped)
 	wgDedupe := bk.createDedupeRoutines(chBackupStreams, chBackupStreamsDeduped, cacheObjBkupContext)
 	wgStreamBackup := bk.createStreamRoutines(dpEventClients, chBackupStreamsDeduped, backupStreams, chStats)
 
 	// Wait until all previously failed streams are processed before allowing events to start up.
 	wgReattempt.Wait()
+
+	select {
+	case <-bk.ctxEvents.Done():
+		bk.checkForSecondTimeBadBackups(backupStreams)
+	default:
+		// Stream restore didn't cause a failure carry on to events.
+	}
+
 	wgEventBackup := bk.createEventRoutines(eventStore, dpEventClients, chBackupStreams, chStats)
 	bedSet.Logger.Info().Msg("all backup routines started")
 
@@ -410,6 +433,40 @@ func (bk *Backup) DoBackup(
 	bk.CtxSigWatcherCancel()
 
 	return stats
+}
+
+func (bk *Backup) checkForSecondTimeBadBackups(backupStreams *backup.BackupStreams) {
+	reloadedPreviouslyFailedStreams, err := bk.LocalData.BackupStreamLoad()
+	if err != nil {
+		// Failed to load stream data, crash the application.
+		log.Fatalf("Failed to load backup streams during second check")
+		return
+	}
+	// Delete the backed up streams and only store files that have a chance of succeeding in there.
+	bk.LocalData.BackupStreamDelete()
+	// Place all files in appropriate storage.
+	for _, stream := range reloadedPreviouslyFailedStreams {
+		exists, err := backupStreams.StreamExistsInDispatcher(&stream)
+		if err == nil && !exists {
+			// Show full stream in resulting label as it's important enough to take the prometheus performance hit.
+			prom.BackupFailedStream.WithLabelValues(stream.GetDestS3Path())
+			err = bk.LocalData.BackupFailedStreamStashAppend(stream)
+			if err != nil {
+				bedSet.Logger.Error().Err(err).Msgf("streams - failed to stash stream backup to failed stream backup location for stream %s", stream.GetDestS3Path())
+				prom.BackupObjectError.WithLabelValues("BackupStreamStashAppend3").Inc()
+				err = bk.LocalData.BackupStreamStashAppend(stream)
+				if err != nil {
+					bedSet.Logger.Error().Err(err).Msgf("streams - failed to stash stream backup in secondary location for stream %s", stream.GetDestS3Path())
+				}
+			}
+		} else {
+			err = bk.LocalData.BackupStreamStashAppend(stream)
+			if err != nil {
+				bedSet.Logger.Error().Err(err).Msgf("streams - failed to stash stream backup to failed stream backup location for stream %s", stream.GetDestS3Path())
+				prom.BackupObjectError.WithLabelValues("BackupStreamStashAppend4").Inc()
+			}
+		}
+	}
 }
 
 var backupCmd = &cobra.Command{
