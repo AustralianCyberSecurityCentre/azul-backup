@@ -538,6 +538,7 @@ var clearBadBackupStreams = &cobra.Command{
 	Long:  `Clear backup streams that are considered un-recoverable.`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		log.SetFlags(0)
 		bk := NewBackup()
 		confirmDeletion, err := cmd.Flags().GetBool(CLEAR_FAILED_FILES_FLAG)
 		if err != nil {
@@ -559,6 +560,7 @@ var listBadBackupStreams = &cobra.Command{
 	Long:  `List backup streams that have failed once and separately more than once and they don't exist in dispatcher.`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		log.SetFlags(0)
 		bk := NewBackup()
 		streams, err := bk.LocalData.BackupStreamLoad()
 		if err != nil {
@@ -587,6 +589,7 @@ var manualRetryBadBackupFiles = &cobra.Command{
 	Long:  `Manually re-attempt to backup failed streams.`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		log.SetFlags(0)
 		simpleStreamRestore, err := cmd.Flags().GetBool(MANUAL_BACKUP_SIMPLE_FAILED_FILES_RESTORE_FLAG)
 		if err != nil {
 			bedSet.Logger.Fatal().Msgf("Failed to perform restore because flag '%s' didn't even have a default.", MANUAL_BACKUP_SIMPLE_FAILED_FILES_RESTORE_FLAG)
@@ -697,6 +700,7 @@ var addBadBackupStream = &cobra.Command{
 	Long:  `Add a new failed stream into the files to restore.`,
 	Args:  cobra.ArbitraryArgs,
 	Run: func(cmd *cobra.Command, args []string) {
+		log.SetFlags(0)
 		bk := NewBackup()
 		for _, path := range args {
 			source, label, id := bkupcom.SplitLastThree(path)
