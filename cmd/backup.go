@@ -624,11 +624,20 @@ var manualRetryBadBackupFiles = &cobra.Command{
 
 		// Channel stats (discard them all)
 		chStats := make(chan map[string]*backup.BackupStats)
+		var stats map[string]*backup.BackupStats
+		for source := range dpEventClients {
+			stats[source] = &backup.BackupStats{}
+		}
+
+		// create stats monitor routine
 		wgStats := sync.WaitGroup{}
 		wgStats.Add(1)
 		go func() {
 			defer wgStats.Done()
-			for range chStats {
+			for res := range chStats {
+				for k, v := range res {
+					stats[k].Add(v)
+				}
 			}
 		}()
 
@@ -662,17 +671,19 @@ var manualRetryBadBackupFiles = &cobra.Command{
 		// Wait until all previously failed streams are processed before allowing events to start up.
 		wgReattempt.Wait()
 
-		// Kill stats channel
-		close(chStats)
 		// Cancel everything else.
 		bk.CtxEventsCancel()
 		bk.CtxStreamsCancel()
-		wgStats.Wait()
 		wgStreamBackup.Wait()
+
+		// Kill stats channel
+		close(chStats)
+		wgStats.Wait()
 
 		// Re-check what failures are complex and not.
 		bk.checkForSecondTimeBadBackups(backupStreams)
 
+		backup.UpdateBackupStats(time.Time{}, stats, true)
 		bk.CtxSigWatcherCancel()
 	},
 }
