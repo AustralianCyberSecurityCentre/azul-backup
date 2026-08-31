@@ -581,7 +581,7 @@ var listBadBackupStreams = &cobra.Command{
 }
 
 var manualRetryBadBackupFiles = &cobra.Command{
-	Use:   "attempt-backup-streams",
+	Use:   "trigger-backup-failed-streams",
 	Short: "Manually re-attempt to backup failed streams.",
 	Long:  `Manually re-attempt to backup failed streams.`,
 	Args:  cobra.NoArgs,
@@ -624,8 +624,13 @@ var manualRetryBadBackupFiles = &cobra.Command{
 
 		// Channel stats (discard them all)
 		chStats := make(chan map[string]*backup.BackupStats)
-		var stats map[string]*backup.BackupStats
 
+		// Setup all the stats for collection.
+		stats := map[string]*backup.BackupStats{}
+		// gather needed source directories
+		for source := range dpEventClients {
+			stats[source] = &backup.BackupStats{}
+		}
 		// create stats monitor routine
 		wgStats := sync.WaitGroup{}
 		wgStats.Add(1)
