@@ -485,6 +485,7 @@ func (bk *Backup) checkForSecondTimeBadBackups(backupStreams *backup.BackupStrea
 		if err == nil && !exists {
 			// Show full stream in resulting label as it's important enough to take the prometheus performance hit.
 			prom.BackupFailedStream.WithLabelValues(stream.GetDestS3Path())
+			bedSet.Logger.Warn().Msgf("giving up trying to restore the file '%s'", stream.GetDestS3Path())
 			err = bk.LocalData.FailedBackupStreamStashAppend(stream)
 			if err != nil {
 				bedSet.Logger.Error().Err(err).Msgf("streams - failed to stash stream backup to failed stream backup location for stream %s", stream.GetDestS3Path())
