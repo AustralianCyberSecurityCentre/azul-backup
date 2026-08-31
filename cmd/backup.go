@@ -678,7 +678,7 @@ var manualRetryBadBackupFiles = &cobra.Command{
 }
 
 var addBadBackupStream = &cobra.Command{
-	Use:   "add-failed-stream",
+	Use:   "add-failed-stream [args]",
 	Short: "Add a new failed stream into the files to restore.",
 	Long:  `Add a new failed stream into the files to restore.`,
 	Args:  cobra.NoArgs,
