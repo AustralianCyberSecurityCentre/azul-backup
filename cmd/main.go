@@ -8,7 +8,7 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "azul-backup",
+	Use:   "backup",
 	Short: "Azul event backup & restore",
 	Long:  `Azul event backup & restore`,
 }
