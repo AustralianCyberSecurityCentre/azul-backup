@@ -625,9 +625,6 @@ var manualRetryBadBackupFiles = &cobra.Command{
 		// Channel stats (discard them all)
 		chStats := make(chan map[string]*backup.BackupStats)
 		var stats map[string]*backup.BackupStats
-		for source := range dpEventClients {
-			stats[source] = &backup.BackupStats{}
-		}
 
 		// create stats monitor routine
 		wgStats := sync.WaitGroup{}
