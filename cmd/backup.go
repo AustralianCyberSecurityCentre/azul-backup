@@ -23,6 +23,19 @@ import (
 // This happens if a hash can't be uploaded to S3 and it's S3 path also couldn't be saved to disk.
 const BACKUP_STREAM_STASH_LABEL_VALUE = "BackupStreamStashAppend1"
 
+const MANUAL_BACKUP_SIMPLE_FAILED_FILES_RESTORE_FLAG = "include-failed-simple"
+const MANUAL_BACKUP_FAILED_FILES_RESTORE_FLAG = "not-failed-complex"
+const CLEAR_FAILED_FILES_FLAG = "confirm"
+
+type ReattemptBackupStream string
+
+// All enums added here need to be added to Python's exception_enums.py as well.
+const (
+	ReattemptBackupStreamSimpleFails  = ReattemptBackupStream("simple-fails")
+	ReattemptBackupStreamComplexFails = ReattemptBackupStream("complex-fails")
+	ReattemptBackupStreamBoth         = ReattemptBackupStream("both")
+)
+
 type Backup struct {
 	ctxEvents           context.Context
 	CtxEventsCancel     context.CancelFunc
@@ -60,21 +73,42 @@ func NewBackup() *Backup {
 func (bk *Backup) createReattemptRoutines(
 	chBackupStreams chan bkupcom.StreamBackupRequest,
 	chBackupStreamsDeduped chan bkupcom.StreamBackupRequest,
+	reAttemptStreamChoice ReattemptBackupStream,
 ) *sync.WaitGroup {
 	var wgReattempt sync.WaitGroup
 	wgReattempt.Add(1)
 	go func() {
 		defer wgReattempt.Done()
-		previouslyFailedStreams, err := bk.LocalData.BackupStreamLoad()
-		if err != nil {
-			// Failed to load stream data, crash the application.
-			bk.CtxEventsCancel()
-			bk.CtxStreamsCancel()
-			log.Fatalf("Failed to load")
-			return
+		var previouslyFailedStreams []bkupcom.StreamBackupRequest
+		var err error
+		if reAttemptStreamChoice == ReattemptBackupStreamSimpleFails || reAttemptStreamChoice == ReattemptBackupStreamBoth {
+			previouslyFailedStreams, err = bk.LocalData.BackupStreamLoad()
+			if err != nil {
+				// Failed to load stream data, crash the application.
+				bk.CtxEventsCancel()
+				bk.CtxStreamsCancel()
+				log.Fatalf("Failed to load")
+				return
+			}
+		}
+		if reAttemptStreamChoice == ReattemptBackupStreamComplexFails || reAttemptStreamChoice == ReattemptBackupStreamBoth {
+			additionalFails, err := bk.LocalData.FailedBackupStreamLoad()
+			if err != nil {
+				// Failed to load stream data, crash the application.
+				bk.CtxEventsCancel()
+				bk.CtxStreamsCancel()
+				log.Fatalf("Failed to load failed streams")
+				return
+			}
+			previouslyFailedStreams = append(previouslyFailedStreams, additionalFails...)
 		}
 		// Delete old backup streams file to prevent multiple copies being appended to the same file.
-		bk.LocalData.BackupStreamDelete()
+		if reAttemptStreamChoice == ReattemptBackupStreamSimpleFails || reAttemptStreamChoice == ReattemptBackupStreamBoth {
+			bk.LocalData.BackupStreamDelete()
+		}
+		if reAttemptStreamChoice == ReattemptBackupStreamComplexFails || reAttemptStreamChoice == ReattemptBackupStreamBoth {
+			bk.LocalData.FailedBackupStreamDeleteFile()
+		}
 		for _, obr := range previouslyFailedStreams {
 			chBackupStreams <- obr
 		}
@@ -395,7 +429,7 @@ func (bk *Backup) DoBackup(
 
 	backupStreams := backup.NewBackupStreams(dpStreamsClient, streamStore, &chBackupStreams)
 
-	wgReattempt := bk.createReattemptRoutines(chBackupStreams, chBackupStreamsDeduped)
+	wgReattempt := bk.createReattemptRoutines(chBackupStreams, chBackupStreamsDeduped, ReattemptBackupStreamSimpleFails)
 	wgDedupe := bk.createDedupeRoutines(chBackupStreams, chBackupStreamsDeduped, cacheObjBkupContext)
 	wgStreamBackup := bk.createStreamRoutines(dpEventClients, chBackupStreamsDeduped, backupStreams, chStats)
 
@@ -450,7 +484,7 @@ func (bk *Backup) checkForSecondTimeBadBackups(backupStreams *backup.BackupStrea
 		if err == nil && !exists {
 			// Show full stream in resulting label as it's important enough to take the prometheus performance hit.
 			prom.BackupFailedStream.WithLabelValues(stream.GetDestS3Path())
-			err = bk.LocalData.BackupFailedStreamStashAppend(stream)
+			err = bk.LocalData.FailedBackupStreamStashAppend(stream)
 			if err != nil {
 				bedSet.Logger.Error().Err(err).Msgf("streams - failed to stash stream backup to failed stream backup location for stream %s", stream.GetDestS3Path())
 				prom.BackupObjectError.WithLabelValues("BackupStreamStashAppend3").Inc()
@@ -496,6 +530,158 @@ var backupCmd = &cobra.Command{
 	},
 }
 
+var clearBadBackupStreams = &cobra.Command{
+	Use:   "clear-backup-streams",
+	Short: "Clear backup streams that are considered un-recoverable.",
+	Long:  `Clear backup streams that are considered un-recoverable.`,
+	Args:  cobra.NoArgs,
+	Run: func(cmd *cobra.Command, args []string) {
+		bk := NewBackup()
+		confirmDeletion, err := cmd.Flags().GetBool(CLEAR_FAILED_FILES_FLAG)
+		if err != nil {
+			bedSet.Logger.Fatal().Msgf("Failed to clear failed fiels because flag '%s' didn't even have a default.", CLEAR_FAILED_FILES_FLAG)
+			return
+		}
+		if confirmDeletion {
+			bedSet.Logger.Warn().Msg("Deleting all the streams that have failed to backup more than once.")
+			bk.LocalData.FailedBackupStreamDeleteFile()
+		} else {
+			bedSet.Logger.Info().Msg("Not deleting failed streams as you need to add the confirm flag to confirm data loss.")
+		}
+	},
+}
+
+var listBadBackupStreams = &cobra.Command{
+	Use:   "list-failed-backup-streams",
+	Short: "List failed backup streams.",
+	Long:  `List backup streams that have failed once and separately more than once and they don't exist in dispatcher.`,
+	Args:  cobra.NoArgs,
+	Run: func(cmd *cobra.Command, args []string) {
+		bk := NewBackup()
+		streams, err := bk.LocalData.BackupStreamLoad()
+		if err != nil {
+			bedSet.Logger.Error().Err(err).Msg("failed to load bad streams.")
+		}
+		bedSet.Logger.Info().Msg("Streams that have failed to backup.")
+		for _, curStream := range streams {
+			bedSet.Logger.Info().Msg(curStream.GetDestS3Path())
+		}
+
+		failedStreams, err := bk.LocalData.FailedBackupStreamLoad()
+		if err != nil {
+			bedSet.Logger.Error().Err(err).Msg("failed to load bad streams.")
+			return
+		}
+		bedSet.Logger.Info().Msg("Streams that have failed to backup and don't appear to exist in dispatcher.")
+		for _, curStream := range failedStreams {
+			bedSet.Logger.Info().Msg(curStream.GetDestS3Path())
+		}
+	},
+}
+
+var manualRetryBadBackupFiles = &cobra.Command{
+	Use:   "attempt-backup-streams",
+	Short: "Manually re-attempt to backup failed streams.",
+	Long:  `Manually re-attempt to backup failed streams.`,
+	Args:  cobra.NoArgs,
+	Run: func(cmd *cobra.Command, args []string) {
+		simpleStreamRestore, err := cmd.Flags().GetBool(MANUAL_BACKUP_SIMPLE_FAILED_FILES_RESTORE_FLAG)
+		if err != nil {
+			bedSet.Logger.Fatal().Msgf("Failed to perform restore because flag '%s' didn't even have a default.", MANUAL_BACKUP_SIMPLE_FAILED_FILES_RESTORE_FLAG)
+			return
+		}
+		notInDispatcherStreamRestore, err := cmd.Flags().GetBool(MANUAL_BACKUP_FAILED_FILES_RESTORE_FLAG)
+		if err != nil {
+			bedSet.Logger.Fatal().Msgf("Failed to perform restore because flag '%s' didn't even have a default.", MANUAL_BACKUP_FAILED_FILES_RESTORE_FLAG)
+			return
+		}
+
+		// Check what streams should have a restore attempted.
+		var reAttempt ReattemptBackupStream
+		if simpleStreamRestore && notInDispatcherStreamRestore {
+			reAttempt = ReattemptBackupStreamBoth
+			bedSet.Logger.Info().Msg("Re-attempting to restore all failed streams.")
+		} else if simpleStreamRestore {
+			reAttempt = ReattemptBackupStreamSimpleFails
+			bedSet.Logger.Info().Msg("Re-attempting just the simple files that have only failed to restore once.")
+		} else if notInDispatcherStreamRestore {
+			reAttempt = ReattemptBackupStreamComplexFails
+			bedSet.Logger.Info().Msg("Re-attempting just the complex files that aren't in dispatcher and have failed more than once.")
+		} else {
+			bedSet.Logger.Info().Msg("Nothing selected to restore so nothing to restore.")
+			return
+		}
+
+		st := bkupcom.Settings
+		bk := NewBackup()
+		author := NewAuthor("backup-streams", "all", "all", st.BackupID)
+		dpStreamsClient := bedclient.NewClient(st.DispatcherEvents, st.DispatcherStreams, *author, st.DeploymentKey)
+		dpEventClients := prepareSources("backup", nil)
+
+		// streams bucket creation
+		streamStore := bkupcom.NewObjectS3Store(st)
+
+		// Channel stats (discard them all)
+		chStats := make(chan map[string]*backup.BackupStats)
+		wgStats := sync.WaitGroup{}
+		wgStats.Add(1)
+		go func() {
+			defer wgStats.Done()
+			for range chStats {
+			}
+		}()
+
+		// Prevent signal termination from going early as the streams might be lost.
+		chSignals := make(chan os.Signal, 10)
+		signal.Notify(chSignals, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
+		go func() {
+			safeGuardCounter := 0
+			for {
+				select {
+				case <-chSignals:
+					bk.RapidShutdown = true
+					safeGuardCounter += 1
+					bedSet.Logger.Warn().Msgf("User has requested process exit, exit has begun. If you retry cancellation data loss will occur after 5 attempts attempt number '%d'", safeGuardCounter)
+					if safeGuardCounter > 4 {
+						bedSet.Logger.Warn().Msgf("Potentially lost streams that were attempted to be backed up.")
+						os.Exit(99)
+					}
+				case <-bk.CtxSigWatcher.Done(): // Top listening for signals once everything else is finished.
+					return
+				}
+
+			}
+		}()
+
+		chBackupStreams := make(chan bkupcom.StreamBackupRequest)
+		backupStreams := backup.NewBackupStreams(dpStreamsClient, streamStore, &chBackupStreams)
+		wgReattempt := bk.createReattemptRoutines(chBackupStreams, chBackupStreams, reAttempt)
+		wgStreamBackup := bk.createStreamRoutines(dpEventClients, chBackupStreams, backupStreams, chStats)
+
+		// Wait until all previously failed streams are processed before allowing events to start up.
+		wgReattempt.Wait()
+
+		// Kill stats channel
+		close(chStats)
+		// Cancel everything else.
+		bk.CtxEventsCancel()
+		bk.CtxStreamsCancel()
+		wgStats.Wait()
+		wgStreamBackup.Wait()
+
+		// Re-check what failures are complex and not.
+		bk.checkForSecondTimeBadBackups(backupStreams)
+
+		bk.CtxSigWatcherCancel()
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(backupCmd)
+	manualRetryBadBackupFiles.Flags().Bool(MANUAL_BACKUP_SIMPLE_FAILED_FILES_RESTORE_FLAG, true, "Manually trigger a backup of files that have failed to backup once.")
+	manualRetryBadBackupFiles.Flags().Bool(MANUAL_BACKUP_FAILED_FILES_RESTORE_FLAG, true, "Manually retry to backup the files that have failed more than once and don't exist in dispatcher.")
+	rootCmd.AddCommand(manualRetryBadBackupFiles)
+	clearBadBackupStreams.Flags().Bool(CLEAR_FAILED_FILES_FLAG, false, "Confirmation to prevent accidental deletion of files")
+	rootCmd.AddCommand(clearBadBackupStreams)
+	rootCmd.AddCommand(listBadBackupStreams)
 }

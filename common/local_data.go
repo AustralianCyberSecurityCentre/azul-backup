@@ -124,22 +124,11 @@ func (fc *LocalData) BackupStreamStashAppend(obr StreamBackupRequest) error {
 	data := fmt.Sprintf("%s/%s/%s/%s\n", obr.EventId, obr.Source, obr.Label, obr.Sha256)
 	return fc.stashAppendToFile(fc.fpStreamBackup(), []byte(data))
 }
-
-// Stash a stream that has failed multiple times and won't be retried.
-func (fc *LocalData) BackupFailedStreamStashAppend(obr StreamBackupRequest) error {
-	fc.backupStreamsLock.Lock()
-	defer fc.backupStreamsLock.Unlock()
-	data := fmt.Sprintf("%s/%s/%s/%s\n", obr.EventId, obr.Source, obr.Label, obr.Sha256)
-	bedSet.Logger.Warn().Msgf("giving up trying to restore the file '%s'", data)
-	return fc.stashAppendToFile(fc.fpStreamBackupFailed(), []byte(data))
-}
-
-/*Load the streams that were not correctly saved during the last run.*/
-func (fc *LocalData) BackupStreamLoad() ([]StreamBackupRequest, error) {
+func (fc *LocalData) baseStreamLoad(streamPath string) ([]StreamBackupRequest, error) {
 	fc.backupStreamsLock.Lock()
 	defer fc.backupStreamsLock.Unlock()
 	var result []StreamBackupRequest
-	content, err := fc.loadFile(fc.fpStreamBackup())
+	content, err := fc.loadFile(streamPath)
 	if err != nil {
 		return result, err
 	}
@@ -162,10 +151,36 @@ func (fc *LocalData) BackupStreamLoad() ([]StreamBackupRequest, error) {
 	}
 	return result, nil
 }
+
+/*Load the streams that were not correctly saved during the last run.*/
+func (fc *LocalData) BackupStreamLoad() ([]StreamBackupRequest, error) {
+	return fc.baseStreamLoad(fc.fpStreamBackup())
+}
 func (fc *LocalData) BackupStreamDelete() {
 	fc.backupStreamsLock.Lock()
 	defer fc.backupStreamsLock.Unlock()
 	fc.deleteFile(fc.fpStreamBackup())
+}
+
+// --- Backup streams bad streams that couldn't backup ---
+func (fc *LocalData) FailedBackupStreamLoad() ([]StreamBackupRequest, error) {
+	return fc.baseStreamLoad(fc.fpStreamBackupFailed())
+}
+
+// Stash a stream that has failed multiple times and won't be retried.
+func (fc *LocalData) FailedBackupStreamStashAppend(obr StreamBackupRequest) error {
+	fc.backupStreamsLock.Lock()
+	defer fc.backupStreamsLock.Unlock()
+	data := fmt.Sprintf("%s/%s/%s/%s\n", obr.EventId, obr.Source, obr.Label, obr.Sha256)
+	bedSet.Logger.Warn().Msgf("giving up trying to restore the file '%s'", data)
+	return fc.stashAppendToFile(fc.fpStreamBackupFailed(), []byte(data))
+}
+
+// Delete backup stream file.
+func (fc *LocalData) FailedBackupStreamDeleteFile() {
+	fc.backupStreamsLock.Lock()
+	defer fc.backupStreamsLock.Unlock()
+	fc.deleteFile(fc.fpStreamBackupFailed())
 }
 
 // --- Restore Events ---
