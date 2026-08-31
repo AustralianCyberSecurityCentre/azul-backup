@@ -13,6 +13,7 @@ import (
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
 	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
 	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
 	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
 	lru "github.com/hashicorp/golang-lru/v2"
@@ -676,6 +677,29 @@ var manualRetryBadBackupFiles = &cobra.Command{
 	},
 }
 
+var addBadBackupStream = &cobra.Command{
+	Use:   "add-failed-stream",
+	Short: "Add a new failed stream into the files to restore.",
+	Long:  `Add a new failed stream into the files to restore.`,
+	Args:  cobra.NoArgs,
+	Run: func(cmd *cobra.Command, args []string) {
+		bk := NewBackup()
+		for _, path := range args {
+			source, label, id := bkupcom.SplitLastThree(path)
+			backupRequest := bkupcom.StreamBackupRequest{
+				EventId: "userSupplied",
+				Source:  source,
+				Label:   events.DatastreamLabel(label),
+				Sha256:  id,
+			}
+			err := bk.LocalData.FailedBackupStreamStashAppend(backupRequest)
+			if err != nil {
+				bedSet.Logger.Warn().Err(err).Msgf("failed to add backup stream '%s' as a backup stream", path)
+			}
+		}
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(backupCmd)
 	manualRetryBadBackupFiles.Flags().Bool(MANUAL_BACKUP_SIMPLE_FAILED_FILES_RESTORE_FLAG, true, "Manually trigger a backup of files that have failed to backup once.")
@@ -684,4 +708,5 @@ func init() {
 	clearBadBackupStreams.Flags().Bool(CLEAR_FAILED_FILES_FLAG, false, "Confirmation to prevent accidental deletion of files")
 	rootCmd.AddCommand(clearBadBackupStreams)
 	rootCmd.AddCommand(listBadBackupStreams)
+	rootCmd.AddCommand(addBadBackupStream)
 }
