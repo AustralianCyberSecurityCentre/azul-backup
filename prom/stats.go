@@ -10,6 +10,10 @@ var (
 		Name: "recovery_backup_object_error",
 		Help: "Non-critical error when backing up object.",
 	}, []string{"keyword"})
+	BackupFailedStream = promauto.NewCounterVec(prometheus.CounterOpts{
+		Name: "recovery_backup_stream_cant_be_backed_up",
+		Help: "Stream the system can't backup and will have to be manually attempted.",
+	}, []string{"streampath"})
 	BackupEventsError = promauto.NewCounterVec(prometheus.CounterOpts{
 		Name: "recovery_backup_events_error",
 		Help: "Non-critical error when backing up events.",

@@ -8,9 +8,9 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "azul-backup",
-	Short: "Azul event backup & restore",
-	Long:  `Azul event backup & restore`,
+	Use:   "azul-recovery",
+	Short: "Azul event backup & restore commands",
+	Long:  `Azul event backup & restore, and modify current restore state.`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

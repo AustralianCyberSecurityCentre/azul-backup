@@ -19,10 +19,10 @@ RUN git config --global url."git@github.com:AustralianCyberSecurityCentre/".inst
 COPY . /src
 
 # full static builds with no ld deps, so we can copy it to scratch
-RUN cd /src && go build -v -a -tags netgo -ldflags '-w -extldflags "-static"' -o /go/bin/backup main.go
+RUN cd /src && go build -v -a -tags netgo -ldflags '-w -extldflags "-static"' -o /go/bin/azul-recovery main.go
 
 # now copy artifacts to a lightweight image
 FROM scratch
 COPY --from=builder /go/bin /bin
 COPY --from=builder /etc/ssl/certs /etc/ssl/certs
-ENTRYPOINT ["/bin/backup"]
+ENTRYPOINT ["/bin/azul-recovery"]

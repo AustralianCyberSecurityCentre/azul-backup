@@ -75,7 +75,7 @@ func (s *FolderPrefixStore) List(ctx context.Context, prefix string, startAfter 
 			obj.Key = strings.TrimPrefix(obj.Key, s.prefix)
 			// Re-derive source/label/id from the stripped key so callers see the
 			// same values they would against a dedicated bucket.
-			obj.Source, obj.Label, obj.Id = splitLastThree(obj.Key)
+			obj.Source, obj.Label, obj.Id = SplitLastThree(obj.Key)
 			select {
 			case <-ctx.Done():
 				return
@@ -86,9 +86,9 @@ func (s *FolderPrefixStore) List(ctx context.Context, prefix string, startAfter 
 	return out
 }
 
-// splitLastThree mirrors the store package's key splitting: the trailing three
+// SplitLastThree mirrors the store package's key splitting: the trailing three
 // "/"-separated segments of a key are its source, label and id.
-func splitLastThree(key string) (source, label, id string) {
+func SplitLastThree(key string) (source, label, id string) {
 	parts := strings.Split(key, "/")
 	n := len(parts)
 	if n >= 1 {

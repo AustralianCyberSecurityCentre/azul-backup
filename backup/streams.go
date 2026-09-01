@@ -44,3 +44,13 @@ func (bks *BackupStreams) BackupStream(obr *bkupcom.StreamBackupRequest) (bool, 
 	}
 	return true, nil
 }
+
+// Check if a stream exists in dispatcher.
+func (bks *BackupStreams) StreamExistsInDispatcher(obr *bkupcom.StreamBackupRequest) (bool, error) {
+	isExistingInDp, err := bks.dp.Exists(obr.Source, obr.Label, obr.Sha256)
+	if err != nil {
+		// Error isn't nil so assume the file exists.
+		return true, err
+	}
+	return isExistingInDp, err
+}
