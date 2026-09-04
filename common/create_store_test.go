@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/store"
 	"github.com/stretchr/testify/require"
 )
 

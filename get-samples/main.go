@@ -6,11 +6,11 @@ import (
 	"os"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/models"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/msginflight"
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/models"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/msginflight"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/settings"
 )
 
 const directoryPerms = 0755

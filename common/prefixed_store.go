@@ -5,7 +5,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/store"
 )
 
 // FolderPrefixStore folds a logical store into a folder (key prefix) inside a

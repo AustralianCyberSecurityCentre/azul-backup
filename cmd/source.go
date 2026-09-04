@@ -4,11 +4,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/events"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/settings"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/client"
 )
 
 // NewAuthor generates a backup/restore author

@@ -7,10 +7,10 @@ import (
 	"strings"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/events"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/store"
 )
 
 type RestoreStreams struct {

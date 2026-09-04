@@ -7,14 +7,14 @@ import (
 	"time"
 
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/events"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/models"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/msginflight"
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/events"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/models"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/msginflight"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/store"
 
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/client"
 )
 
 // If has been x minutes ignore the batch size and save anyway.

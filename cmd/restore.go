@@ -11,10 +11,10 @@ import (
 	bkupcom "github.com/AustralianCyberSecurityCentre/azul-backup.git/common"
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
 	restore "github.com/AustralianCyberSecurityCentre/azul-backup.git/restore"
-	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/client"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/models"
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
+	bedclient "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/client"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/models"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/settings"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/store"
 	"github.com/spf13/cobra"
 )
 
