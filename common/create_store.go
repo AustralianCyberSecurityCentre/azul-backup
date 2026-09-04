@@ -3,10 +3,10 @@ package common
 import (
 	"fmt"
 
-	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/settings"
+	bedSet "github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/settings"
 
 	"github.com/AustralianCyberSecurityCentre/azul-backup.git/prom"
-	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v12/gosrc/store"
+	"github.com/AustralianCyberSecurityCentre/azul-bedrock/v13/gosrc/store"
 )
 
 // newS3Store builds an S3 store for one data type. dedicatedBucket is the bucket
