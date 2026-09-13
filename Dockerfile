@@ -2,7 +2,7 @@
 # and a workspace (GOPATH) configured at /go.
 ARG REGISTRY="docker.io/library"
 ARG BASE_IMAGE=golang
-ARG BASE_TAG=1.26-trixie@sha256:771f3162219f7a66bb6be3fea1ba31f418932946a99ad9eac26ffd555dfcf393
+ARG BASE_TAG=1.27-trixie@sha256:9baa6b4187bbb98d240372a8a235ac0bb6b5ddd52bba1431dc2f7c0705862728
 
 FROM $REGISTRY/$BASE_IMAGE:$BASE_TAG AS builder
 ENV DEBIAN_FRONTEND=noninteractive
