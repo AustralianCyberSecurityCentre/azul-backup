@@ -217,18 +217,18 @@ func (bk *Backup) createStreamRoutines(
 					var backedUp bool
 					// Retry backing up the stream a few times
 					for range st.RetryCount {
-						// If event context is cancelling start stashing to disk.
-						select {
-						case <-bk.ctxEvents.Done():
-							err := bk.LocalData.BackupStreamStashAppend(streamFile)
-							if err != nil {
-								bedSet.Logger.Warn().Err(err).Msgf("streams - failed to cache stream during shutdown (outer) %s", streamFile.GetDestS3Path())
-								prom.BackupObjectError.WithLabelValues(BACKUP_STREAM_STASH_LABEL_VALUE).Inc()
-							}
-						default:
-						}
 						backedUp, err = backupStreams.BackupStream(&streamFile)
 						if err == nil {
+							break
+						}
+						// If streams have been cancelled stop retrying.
+						escape := false
+						select {
+						case <-bk.ctxStreams.Done():
+							escape = true
+						default:
+						}
+						if escape {
 							break
 						}
 					}
@@ -300,7 +300,7 @@ func (bk *Backup) createEventRoutines(
 				defer wgEvents.Done()
 				// signal that the worker is done
 				var err error
-				bkevents := backup.NewBackupEvents(dpclient, eventStore, chBackupStreams, bk.LocalData, source, model, action)
+				bkevents := backup.NewBackupEvents(bk.ctxEvents, dpclient, eventStore, chBackupStreams, bk.LocalData, source, model, action)
 				tmpStats, err := bkevents.RecoverLostBackupFromDisk()
 				if err != nil {
 					bedSet.Logger.Error().Err(err).Msgf("Failed to recover backup events from cache for source/event %s", bkevents.GetAuthorInfo())
