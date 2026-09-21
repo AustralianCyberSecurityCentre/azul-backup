@@ -217,6 +217,16 @@ func (bk *Backup) createStreamRoutines(
 					var backedUp bool
 					// Retry backing up the stream a few times
 					for range st.RetryCount {
+						// If event context is cancelling start stashing to disk.
+						select {
+						case <-bk.ctxEvents.Done():
+							err := bk.LocalData.BackupStreamStashAppend(streamFile)
+							if err != nil {
+								bedSet.Logger.Warn().Err(err).Msgf("streams - failed to cache stream during shutdown (outer) %s", streamFile.GetDestS3Path())
+								prom.BackupObjectError.WithLabelValues(BACKUP_STREAM_STASH_LABEL_VALUE).Inc()
+							}
+						default:
+						}
 						backedUp, err = backupStreams.BackupStream(&streamFile)
 						if err == nil {
 							break
@@ -252,7 +262,7 @@ func (bk *Backup) createStreamRoutines(
 						case streamFile := <-chBackupStreams:
 							err := bk.LocalData.BackupStreamStashAppend(streamFile)
 							if err != nil {
-								bedSet.Logger.Warn().Err(err).Msgf("streams - failed to cache stream during shutdown %s", streamFile.GetDestS3Path())
+								bedSet.Logger.Warn().Err(err).Msgf("streams - failed to cache stream during shutdown (inner) %s", streamFile.GetDestS3Path())
 								prom.BackupObjectError.WithLabelValues(BACKUP_STREAM_STASH_LABEL_VALUE).Inc()
 							}
 						default:
@@ -405,20 +415,26 @@ func (bk *Backup) DoBackup(
 					// do last actions and wait for all write operations to end
 					bk.CtxEventsCancel()
 					sigExitHappened = true
-				} else {
-					// SigKill has been sent after that 30 second grace period.
-					// Wait another 15seconds and then shutdown with data loss.
-					maxWaitAfterSigkill := time.NewTicker(time.Duration(15) * time.Second)
-					select {
-					case <-bk.CtxSigWatcher.Done():
-						// Yay gracefully exited in time!
-						return
-					case <-maxWaitAfterSigkill.C:
-						bedSet.Logger.Warn().Msg("Cancel or kill called again, terminating immediately (data loss)")
-						os.Exit(99)
-					}
 				}
+				// Ignore sig kills and just try to get exit ASAP without data loss.
+				// } else {
+				// 	// SigKill has been sent after that 30 second grace period.
+				// 	// Wait another 15seconds and then shutdown with data loss.
+				// 	// maxWaitAfterSigkill := time.NewTicker(time.Duration(15) * time.Second)
+				// 	select {
+				// 	case <-bk.CtxSigWatcher.Done():
+				// 		// Yay gracefully exited in time!
+
+				// 		return
+				// 	case <-maxWaitAfterSigkill.C:
+				// 		bedSet.Logger.Warn().Msg("Cancel or kill called again, terminating immediately (data loss)")
+				// 		time.Sleep(1 * time.Second)
+				// 		os.Exit(99)
+				// 	}
+				// }
 			case <-bk.CtxSigWatcher.Done(): // Top listening for signals once everything else is finished.
+				bedSet.Logger.Info().Msg("Graceful exit completed.")
+				time.Sleep(1 * time.Second)
 				return
 			}
 		}
