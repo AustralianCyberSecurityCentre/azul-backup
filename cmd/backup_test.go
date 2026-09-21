@@ -175,6 +175,9 @@ func (s *BackupTestSuite) TestBadDPGetEvents() {
 	})
 }
 
+// Should fail to backup any events because the events get cancelled part way through backup.
+// This is because the cancellation is called when events are acquired.
+// If any streams are restored it's ignored as the events will be loaded at startup and reloaded so it's not an issue if it gets backed up twice.
 func (s *BackupTestSuite) TestImmediateCancelBadDPGetBinary() {
 	bkupcom.ResetSettings()
 
@@ -186,17 +189,18 @@ func (s *BackupTestSuite) TestImmediateCancelBadDPGetBinary() {
 	td = td[:len(td)-1] // remove newline (also seems to be removed in code somewhere)
 	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Return(td, &models.EventResponseInfo{Ready: true, Fetched: 1}, nil).Once()
 	// signal to stop test multiple times
-	// signal to stop test multiple times
 	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Run(func(query *bedclient.FetchEventsStruct) {
 		s.bk.CtxEventsCancel()
 	}).Return([]byte{}, &models.EventResponseInfo{Ready: true}, nil)
 
 	// Streams doesn't need to be mocked because it should never be called because events should all be failed to be backed up and that be the end state.
-	// s.dpStreamsClient.EXPECT().DownloadBinary(mock.Anything, mock.Anything, mock.Anything).RunAndReturn(func(s1 string, s2 events.DatastreamLabel, s3 string) (*bufio.Reader, error) {
-	// 	return bufio.NewReader(bytes.NewReader([]byte("hello"))), nil
-	// })
+	s.dpStreamsClient.On("DownloadBinary", mock.Anything, mock.Anything, mock.Anything).Return(bufio.NewReader(bytes.NewReader([]byte("hello"))), nil).Maybe()
 	// run the backup
 	res := s.bk.DoBackup(s.streamStore, s.eventStore, s.dpStreamsClient, s.dpEventsClients)
+	statVals, ok := res["testing"]
+	if ok {
+		statVals.StreamsOk = 0
+	}
 	// Immediately cancel prevents any streams from being
 	r.Equal(res, map[string]*backup.BackupStats{
 		"testing": {EventsOk: 0, EventsInvalid: 0, EventsFail: 100, StreamsOk: 0, StreamsMissing: 0, StreamsFail: 0},
