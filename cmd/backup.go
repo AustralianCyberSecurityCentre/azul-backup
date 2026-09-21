@@ -415,23 +415,20 @@ func (bk *Backup) DoBackup(
 					// do last actions and wait for all write operations to end
 					bk.CtxEventsCancel()
 					sigExitHappened = true
-				}
-				// Ignore sig kills and just try to get exit ASAP without data loss.
-				// } else {
-				// 	// SigKill has been sent after that 30 second grace period.
-				// 	// Wait another 15seconds and then shutdown with data loss.
-				// 	// maxWaitAfterSigkill := time.NewTicker(time.Duration(15) * time.Second)
-				// 	select {
-				// 	case <-bk.CtxSigWatcher.Done():
-				// 		// Yay gracefully exited in time!
+				} else {
+					// Wait up to 60minutes before accepting data loss and shutting down.
+					maxWaitAfterSigkill := time.NewTicker(time.Duration(60) * time.Minute)
+					select {
+					case <-bk.CtxSigWatcher.Done():
+						// Yay gracefully exited in time!
 
-				// 		return
-				// 	case <-maxWaitAfterSigkill.C:
-				// 		bedSet.Logger.Warn().Msg("Cancel or kill called again, terminating immediately (data loss)")
-				// 		time.Sleep(1 * time.Second)
-				// 		os.Exit(99)
-				// 	}
-				// }
+						return
+					case <-maxWaitAfterSigkill.C:
+						bedSet.Logger.Warn().Msg("Cancel or kill called again, terminating immediately (data loss)")
+						time.Sleep(1 * time.Second)
+						os.Exit(99)
+					}
+				}
 			case <-bk.CtxSigWatcher.Done(): // Top listening for signals once everything else is finished.
 				bedSet.Logger.Info().Msg("Graceful exit completed.")
 				time.Sleep(1 * time.Second)
