@@ -2,6 +2,8 @@ package backup
 
 import (
 	"bytes"
+	"context"
+	"errors"
 	"fmt"
 	"io"
 	"time"
@@ -34,9 +36,11 @@ type BackupEvents struct {
 	ev         store.FileStorage
 	objChannel chan bkupcom.StreamBackupRequest
 	fileCache  *bkupcom.LocalData
+	ctx        context.Context
 }
 
 func NewBackupEvents(
+	bkEvents context.Context,
 	dpclient bedclient.ClientInterface,
 	evStore store.FileStorage,
 	objChannel chan bkupcom.StreamBackupRequest,
@@ -58,6 +62,7 @@ func NewBackupEvents(
 		action:              events.BinaryAction(action),
 		modelAndAction:      string(model) + "/" + string(action),
 		timeSinceLastUpdate: time.Now(),
+		ctx:                 bkEvents,
 	}
 }
 
@@ -163,8 +168,13 @@ func (bke *BackupEvents) innerBackupEvents(evs []*msginflight.MsgInFlight) (*Bac
 		}
 
 		for _, d := range binary.Entity.Datastreams {
-			bke.objChannel <- bkupcom.NewObjectBackupRequest(binary.KafkaKey, binary.Source.Name, d.Label, d.Sha256)
-			numStreams += 1
+			select {
+			case bke.objChannel <- bkupcom.NewObjectBackupRequest(binary.KafkaKey, binary.Source.Name, d.Label, d.Sha256):
+				numStreams += 1
+			case <-bke.ctx.Done():
+				return nil, errors.New("events cancelled giving up on backing up streams")
+			}
+
 		}
 	}
 

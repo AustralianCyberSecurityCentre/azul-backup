@@ -175,7 +175,12 @@ func (s *BackupTestSuite) TestBadDPGetEvents() {
 	})
 }
 
-func (s *BackupTestSuite) TestBadDPGetBinary() {
+// Should fail to backup any events because the events get cancelled part way through backup.
+// This is because the cancellation is called when events are acquired.
+// If any streams are restored it's ignored as the events will be loaded at startup and reloaded so it's not an issue if it gets backed up twice.
+func (s *BackupTestSuite) TestImmediateCancelBadDPGetBinary() {
+	bkupcom.ResetSettings()
+
 	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Unset()
 
 	r := s.Require()
@@ -185,6 +190,40 @@ func (s *BackupTestSuite) TestBadDPGetBinary() {
 	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Return(td, &models.EventResponseInfo{Ready: true, Fetched: 1}, nil).Once()
 	// signal to stop test multiple times
 	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Run(func(query *bedclient.FetchEventsStruct) {
+		s.bk.CtxEventsCancel()
+	}).Return([]byte{}, &models.EventResponseInfo{Ready: true}, nil)
+
+	// Streams doesn't need to be mocked because it should never be called because events should all be failed to be backed up and that be the end state.
+	s.dpStreamsClient.On("DownloadBinary", mock.Anything, mock.Anything, mock.Anything).Return(bufio.NewReader(bytes.NewReader([]byte("hello"))), nil).Maybe()
+	// run the backup
+	res := s.bk.DoBackup(s.streamStore, s.eventStore, s.dpStreamsClient, s.dpEventsClients)
+	statVals, ok := res["testing"]
+	if ok {
+		statVals.StreamsOk = 0
+	}
+	// Immediately cancel prevents any streams from being
+	r.Equal(res, map[string]*backup.BackupStats{
+		"testing": {EventsOk: 0, EventsInvalid: 0, EventsFail: 100, StreamsOk: 0, StreamsMissing: 0, StreamsFail: 0},
+		"system":  {EventsOk: 0, EventsInvalid: 0, EventsFail: 0, StreamsOk: 0, StreamsMissing: 0, StreamsFail: 0},
+	})
+}
+
+func (s *BackupTestSuite) TestBadDPGetBinary() {
+	bkupcom.ResetSettings()
+	st := bkupcom.Settings
+	st.EventBatchSize = 100
+
+	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Unset()
+
+	r := s.Require()
+	// send a valid event once
+	td := testdata.GetDataBytes("data/samples/testing-binary-sourced-100.avro")
+	td = td[:len(td)-1] // remove newline (also seems to be removed in code somewhere)
+	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Return(td, &models.EventResponseInfo{Ready: true, Fetched: 1}, nil).Once()
+	// signal to stop test multiple times
+	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Run(func(query *bedclient.FetchEventsStruct) {
+		// Give time for streams backup to complete
+		time.Sleep(1 * time.Second)
 		s.bk.CtxEventsCancel()
 	}).Return([]byte{}, &models.EventResponseInfo{Ready: true}, nil)
 
@@ -200,6 +239,10 @@ func (s *BackupTestSuite) TestBadDPGetBinary() {
 }
 
 func (s *BackupTestSuite) TestGetMissingBinary() {
+	bkupcom.ResetSettings()
+	st := bkupcom.Settings
+	st.EventBatchSize = 100
+
 	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Unset()
 
 	r := s.Require()
@@ -209,6 +252,8 @@ func (s *BackupTestSuite) TestGetMissingBinary() {
 	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Return(td, &models.EventResponseInfo{Ready: true, Fetched: 1}, nil).Once()
 	// signal to stop test multiple times
 	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Run(func(query *bedclient.FetchEventsStruct) {
+		// Give time for streams backup to complete
+		time.Sleep(1 * time.Second)
 		s.bk.CtxEventsCancel()
 	}).Return([]byte{}, &models.EventResponseInfo{Ready: true}, nil)
 
@@ -225,11 +270,14 @@ func (s *BackupTestSuite) TestGetMissingBinary() {
 }
 
 func (s *BackupTestSuite) TestCombined() {
+	bkupcom.ResetSettings()
+	st := bkupcom.Settings
+	st.EventBatchSize = 100
 	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Unset()
 
 	r := s.Require()
 
-	// send a valid event once
+	// send a valid event once - exactly 100 so the batch size triggers the events before the cancellation occurs
 	td := testdata.GetDataBytes("data/samples/testing-binary-sourced-100.avro")
 	td = td[:len(td)-1] // remove newline (also seems to be removed in code somewhere)
 	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Return(td, &models.EventResponseInfo{Ready: true, Fetched: 1}, nil).Once()
@@ -239,6 +287,8 @@ func (s *BackupTestSuite) TestCombined() {
 
 	// signal to stop test multiple times
 	s.dpEvTestingClient.EXPECT().GetEventsBytes(mock.Anything).Run(func(query *bedclient.FetchEventsStruct) {
+		// Give time for streams backup to complete
+		time.Sleep(1 * time.Second)
 		s.bk.CtxEventsCancel()
 	}).Return([]byte{}, &models.EventResponseInfo{Ready: true}, nil)
 

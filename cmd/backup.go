@@ -221,6 +221,16 @@ func (bk *Backup) createStreamRoutines(
 						if err == nil {
 							break
 						}
+						// If streams have been cancelled stop retrying.
+						escape := false
+						select {
+						case <-bk.ctxStreams.Done():
+							escape = true
+						default:
+						}
+						if escape {
+							break
+						}
 					}
 					if err == nil {
 						consecutiveStreamFails = 0
@@ -252,7 +262,7 @@ func (bk *Backup) createStreamRoutines(
 						case streamFile := <-chBackupStreams:
 							err := bk.LocalData.BackupStreamStashAppend(streamFile)
 							if err != nil {
-								bedSet.Logger.Warn().Err(err).Msgf("streams - failed to cache stream during shutdown %s", streamFile.GetDestS3Path())
+								bedSet.Logger.Warn().Err(err).Msgf("streams - failed to cache stream during shutdown (inner) %s", streamFile.GetDestS3Path())
 								prom.BackupObjectError.WithLabelValues(BACKUP_STREAM_STASH_LABEL_VALUE).Inc()
 							}
 						default:
@@ -290,7 +300,7 @@ func (bk *Backup) createEventRoutines(
 				defer wgEvents.Done()
 				// signal that the worker is done
 				var err error
-				bkevents := backup.NewBackupEvents(dpclient, eventStore, chBackupStreams, bk.LocalData, source, model, action)
+				bkevents := backup.NewBackupEvents(bk.ctxEvents, dpclient, eventStore, chBackupStreams, bk.LocalData, source, model, action)
 				tmpStats, err := bkevents.RecoverLostBackupFromDisk()
 				if err != nil {
 					bedSet.Logger.Error().Err(err).Msgf("Failed to recover backup events from cache for source/event %s", bkevents.GetAuthorInfo())
@@ -406,19 +416,22 @@ func (bk *Backup) DoBackup(
 					bk.CtxEventsCancel()
 					sigExitHappened = true
 				} else {
-					// SigKill has been sent after that 30 second grace period.
-					// Wait another 15seconds and then shutdown with data loss.
-					maxWaitAfterSigkill := time.NewTicker(time.Duration(15) * time.Second)
+					// Wait up to 60minutes before accepting data loss and shutting down.
+					maxWaitAfterSigkill := time.NewTicker(time.Duration(60) * time.Minute)
 					select {
 					case <-bk.CtxSigWatcher.Done():
 						// Yay gracefully exited in time!
+
 						return
 					case <-maxWaitAfterSigkill.C:
 						bedSet.Logger.Warn().Msg("Cancel or kill called again, terminating immediately (data loss)")
+						time.Sleep(1 * time.Second)
 						os.Exit(99)
 					}
 				}
 			case <-bk.CtxSigWatcher.Done(): // Top listening for signals once everything else is finished.
+				bedSet.Logger.Info().Msg("Graceful exit completed.")
+				time.Sleep(1 * time.Second)
 				return
 			}
 		}
