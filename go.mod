@@ -5,7 +5,7 @@ go 1.27.0
 toolchain go1.27.1
 
 require (
-	github.com/AustralianCyberSecurityCentre/azul-bedrock/v13 v13.0.50
+	github.com/AustralianCyberSecurityCentre/azul-bedrock/v13 v13.0.52
 	github.com/go-viper/mapstructure/v2 v2.5.0
 	github.com/hashicorp/golang-lru/v2 v2.0.7
 	github.com/prometheus/client_golang v1.24.1
@@ -29,7 +29,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
-	github.com/goccy/go-json v0.10.6 // indirect
+	github.com/goccy/go-json v0.11.1 // indirect
 	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
 	github.com/google/flatbuffers v25.12.19+incompatible // indirect
 	github.com/google/uuid v1.6.0 // indirect
