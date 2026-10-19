@@ -194,7 +194,8 @@ func (bke *BackupEvents) innerBackupEvents(evs []*msginflight.MsgInFlight) (*Bac
 	for range st.RetryCount {
 		r := bytes.NewReader(bulk)
 		// compress resource
-		compressor, err := bkupcom.NewGzipCompressReader(r)
+		var compressor io.Reader
+		compressor, err = bkupcom.NewGzipCompressReader(r)
 		if err != nil {
 			return nil, err
 		}
@@ -203,6 +204,7 @@ func (bke *BackupEvents) innerBackupEvents(evs []*msginflight.MsgInFlight) (*Bac
 		// move to remote s3 storage
 		customId := fmt.Sprintf("%s-%d-%s", lastTimestamp.Format(time.RFC3339Nano), len(evs), lastId)
 		err = bke.ev.Put(bke.source, bke.modelAndAction, customId, compressorReadCloser, -1)
+		bedSet.Logger.Error().Err(err).Msgf("Just backed up %s/%s/%s", bke.source, bke.modelAndAction, customId)
 		// exit on success
 		if err == nil {
 			break
@@ -257,6 +259,7 @@ func (bke *BackupEvents) PerformBackup(finalise bool) (*BackupStats, error) {
 
 	ret, err := bke.innerBackupEvents(events)
 	if err != nil {
+		bedSet.Logger.Error().Err(err).Msgf("Failed to backup %d events, saving them to disk instead.", len(events))
 		// failed to backup events properly
 		// convert list of events into bulk avro bytes
 		bulk, err := msginflight.MsgInFlightsToAvroBulk(events, bke.model)
