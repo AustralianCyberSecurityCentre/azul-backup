@@ -204,7 +204,6 @@ func (bke *BackupEvents) innerBackupEvents(evs []*msginflight.MsgInFlight) (*Bac
 		// move to remote s3 storage
 		customId := fmt.Sprintf("%s-%d-%s", lastTimestamp.Format(time.RFC3339Nano), len(evs), lastId)
 		err = bke.ev.Put(bke.source, bke.modelAndAction, customId, compressorReadCloser, -1)
-		bedSet.Logger.Error().Err(err).Msgf("Just backed up %s/%s/%s", bke.source, bke.modelAndAction, customId)
 		// exit on success
 		if err == nil {
 			break

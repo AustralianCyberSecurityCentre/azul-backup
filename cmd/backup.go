@@ -313,7 +313,6 @@ func (bk *Backup) createEventRoutines(
 					case <-bk.ctxEvents.Done():
 						// Perform a backup on all events currently stored.
 						tmpStats, eerr := bkevents.PerformBackup(true)
-						bedSet.Logger.Err(eerr).Msg("EXITED PERFORMBACKUP B")
 						if eerr != nil {
 							bedSet.Logger.Error().Err(eerr).Msg("events - failed to perform forceful backup")
 						}
@@ -321,8 +320,6 @@ func (bk *Backup) createEventRoutines(
 						return
 					default:
 						tmpStats, eerr := bkevents.PerformBackup(false)
-						bedSet.Logger.Err(eerr).Msg("EXITED PERFORMBACKUP A")
-						bedSet.Logger.Err(eerr).Msgf("EXITED PERFORMBACKUP C '%v' AND %v", eerr == nil, eerr)
 						if eerr != nil {
 							bedSet.Logger.Error().Err(eerr).Msgf("events - author %s failed, killing the plugin", bkevents.GetAuthorInfo())
 							// Cancel all event collectors.

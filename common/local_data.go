@@ -87,10 +87,8 @@ func (fc *LocalData) fpBackupEvents(source, model, action string) string {
 
 /*Overrides the details of bulk events that need to be backed up but can't be right now.*/
 func (fc *LocalData) BackupEventsStash(source, model, action string, bulk []byte) error {
-	bedSet.Logger.Error().Msg("LOCKING backup event stash")
 	fc.backupEventsLock.Lock()
 	defer fc.backupEventsLock.Unlock()
-	bedSet.Logger.Error().Msg("UN-LOCKING backup event stash")
 	return fc.stashFile(fc.fpBackupEvents(source, model, action), bulk)
 }
 
