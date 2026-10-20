@@ -194,7 +194,8 @@ func (bke *BackupEvents) innerBackupEvents(evs []*msginflight.MsgInFlight) (*Bac
 	for range st.RetryCount {
 		r := bytes.NewReader(bulk)
 		// compress resource
-		compressor, err := bkupcom.NewGzipCompressReader(r)
+		var compressor io.Reader
+		compressor, err = bkupcom.NewGzipCompressReader(r)
 		if err != nil {
 			return nil, err
 		}
@@ -257,12 +258,17 @@ func (bke *BackupEvents) PerformBackup(finalise bool) (*BackupStats, error) {
 
 	ret, err := bke.innerBackupEvents(events)
 	if err != nil {
+		bedSet.Logger.Error().Err(err).Msgf("Failed to backup %d events, saving them to disk instead.", len(events))
 		// failed to backup events properly
 		// convert list of events into bulk avro bytes
-		bulk, err := msginflight.MsgInFlightsToAvroBulk(events, bke.model)
-		err2 := bke.eventsToDisk(bulk)
-		if err2 != nil {
-			bedSet.Logger.Error().Err(err2).Msg("Data lost, could not backup events to filecache.")
+		bulk, err2 := msginflight.MsgInFlightsToAvroBulk(events, bke.model)
+		if err2 == nil {
+			err3 := bke.eventsToDisk(bulk)
+			if err3 != nil {
+				bedSet.Logger.Error().Err(err2).Msg("Data lost, could not backup events to filecache.")
+			}
+		} else {
+			bedSet.Logger.Error().Err(err2).Msg("Data lost, could not convert events to Avrobulk.")
 		}
 		return &BackupStats{EventsFail: len(events)}, err
 	}
