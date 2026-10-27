@@ -181,7 +181,7 @@ func (bk *Backup) createStreamRoutines(
 	for i := 0; i < st.StreamRoutineCount; i++ {
 		wgObjBkup.Add(1)
 		go func(workerId int) {
-			var stats map[string]*backup.BackupStats
+			stats := map[string]*backup.BackupStats{}
 			defer func() {
 				chStats <- stats
 				// signal that the worker is done
@@ -190,15 +190,22 @@ func (bk *Backup) createStreamRoutines(
 			consecutiveStreamFails := 0
 			backupCount := 0
 			var err error
+
+			// Maximum minutes to wait before providing stats on how many files have been backed up.
+			// This prevents long times between stats reporting which can be confusing when there is 20 StreamRoutineCounts
+			// Because it can take 20*100 (2000) streams being backed up before a stat is generated
+			MaxMinutesBetweenStatsCollection := float64(5)
+			statsLastCollectionTime := time.Now()
 			// Keep streaming files while they are in the channel.
 			for {
-				if backupCount%100 == 0 {
+				if backupCount%100 == 0 || time.Since(statsLastCollectionTime).Minutes() > MaxMinutesBetweenStatsCollection {
 					chStats <- stats
 					// reset stats
 					stats = map[string]*backup.BackupStats{}
 					for source := range dpEventClients {
 						stats[source] = &backup.BackupStats{}
 					}
+					statsLastCollectionTime = time.Now()
 				}
 				select {
 				case streamFile := <-chBackupStreams:
