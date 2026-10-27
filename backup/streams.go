@@ -37,7 +37,7 @@ func (bks *BackupStreams) BackupStream(obr *bkupcom.StreamBackupRequest) (bool, 
 		return false, err
 	}
 	compressorReadCloser := io.NopCloser(compressor)
-	// add to remove s3 storage
+	// add to remote s3 storage
 	err = bks.obj.Put(obr.Source, obr.Label.Str(), obr.Sha256, compressorReadCloser, -1)
 	if err != nil {
 		return false, err
