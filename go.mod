@@ -5,7 +5,7 @@ go 1.27.3
 // toolchain go1.27.3
 
 require (
-	github.com/AustralianCyberSecurityCentre/azul-bedrock/v13 v13.0.72
+	github.com/AustralianCyberSecurityCentre/azul-bedrock/v13 v13.0.79
 	github.com/go-viper/mapstructure/v2 v2.5.0
 	github.com/hashicorp/golang-lru/v2 v2.0.7
 	github.com/prometheus/client_golang v1.25.0
@@ -61,7 +61,7 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/prometheus/client_model v0.6.3 // indirect
 	github.com/prometheus/common v0.72.1 // indirect
-	github.com/prometheus/procfs v0.22.0 // indirect
+	github.com/prometheus/procfs v0.23.0 // indirect
 	github.com/rs/xid v1.6.0 // indirect
 	github.com/rs/zerolog v1.35.1 // indirect
 	github.com/spf13/pflag v1.0.10 // indirect
