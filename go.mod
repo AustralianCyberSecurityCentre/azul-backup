@@ -5,7 +5,7 @@ go 1.27.3
 // toolchain go1.27.3
 
 require (
-	github.com/AustralianCyberSecurityCentre/azul-bedrock/v13 v13.0.80-dev3
+	github.com/AustralianCyberSecurityCentre/azul-bedrock/v13 v13.0.81
 	github.com/go-viper/mapstructure/v2 v2.5.0
 	github.com/hashicorp/golang-lru/v2 v2.0.7
 	github.com/prometheus/client_golang v1.25.0
